@@ -9,10 +9,11 @@ class Solution:
         for i in range(2, n):
             for j in range(i):
                 if p[j] < p[i]:
+                    dp[i][0] = max(dp[i][0], p[i] - p[j])
                     if j > 2:
                         dp[i][0] = max(dp[i][0], p[i] - p[j] + dp[j - 2][1])
-                    dp[i][0] = max(dp[i][0], p[i] - p[j] + dp[j][0])
                 dp[i][1] = max(dp[i][0], dp[i-1][1])
         return dp[n-1][1]
 s = Solution()
-print(s.maxProfit([6,1,6,4,3,0,2]))
+print(s.maxProfit([6,1,3,2,4,7]))
+print(s.maxProfit([6,1,3,6,4,0,2,3]))
