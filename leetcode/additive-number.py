@@ -20,18 +20,16 @@ class Solution:
                         break
                     x3 = int(s3)
                     if x1 + x2 == x3:
-                        checks.append([x2, x3, k])
-        for check in checks:
-            a = check[::]
-            while a[2] <= n:
-                if a[2] == n:
-                    return True
-                x = a[0] + a[1]
-                s = str(x)
-                if num[a[2]:].startswith(s):
-                    a = [a[1], x, a[2] + len(s)]
-                else:
-                    break
+                        a = [x2, x3, k]
+                        while a[2] <= n:
+                            if a[2] == n:
+                                return True
+                            x = a[0] + a[1]
+                            s = str(x)
+                            if num[a[2]:].startswith(s):
+                                a = [a[1], x, a[2] + len(s)]
+                            else:
+                                break
         return False
 
 
