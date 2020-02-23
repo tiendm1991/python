@@ -4,9 +4,6 @@ from string import digits
 class Solution:
     def largestMultipleOfThree(self, digits) -> str:
         d = sorted([x for x in digits if x % 3 != 0], key=None, reverse=True)
-        s = {1:0, 2:0, 4:0, 5:0, 7:0, 8:0}
-        set2 = []
-        set1 = []
         result = [x for x in digits if x % 3 == 0]
         a = 0
         tmp = result[::]
@@ -21,7 +18,8 @@ class Solution:
             if idx >= 0:
                 del result[idx]
             else:
-                result = tmp
+                del result[-1]
+                del result[-1]
         if len(result) == 0:
             return ''
         result = sorted(result, key=None, reverse=True)
@@ -30,4 +28,4 @@ class Solution:
         return ''.join([str(x) for x in result])
 
 s = Solution()
-print(s.largestMultipleOfThree([9,8,6,8,6]))
+print(s.largestMultipleOfThree([2, 2, 2, 2, 2]))
