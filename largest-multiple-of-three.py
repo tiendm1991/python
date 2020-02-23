@@ -6,7 +6,6 @@ class Solution:
         d = sorted([x for x in digits if x % 3 != 0], key=None, reverse=True)
         result = [x for x in digits if x % 3 == 0]
         a = 0
-        tmp = result[::]
         for x in d:
             result.append(x)
             a += x
