@@ -12,9 +12,9 @@ class Solution:
         mod = a % 3
         if mod != 0:
             idx = len(result) - 1
-            while result[idx] % 3 != mod and idx >= 0:
+            while result[idx] % 3 != mod and idx >= len(result) - len(d):
                 idx -= 1
-            if idx >= 0:
+            if idx >= len(result) - len(d):
                 del result[idx]
             else:
                 del result[-1]
