@@ -19,6 +19,6 @@ class Solution:
 
 s = Solution()
 startTime = datetime.now()
-print(s.canMeasureWater(4, 6, 8))
+print(s.combinationSum4([1,2,3], 5))
 print(datetime.now() - startTime)
 
