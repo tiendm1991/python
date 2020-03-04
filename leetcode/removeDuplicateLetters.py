@@ -13,14 +13,13 @@ class Solution:
         count = {}
         for ch in s:
             count[ch] = count.get(ch, 0) + 1
-        for i in range(s):
-            ch = s[i]
-            if count[ch] == 1:
+        for ch in s:
+            if ch not in stack:
+                while len(stack) > 0 and stack[-1] > ch and count[stack[-1]] > 0:
+                    stack.pop()
                 stack.append(ch)
-                continue
-            
-
-        return stack
+            count[ch] -= 1
+        return ''.join(stack)
 
 s = Solution()
 startTime = datetime.now()
