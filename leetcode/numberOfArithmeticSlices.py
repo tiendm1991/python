@@ -30,11 +30,11 @@ class Solution:
                 if k == 0:
                     s += pow(2, s1[k]-1) - s1[k]
                 else:
-                    s += dp2[i][k] -dp3[i][k]
+                    s += dp2[i][k] - dp3[i][k]
         return s
 
 s = Solution()
 startTime = datetime.now()
-print(s.numberOfArithmeticSlices([1, 1, 1]))
+print(s.numberOfArithmeticSlices([2, 2, 2, 2]))
 print(datetime.now() - startTime)
 
