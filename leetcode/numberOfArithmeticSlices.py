@@ -11,6 +11,7 @@ class Solution:
         n = len(a)
         dp = [{0:1} for i in range(n)]
         dp2 = [{0:1} for i in range(n)]
+        dp3 = [{0:1} for i in range(n)]
         for i in range(1, n):
             for j in range(i):
                 x = a[i] - a[j]
@@ -18,18 +19,22 @@ class Solution:
                     dp[i][x] = dp[j][x] + 1
                 else:
                     dp[i][x] = 2
-                dp2[i][x] = dp2[i].get(x, 0) +  dp2[j].get(x, 1)
+                dp3[i][x] = dp3[i].get(x, 0) + 1
+                dp2[i][x] = dp2[i].get(x, 0) + (dp2[j].get(x, 0) + 1)
         s = 0
-        for i, _set in enumerate(dp):
-            for k in _set:
-                if _set[k] < 3:
+        for i in range(n):
+            s1 = dp[i]
+            for k in s1:
+                if s1[k] < 3:
                     continue
-                n = _set[k]
-                s += (n - 2) * dp2[i][k]
+                if k == 0:
+                    s += pow(2, s1[k]-1) - s1[k]
+                else:
+                    s += dp2[i][k] -dp3[i][k]
         return s
 
 s = Solution()
 startTime = datetime.now()
-print(s.numberOfArithmeticSlices([2,2,3,4,5]))
+print(s.numberOfArithmeticSlices([1, 1, 1]))
 print(datetime.now() - startTime)
 
