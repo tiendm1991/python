@@ -9,21 +9,21 @@ import collections
 class Solution:
     def numberOfArithmeticSlices(self, a) -> int:
         n = len(a)
-        dp = [{0:1} for i in range(n)]
+        dp1 = [{0:1} for i in range(n)]
         dp2 = [{0:1} for i in range(n)]
         dp3 = [{0:1} for i in range(n)]
         for i in range(1, n):
             for j in range(i):
                 x = a[i] - a[j]
-                if x in dp[j]:
-                    dp[i][x] = dp[j][x] + 1
+                if x in dp1[j]:
+                    dp1[i][x] = dp1[j][x] + 1
                 else:
-                    dp[i][x] = 2
+                    dp1[i][x] = 2
                 dp3[i][x] = dp3[i].get(x, 0) + 1
                 dp2[i][x] = dp2[i].get(x, 0) + (dp2[j].get(x, 0) + 1)
         s = 0
         for i in range(n):
-            s1 = dp[i]
+            s1 = dp1[i]
             for k in s1:
                 if s1[k] < 3:
                     continue
