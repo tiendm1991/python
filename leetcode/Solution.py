@@ -9,7 +9,6 @@ class Solution:
         m = max(nums)
         if m > s:
             return False
-        nums = sorted(nums, reverse=True)
         def backtrack(a, visited, idx):
             if idx == 3:
                 return True
