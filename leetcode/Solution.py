@@ -1,5 +1,6 @@
 from  datetime import datetime
 class Solution:
+    a = 1
     def makesquare(self, nums) -> bool:
         n = len(nums)
         s = sum(nums)
@@ -9,7 +10,10 @@ class Solution:
         m = max(nums)
         if m > s:
             return False
+        nums = sorted(nums, reverse=True)
         def backtrack(a, visited, idx):
+            self.a += 1
+            print('step ' + str(self.a))
             if idx == 3:
                 return True
             for i in range(n):
