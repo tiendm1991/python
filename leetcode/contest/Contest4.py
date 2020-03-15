@@ -2,30 +2,27 @@ from string import digits
 
 
 class Solution:
-    def largestMultipleOfThree(self, digits) -> str:
-        d = sorted([x for x in digits if x % 3 != 0], key=None, reverse=True)
-        result = [x for x in digits if x % 3 == 0]
-        a = 0
-        tmp = result[::]
-        for x in d:
-            result.append(x)
-            a += x
-        mod = a % 3
-        if mod != 0:
-            idx = len(result) - 1
-            while result[idx] % 3 != mod and idx >= 0:
-                idx -= 1
-            if idx >= 0:
-                del result[idx]
-            else:
-                del result[-1]
-                del result[-1]
-        if len(result) == 0:
-            return ''
-        result = sorted(result, key=None, reverse=True)
-        if result[0] == 0:
-            return '0'
-        return ''.join([str(x) for x in result])
-
+    def maxPerformance(self, n: int, speed, efficiency, k) -> int:
+        dp = speed[::]
+        selected = [i for i in range(k)]
+        dp[k-1] = sum(speed[:k]) * min(efficiency[:k])
+        for i in range(k, n):
+            s = 0
+            for j in selected:
+                s += speed[j]
+            s += speed[i]
+            x = [0] * k
+            for j in range(k):
+                a = selected[:j] + selected[j+1:] + [i]
+                a = [efficiency[_] for _ in a]
+                x[j] = min(a) * (s - speed[selected[j]])
+            _max = max(x)
+            dp[i] = max(dp[i-1], _max)
+            if _max > dp[i-1]:
+                for j in range(k):
+                    if x[j] == _max:
+                        selected = selected[:j] + selected[j+1:] + [i]
+                        break
+        return dp[n-1]
 s = Solution()
-print(s.largestMultipleOfThree([2, 2, 2, 2, 2]))
+print(s.maxPerformance(6, [2,10,3,1,5,8], [5,4,3,9,7,2], 2))

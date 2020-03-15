@@ -1,17 +1,33 @@
 import math
-class Solution:
-    def closestDivisors(self, num: int):
-        a, b = num + 1, num + 2
-        x = int(math.ceil(math.sqrt(b)))
-        while x > 0:
-            if a % x == 0:
-                y = a // x
-                return [min(x,y), max(x, y)]
-            if b % x == 0:
-                y = b // x
-                return [min(x,y), max(x, y)]
-            x -= 1
+class CustomStack:
+
+    def __init__(self, maxSize: int):
+        self.stack = []
+        self.maxSize = maxSize
+
+    def push(self, x: int) -> None:
+        if len(self.stack) < self.maxSize:
+            self.stack.append(x)
+
+    def pop(self) -> int:
+        if len(self.stack) > 0:
+            return self.stack.pop()
         return None
 
-s = Solution()
-print(s.closestDivisors(999))
+    def increment(self, k: int, val: int) -> None:
+        for i in range(min(k, len(self.stack))):
+            self.stack[i] += val
+
+s = CustomStack(3)
+s.push(1)
+s.push(2)
+print(s.pop())
+s.push(2)
+s.push(3)
+s.push(4)
+s.increment(5, 100)
+s.increment(2, 100)
+print(s.pop())
+print(s.pop())
+print(s.pop())
+print(s.pop())
