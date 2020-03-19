@@ -15,15 +15,14 @@ class Solution:
                 continue
             n = len(stack)
             for k in range(n):
-                _max = max(_max, h[stack[k]] * (stack[-1] - stack[k] + 1))
+                _max = max(_max, h[stack[k]] * (i - stack[k]))
             j = n
             while j > 0 and h[stack[j-1]] >= x:
                 j -= 1
             del stack[j+1:]
             h[stack[-1]] = x
-            stack.append(i)
         for k in range(len(stack)):
-            _max = max(_max, h[stack[k]] * (stack[-1] - stack[k] + 1))
+            _max = max(_max, h[stack[k]] * (len(h) - stack[k]))
         return _max
 
     def largestRectangleArea2(self, heights) -> int:
