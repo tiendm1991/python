@@ -1,33 +1,18 @@
 import math
-class CustomStack:
-
-    def __init__(self, maxSize: int):
-        self.stack = []
-        self.maxSize = maxSize
-
-    def push(self, x: int) -> None:
-        if len(self.stack) < self.maxSize:
-            self.stack.append(x)
-
-    def pop(self) -> int:
-        if len(self.stack) > 0:
-            return self.stack.pop()
-        return None
-
-    def increment(self, k: int, val: int) -> None:
-        for i in range(min(k, len(self.stack))):
-            self.stack[i] += val
-
-s = CustomStack(3)
-s.push(1)
-s.push(2)
-print(s.pop())
-s.push(2)
-s.push(3)
-s.push(4)
-s.increment(5, 100)
-s.increment(2, 100)
-print(s.pop())
-print(s.pop())
-print(s.pop())
-print(s.pop())
+class Solution:
+    def sumFourDivisors(self, nums) -> int:
+        def valid(x):
+            s = set()
+            for i in range(1, int(math.sqrt(x)) + 1):
+                if x % i == 0:
+                    s.add(i)
+                    s.add(x // i)
+                    if i == x // i:
+                        return 0
+            return 0 if len(s) != 4 else sum(s)
+        s = 0
+        for x in nums:
+            s += valid(x)
+        return s
+s = Solution()
+print(s.sumFourDivisors([1,2,3,4,5,6,7,8,9,10]))

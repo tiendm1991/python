@@ -1,42 +1,56 @@
-import queue
-
-
 class Solution:
-    def maxPerformance(self, n: int, speed, efficiency, k) -> int:
-        mod = 10**9+7
-        s = sum(speed)
-        dp = sorted([[efficiency[i], speed[i]] for i in range(n)], key=lambda x: x[0])
-        idx = 0
-        while idx < n - 1:
-            sTmp = s - dp[idx][1]
-            j = idx + 1
-            while j < n - 1 and dp[j][0] == dp[idx][0]:
-                sTmp -= dp[j][1]
-                j += 1
-            if sTmp * dp[j][0] <= s * dp[idx][0]:
-                break
-            s = sTmp
-            idx = j
-        dp = dp[idx:]
-        result = s * dp[0][0]
-        while len(dp) > 1:
-            _max, _maxIdx = (s - dp[0][1]) * dp[1][0], 0
-            for i in range(1, len(dp)):
-                tmp = (s - dp[i][1]) * dp[0][0]
-                if tmp > _max:
-                    _max, _maxIdx = tmp, i
-            s -= dp[_maxIdx][1]
-            del dp[_maxIdx]
-            if len(dp) > k:
-                result = None
-                continue
-            elif len(dp) == k:
-                result = _max
-            else:
-                result = max(result, _max)
-        return result % (mod)
+    def hasValidPath(self, grid) -> bool:
+        d1 = {1: [3, 5, 1], 2: [], 3: [], 4: [1, 3, 5], 5: [], 6: [1, 3, 5]}
+        d2 = {1: [1, 4, 6], 2: [], 3: [1, 4, 6], 4: [], 5: [1, 4, 6], 6: []}
+        d3 = {1: [], 2: [2, 5, 6], 3: [2, 5, 6], 4: [2, 5, 6], 5: [], 6: []}
+        d4 = {1: [], 2: [2, 3, 4], 3: [], 4: [], 5: [2, 3, 4], 6: [2, 3, 4]}
+        m = len(grid)
+        n = len(grid[0])
+        visited = [[False for j in range(n)] for i in range(m)]
+
+        def backtrack(r, c):
+            if r == m - 1 and c == n - 1:
+                return True
+            x = grid[r][c]
+            if r + 1 < m and not visited[r + 1][c] and grid[r + 1][c] in d3[x]:
+                visited[r + 1][c] = True
+                if backtrack(r + 1, c):
+                    return True
+                visited[r + 1][c] = False
+            if r - 1 >= 0 and not visited[r - 1][c] and grid[r - 1][c] in d4[x]:
+                visited[r - 1][c] = True
+                if backtrack(r - 1, c):
+                    return True
+                visited[r - 1][c] = False
+            if c + 1 < n and not visited[r][c + 1] and grid[r][c + 1] in d1[x]:
+                visited[r][c + 1] = True
+                if backtrack(r, c + 1):
+                    return True
+                visited[r][c + 1] = False
+            if c - 1 >= 0 and not visited[r][c - 1] and grid[r][c - 1] in d2[x]:
+                visited[r][c - 1] = True
+                if backtrack(r, c - 1):
+                    return True
+                visited[r][c - 1] = False
+            return False
+
+        visited[0][0] = True
+        return backtrack(0, 0)
+
+
 s = Solution()
-print(s.maxPerformance(3,
-[4,6,8],
-[4,5,10],
-3))
+print(s.hasValidPath([[6,1,1,1,1,1,1,1,1,1,1,1,1,3],
+                      [4,1,1,1,1,1,1,1,1,1,1,1,1,5],
+                      [6,1,1,1,1,1,1,1,1,1,1,1,1,3],
+                      [4,1,1,1,1,1,1,1,1,1,1,1,1,5],
+                      [6,1,1,1,1,1,1,1,1,1,1,1,1,3],
+                      [4,1,1,1,1,1,1,1,1,1,1,1,1,5],
+                      [6,1,1,1,1,1,1,1,1,1,1,1,1,3],
+                      [4,1,1,1,1,1,1,1,1,1,1,1,1,5],
+                      [6,1,1,1,1,1,1,1,1,1,1,1,1,3],
+                      [4,1,1,1,1,1,1,1,1,1,1,1,1,5],
+                      [6,1,1,1,1,1,1,1,1,1,1,1,1,3],
+                      [4,1,1,1,1,1,1,1,1,1,1,1,1,5],
+                      [6,1,1,1,1,1,1,1,1,1,1,1,1,3],
+                      [4,1,1,1,1,1,1,1,1,1,1,1,1,5],
+                      [6,1,1,1,1,1,1,1,1,1,1,1,1,3]]))
