@@ -1,56 +1,44 @@
-class Solution:
-    def hasValidPath(self, grid) -> bool:
-        d1 = {1: [3, 5, 1], 2: [], 3: [], 4: [1, 3, 5], 5: [], 6: [1, 3, 5]}
-        d2 = {1: [1, 4, 6], 2: [], 3: [1, 4, 6], 4: [], 5: [1, 4, 6], 6: []}
-        d3 = {1: [], 2: [2, 5, 6], 3: [2, 5, 6], 4: [2, 5, 6], 5: [], 6: []}
-        d4 = {1: [], 2: [2, 3, 4], 3: [], 4: [], 5: [2, 3, 4], 6: [2, 3, 4]}
-        m = len(grid)
-        n = len(grid[0])
-        visited = [[False for j in range(n)] for i in range(m)]
+class Station:
+    def __init__(self, id, stationName, t):
+        self.id = id
+        self.stationName = stationName
+        self.t = t
 
-        def backtrack(r, c):
-            if r == m - 1 and c == n - 1:
-                return True
-            x = grid[r][c]
-            if r + 1 < m and not visited[r + 1][c] and grid[r + 1][c] in d3[x]:
-                visited[r + 1][c] = True
-                if backtrack(r + 1, c):
-                    return True
-                visited[r + 1][c] = False
-            if r - 1 >= 0 and not visited[r - 1][c] and grid[r - 1][c] in d4[x]:
-                visited[r - 1][c] = True
-                if backtrack(r - 1, c):
-                    return True
-                visited[r - 1][c] = False
-            if c + 1 < n and not visited[r][c + 1] and grid[r][c + 1] in d1[x]:
-                visited[r][c + 1] = True
-                if backtrack(r, c + 1):
-                    return True
-                visited[r][c + 1] = False
-            if c - 1 >= 0 and not visited[r][c - 1] and grid[r][c - 1] in d2[x]:
-                visited[r][c - 1] = True
-                if backtrack(r, c - 1):
-                    return True
-                visited[r][c - 1] = False
-            return False
+class UndergroundSystem:
 
-        visited[0][0] = True
-        return backtrack(0, 0)
+    def __init__(self):
+        self.checkin = {}
+        self.checkout = {}
+        self.ls = {}
 
+    def checkIn(self, id: int, stationName: str, t: int) -> None:
+        s = Station(id, stationName, t)
+        self.checkin[id] = s
 
-s = Solution()
-print(s.hasValidPath([[6,1,1,1,1,1,1,1,1,1,1,1,1,3],
-                      [4,1,1,1,1,1,1,1,1,1,1,1,1,5],
-                      [6,1,1,1,1,1,1,1,1,1,1,1,1,3],
-                      [4,1,1,1,1,1,1,1,1,1,1,1,1,5],
-                      [6,1,1,1,1,1,1,1,1,1,1,1,1,3],
-                      [4,1,1,1,1,1,1,1,1,1,1,1,1,5],
-                      [6,1,1,1,1,1,1,1,1,1,1,1,1,3],
-                      [4,1,1,1,1,1,1,1,1,1,1,1,1,5],
-                      [6,1,1,1,1,1,1,1,1,1,1,1,1,3],
-                      [4,1,1,1,1,1,1,1,1,1,1,1,1,5],
-                      [6,1,1,1,1,1,1,1,1,1,1,1,1,3],
-                      [4,1,1,1,1,1,1,1,1,1,1,1,1,5],
-                      [6,1,1,1,1,1,1,1,1,1,1,1,1,3],
-                      [4,1,1,1,1,1,1,1,1,1,1,1,1,5],
-                      [6,1,1,1,1,1,1,1,1,1,1,1,1,3]]))
+    def checkOut(self, id: int, stationName: str, t: int) -> None:
+        ci = self.checkin[id]
+        s = ci.stationName + '-' + stationName
+        if s not in self.ls:
+            self.ls[s] = [t - ci.t]
+        else:
+            self.ls[s].append(t - ci.t)
+
+    def getAverageTime(self, startStation: str, endStation: str) -> float:
+        s = startStation + '-' + endStation
+        if s not in self.ls:
+            return 0
+        return sum(self.ls[s]) / len(self.ls[s])
+
+undergroundSystem = UndergroundSystem()
+undergroundSystem.checkIn(45, "Leyton", 3)
+undergroundSystem.checkIn(32, "Paradise", 8)
+undergroundSystem.checkIn(27, "Leyton", 10)
+undergroundSystem.checkOut(45, "Waterloo", 15)
+undergroundSystem.checkOut(27, "Waterloo", 20)
+undergroundSystem.checkOut(32, "Cambridge", 22)
+print(undergroundSystem.getAverageTime("Paradise", "Cambridge"))
+undergroundSystem.getAverageTime("Leyton", "Waterloo")
+undergroundSystem.checkIn(10, "Leyton", 24)
+print(undergroundSystem.getAverageTime("Leyton", "Waterloo"))
+undergroundSystem.checkOut(10, "Waterloo", 38)
+print(undergroundSystem.getAverageTime("Leyton", "Waterloo"))
