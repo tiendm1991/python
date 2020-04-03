@@ -7,8 +7,10 @@ class Region:
         self.s = (c - a) * (d - b)
         self.isLand = False
         self.children = []
+
     def __str__(self):
         return '{},{} - {},{} - {}'.format(self.a, self.b, self.c, self.d, self.isLand)
+
 
 class Solution:
     def __init__(self):
