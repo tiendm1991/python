@@ -1,24 +1,16 @@
-class Solution:
-    def numTeams(self, rating) -> int:
-        n = len(rating)
-        if n < 3:
-            return 0
-        dp = [[0 for i in range(2)] for j in range(n)]
-        for i in range(1, n):
-            for j in range(i):
-                if rating[j] < rating[i]:
-                    dp[i][0] += 1
-                else:
-                    dp[i][1] += 1
-        count = 0
-        for i in range(2, n):
-            for j in range(1, i):
-                if rating[j] < rating[i]:
-                    count += dp[j][0]
-                else:
-                    count += dp[j][1]
-        return count
+import collections
 
+
+class Solution:
+    def minSubsequence(self, nums):
+        target = sum(nums) // 2
+        s = sum(nums)
+        nums = sorted(nums, reverse=True)
+        top = 0
+        while s > target:
+            top = nums.pop()
+            s -= top
+        return nums + [top]
 
 s = Solution()
-print(s.numTeams([1, 2, 3, 4]))
+print(s.minSubsequence([7,4,2,8,1,7,7,10]))
