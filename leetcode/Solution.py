@@ -1,4 +1,6 @@
 from  datetime import datetime
+import functools
+
 class Solution:
     def nextGreaterElement(self, nums1, nums2):
         stack, d = [], {}
@@ -15,5 +17,5 @@ class Solution:
 
 s = Solution()
 startTime = datetime.now()
-print(s.nextGreaterElement([4,1,2], [1,3,4,2]))
+print(s.matrixReshape([[1,2],[3,4]], 1, 4))
 print(datetime.now() - startTime)
