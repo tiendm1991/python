@@ -1,5 +1,6 @@
 from  datetime import datetime
 import functools
+
 class Solution:
     def nearestPalindromic(self, n: str) -> str:
         x = int(n)
@@ -20,29 +21,23 @@ class Solution:
             s[j] = s[i]
             i += 1
             j -= 1
-        if palindrome:
-            i = l // 2
-            if s[i] == '0':
-                s[i] = '1'
-            else:
-                s[i] = str(int(s[i]) - 1)
-            if l % 2 == 0:
-                s[i - 1] = s[i]
+        if not palindrome:
             candidate.add(int(''.join(s)))
-        else:
-            candidate.add(int(''.join(s)))
-            midIdx = l//2
-            s1 = s[::]
-            mid = int(s[midIdx])
-            if mid < 9:
-                s1[midIdx] = str(mid + 1)
-            if mid > 0:
-                s[midIdx] = str(mid - 1)
-            if l % 2 == 0:
-                s1[midIdx-1] = s1[midIdx]
-                s[midIdx-1] = s[midIdx]
+        midIdx = l//2
+        s1 = s[::]
+        s2 = s[::]
+        mid = int(s[midIdx])
+        if mid < 9:
+            s1[midIdx] = str(mid + 1)
+        if mid > 0:
+            s2[midIdx] = str(mid - 1)
+        if l % 2 == 0:
+            s1[midIdx-1] = s1[midIdx]
+            s2[midIdx-1] = s2[midIdx]
+        if s1 != s:
             candidate.add(int(''.join(s1)))
-            candidate.add(int(''.join(s)))
+        if s2 != s:
+            candidate.add(int(''.join(s2)))
         _min = float('inf')
         result = ''
         for c in candidate:
@@ -53,5 +48,6 @@ class Solution:
 
 s = Solution()
 startTime = datetime.now()
+print(s.nearestPalindromic("11911"))
 print(s.nearestPalindromic("1213"))
 print(datetime.now() - startTime)
