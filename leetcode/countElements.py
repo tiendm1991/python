@@ -20,5 +20,5 @@ class Solution:
 
 s = Solution()
 startTime = datetime.now()
-print(s.matrixReshape([[1, 2], [3, 4]], 1, 4))
+print(s.countElements([1,3,2,3,5,0]))
 print(datetime.now() - startTime)
