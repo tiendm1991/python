@@ -21,4 +21,6 @@ class Solution:
 
 
 s = Solution()
+print(s.numOfWays(4))
+print(s.numOfWays(7))
 print(s.numOfWays(5000))
