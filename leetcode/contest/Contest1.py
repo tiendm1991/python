@@ -2,15 +2,27 @@ import collections
 
 
 class Solution:
-    def minSubsequence(self, nums):
-        target = sum(nums) // 2
-        s = sum(nums)
-        nums = sorted(nums, reverse=True)
-        top = 0
-        while s > target:
-            top = nums.pop()
-            s -= top
-        return nums + [top]
+    def reformat(self, s: str) -> str:
+        if len(s) < 2:
+            return s
+        digits = [c for c in s if c in '0123456789']
+        letters = [c for c in s if c not in '0123456789']
+        n1, n2 = len(digits), len(letters)
+        if abs(n1 - n2) > 1:
+            return ''
+        result = ''
+        if n1 < n2:
+            result += letters[0]
+            for i in range(n1):
+                result += digits[i] + letters[i+1]
+        elif n1 > n2:
+            result += digits[0]
+            for i in range(n2):
+                result += letters[i] + digits[i+1]
+        else:
+            for i in range(n1):
+                result += letters[i] + digits[i]
+        return result
 
 s = Solution()
-print(s.minSubsequence([7,4,2,8,1,7,7,10]))
+print(s.reformat("ab123"))

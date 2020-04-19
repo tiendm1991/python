@@ -1,37 +1,34 @@
 from datetime import datetime
+import math
+
 class Solution:
-    def stoneGameIII(self, stoneValue) -> str:
-        n = len(stoneValue)
-        if n == 0:
-            return 'Tie'
-        dp = [0] * n
-        s = 0
-        for i in range(n-1, -1, -1):
-            s += stoneValue[i]
-            if i == n-1:
-                dp[i] = s
-            elif i == n-2:
-                dp[i] = max(stoneValue[i], s)
-            elif i == n-3:
-                dp[i] = max(stoneValue[i] + s - dp[i+1], stoneValue[i] + stoneValue[i+1], s)
-            else:
-                dp[i] = max(s - dp[i+1], s- dp[i+2], s - dp[i+3])
-        return 'Alice' if dp[0] > s - dp[0] else 'Bob' if dp[0] < s - dp[0] else 'Tie'
-
-    def stoneGameIII2(self, stoneValue) -> str:
-        n = len(stoneValue)
-        if n == 0:
-            return 'Tie'
-        n += 3
-        dp = [0] * n
-        s = 0
-        for i in range(n - 4, -1, -1):
-            s += stoneValue[i]
-            dp[i] = max(s - dp[i + 1], s - dp[i + 2], s - dp[i + 3])
-        return 'Alice' if dp[0] > s - dp[0] else 'Bob' if dp[0] < s - dp[0] else 'Tie'
-
+    def numOfArrays(self, n: int, m: int, k: int) -> int:
+        if k == 0 or m < k:
+            return 0
+        mod = 10 ** 9 + 7
+        dp = [[[0 for a in range(k+1)] for i in range(m + 1)] for j in range(n+1)]
+        for a in range(n-1, -1, -1):
+            for b in range(1, m+1):
+                for c in range(1, k+1):
+                    if c > n - a:
+                        continue
+                    if a == n-1:
+                        if c > 1:
+                            break
+                        else:
+                            dp[a][b][c] = b
+                        continue
+                    for v in range(1, m+1):
+                        if v <= b:
+                            dp[a][b][c] += dp[a+1][v][c]
+                        else:
+                            dp[a][b][c] += dp[a+1][v][c-1]
+                    dp[a][b][c] %= mod
+        result = 0
+        for i in range(1, m+1):
+            result = (result + dp[0][i][c]) % mod
+        return result
 pattern = Solution()
 startTime = datetime.now()
-print(pattern.stoneGameIII([-1,-2,-3]))
-print(pattern.stoneGameIII2([-1,-2,-3]))
+print(pattern.numOfArrays(3, 3, 1))
 print(datetime.now() - startTime)

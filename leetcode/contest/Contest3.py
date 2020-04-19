@@ -1,24 +1,33 @@
 import collections
-
+from datetime import datetime
+from heapq import heappush as push
+from heapq import heappop as pop
 
 class Solution:
-    def numOfWays(self, n: int) -> int:
-        mod = 10**9 + 7
-        if n == 1:
-            return 12
-        if n == 2:
-            return 54
-        preResult = 54
-        two = 30
-        three = 24
-        step = 2
-        while step < n:
-            two = (two * 3 + three * 2) % mod # two = twoPre * 3 + threePre * 2
-            three = (preResult * 2) % mod # three = twoPre * 2 + threePre * 2 = preResult * 2
-            preResult = (two + three) % mod # update current result of step, result at step = preResult
-            step += 1
-        return preResult
-
+    def minNumberOfFrogs(self, croakOfFrogs: str) -> int:
+        n = len(croakOfFrogs)
+        if n == 0:
+            return 0
+        if n % 5 != 0:
+            return -1
+        d = {'': list(range(n // 5)), 'c' : [], 'r' : [], 'o': [], 'a' : [], 'k': []}
+        p = {'c' : '', 'r' : 'c', 'o' : 'r', 'a' : 'o', 'k' : 'a'}
+        result = set()
+        for ch in croakOfFrogs:
+            pre = p[ch]
+            if len(d[pre]) == 0:
+                return -1
+            x = pop(d[pre])
+            push(d[ch], x)
+            if ch == 'k':
+                pop(d[ch])
+                push(d[''],x)
+                result.add(x)
+        if len(d['']) < n // 5:
+            return -1
+        return len(result)
 
 s = Solution()
-print(s.numOfWays(5000))
+start = datetime.now()
+print(s.minNumberOfFrogs("croakcrook"))
+print(datetime.now() - start)
