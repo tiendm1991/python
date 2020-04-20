@@ -16,10 +16,10 @@ class Solution:
                     # => dp[a][b][c] = sumOfAll(dp[a-1][b][c])(b - 1 step) = (b-1) * dp[a-1][b][c] (1)
                     # for x in range(1, b):
                     #     dp[a][b][c] += dp[a-1][b][c] % mod
-                    # max = b and nums[a] == b. If nums[a-1] == b => c not change => dp[a][b][c] += dp[a-1][b][c] (2)
+                    # max = b and nums[a] == b. If max(1...a-1) == b => c not change => dp[a][b][c] += dp[a-1][b][c] (2)
                     # (1) + (2) => dp[a][b][c] = b * dp[a-1][b][c]
                     dp[a][b][c] = (dp[a - 1][b][c] * b) % mod
-                    # max = b and nums[a] == b. If nums[a-1] < b => c change
+                    # max = b and nums[a] == b. If max(1...a-1) < b => c change
                     # => dp[a][b][c] = sumOfAll(dp[a-1][x][c-1]) (with x from 1...b-1)
                     for x in range(1, b):
                         dp[a][b][c] += dp[a-1][x][c-1] % mod
