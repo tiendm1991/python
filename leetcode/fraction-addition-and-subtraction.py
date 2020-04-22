@@ -17,15 +17,13 @@ class Solution:
         def add(a, b):
             return short(a[0] * b[1] + a[1] * b[0], a[1] * b[1])
 
-        expression = expression.replace("-", "+-")
         expression = "0/1+" + expression
-        expression = expression.replace("++", "+")
-        exp_arr = []
-        for s in expression.split("+"):
-            arr = s.split("/")
-            frac = [int(arr[0]), int(arr[1])]
-            exp_arr.append(frac)
-        result = functools.reduce(lambda a, b: add(a, b), exp_arr)
+        expression = expression.replace("-", "+-").replace("++", "+")
+        fractions = []
+        for str_num in expression.split("+"):
+            arr = str_num.split("/")
+            fractions.append(int(arr[0]), int(arr[1]))
+        result = functools.reduce(lambda a, b: add(a, b), fractions)
         return format(result)
 s = Solution()
 startTime = datetime.now()
