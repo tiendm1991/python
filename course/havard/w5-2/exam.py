@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-
+import math
 from sklearn.model_selection import cross_val_predict
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import LogisticRegression
@@ -36,6 +36,10 @@ plotting_variables = ['budget', 'popularity', regression_target]
 
 axes = pd.plotting.scatter_matrix(df[plotting_variables], alpha=0.15, \
        color=(0,0,0), hist_kwds={"color":(0,0,0)}, facecolor=(1,0,0))
-plt.show()
-print(df[outcomes_and_continuous_covariates].skew())
+# plt.show()
+# df[outcomes_and_continuous_covariates].skew()
+for x in continuous_covariates:
+    df[x] = np.log10(1 + df[x])
+# print(df[outcomes_and_continuous_covariates].skew())
+df.to_csv("movies_clean.csv")
 # determine the skew.
