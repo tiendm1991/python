@@ -2,27 +2,29 @@ import collections
 
 
 class Solution:
-    def reformat(self, s: str) -> str:
-        if len(s) < 2:
-            return s
-        digits = [c for c in s if c in '0123456789']
-        letters = [c for c in s if c not in '0123456789']
-        n1, n2 = len(digits), len(letters)
-        if abs(n1 - n2) > 1:
-            return ''
-        result = ''
-        if n1 < n2:
-            result += letters[0]
-            for i in range(n1):
-                result += digits[i] + letters[i+1]
-        elif n1 > n2:
-            result += digits[0]
-            for i in range(n2):
-                result += letters[i] + digits[i+1]
-        else:
-            for i in range(n1):
-                result += letters[i] + digits[i]
-        return result
+    def maxScore(self, s: str) -> int:
+        n = len(s)
+        if n == 0:
+            return 0
+        if n == 1:
+            return 1
+        zeros = [0] * (n)
+        ones = [0] * (n)
+        for i in range(n):
+            if i == 0:
+                zeros[i] = 0 if s[i] == '1' else 1
+                ones[n - 1 - i] = 0 if s[n-1-i] == '0' else 1
+            else:
+                zeros[i] = zeros[i - 1]
+                ones[n - 1 - i] = ones[n - i]
+                if s[i] == '0':
+                    zeros[i] += 1
+                if s[n - i - 1] == '1':
+                    ones[n - i - 1] += 1
+        _max = 0
+        for i in range(n - 1):
+            _max = max(_max, zeros[i] + ones[i + 1])
+        return max(_max, zeros[n - 1])
 
 s = Solution()
-print(s.reformat("ab123"))
+print(s.maxScore("00"))
