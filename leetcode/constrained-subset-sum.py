@@ -21,7 +21,7 @@ class Solution:
             dp[i] = nums[i]
             if deque:
                 dp[i] += dp[deque[0]]
-            if deque and deque[-1] - deque[0] == k-1:
+            while deque and deque[-1] - deque[0] >= k-1:
                 deque.popleft()
             while deque and (dp[deque[-1]] < dp[i] or dp[deque[-1]] < 0):
                 deque.pop()
