@@ -5,11 +5,15 @@ class Solution:
             return 0
 
         def biSearch(low, high):
+            if low > high:
+                return 0
             if low == high:
-                return low + 1
+                return n - high if a[high] >= n - high else 0
             mid = (low + high) // 2
-            if n - mid >= a[mid]:
-                return biSearch(mid, high)
+            if a[mid] >= n - mid and (mid == 0 or a[mid - 1] <= n - mid):
+                return n - mid
+            elif a[mid] < n - mid:
+                return biSearch(mid + 1, high)
             else:
                 return biSearch(low, mid - 1)
 
@@ -17,4 +21,4 @@ class Solution:
 
 
 s = Solution()
-print(s.hIndex([0, 1, 2, 3, 4]))
+print(s.hIndex([0,1,2,3,4]))
