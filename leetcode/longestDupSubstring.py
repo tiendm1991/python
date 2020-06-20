@@ -23,16 +23,16 @@ class Solution:
                 if h not in d:
                     d.add(h)
                 else:
-                    return True, s[i: i + m]
-            return False, ''
+                    return s[i: i + m]
+            return ''
 
         def biSearch(low, high):
             if low > high:
                 return
             mid = (low + high) // 2
             ans = rabin_karp(mid)
-            if ans[0]:
-                self.result = ans[1]
+            if len(ans) > 0:
+                self.result = ans
                 biSearch(mid + 1, high)
             else:
                 biSearch(low, mid - 1)
