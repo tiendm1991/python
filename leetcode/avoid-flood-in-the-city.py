@@ -16,8 +16,7 @@ class Solution:
                 idx = zeros.bisect(stack[rains[i]])
                 idxZero = None
                 if idx < len(zeros) and zeros[idx] > stack[rains[i]]:
-                    idxZero = zeros[idx]
-                    zeros.remove(idxZero)
+                    idxZero = zeros.pop(idx)
                 if idxZero is None:
                     impossible = True
                     break
