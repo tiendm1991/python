@@ -28,8 +28,7 @@ class Solution:
                 idx = findZero(0, len(zeros) - 1, stack[rains[i]], i)
                 idxZero = None
                 if idx > -1:
-                    idxZero = zeros[idx]
-                    del zeros[idx]
+                    idxZero = zeros.pop(idx)
                 if idxZero is None:
                     impossible = True
                     break
