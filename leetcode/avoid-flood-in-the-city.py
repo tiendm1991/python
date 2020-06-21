@@ -1,34 +1,23 @@
 import random
-
+from sortedcontainers import SortedSet
 
 class Solution:
     def avoidFlood(self, rains):
         n = len(rains)
         ans = [-1 for i in range(n)]
-        zeros = []
+        zeros = SortedSet([])
         stack = {}
         impossible = False
-
-        def findZero(low, high, _min, _max):
-            if low > high or zeros[low] >= _max or zeros[high] < _min:
-                return -1
-            if zeros[low] >= _min:
-                return low
-            mid = (low + high) // 2
-            if zeros[mid] < _min:
-                return findZero(mid + 1, high, _min, _max)
-            else:
-                return findZero(low, mid, _min, _max)
-
         for i in range(n):
             if rains[i] == 0:
-                zeros.append(i)
+                zeros.add(i)
                 continue
             if rains[i] in stack:
-                idx = findZero(0, len(zeros) - 1, stack[rains[i]], i)
+                idx = zeros.bisect(stack[rains[i]])
                 idxZero = None
-                if idx > -1:
-                    idxZero = zeros.pop(idx)
+                if idx < len(zeros) and zeros[idx] > stack[rains[i]]:
+                    idxZero = zeros[idx]
+                    zeros.remove(idxZero)
                 if idxZero is None:
                     impossible = True
                     break
