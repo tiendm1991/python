@@ -1,4 +1,5 @@
 import random
+import bisect
 
 
 class Solution:
@@ -25,9 +26,9 @@ class Solution:
                 zeros.append(i)
                 continue
             if rains[i] in stack:
-                idx = findZero(0, len(zeros) - 1, stack[rains[i]], i)
+                idx = bisect.bisect(zeros, stack[rains[i]])
                 idxZero = None
-                if idx > -1:
+                if idx < len(zeros) and zeros[idx] > stack[rains[i]]:
                     idxZero = zeros.pop(idx)
                 if idxZero is None:
                     impossible = True
@@ -54,9 +55,9 @@ class Solution:
 
 s = Solution()
 # print(s.avoidFlood([1, 1, 0, 0]))
-print(s.avoidFlood([2,3,0,0,3,1,0,1,0,2,2])) #[2, 3, 6, 8]
+# print(s.avoidFlood([2, 3, 0, 0, 3, 1, 0, 1, 0, 2, 2]))  # [2, 3, 6, 8]
 # print(s.avoidFlood([1,2,0,0,2,1]))
 # print(s.avoidFlood([69,0,0,0,69]))
 # print(s.avoidFlood([0,1,1]))
-# print(s.avoidFlood([1,2,0,1,2]))
+print(s.avoidFlood([1,2,0,1,2]))
 # print(s.avoidFlood([3,5,4,0,1,0,1,5,2,8,9]))
