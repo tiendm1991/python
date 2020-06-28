@@ -36,7 +36,7 @@ class Solution:
             heappush(q, p1)
         return _max
 
-    # using max heap with point(y-x, x)
+    # using max heap with point(y-x, x), no using tmp class
     def findMaxValueOfEquation2(self, points, k: int) -> int:
         _max = -(10 ** 9 + 7)
         q = []
