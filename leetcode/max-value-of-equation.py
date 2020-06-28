@@ -68,5 +68,5 @@ class Solution:
 
 s = Solution()
 print(s.findMaxValueOfEquation([[-19, -12], [-13, -18], [-12, 18], [-11, -8], [-7, 12], [-5, 16]], 6))
-# print(s.findMaxValueOfEquation([[-17, 5], [-10, -8], [-5, -13], [-2, 7], [8, -14]], 4))
-# print(s.findMaxValueOfEquation([[1, 3], [2, 0], [5, 10], [6, -10]], 1))
+print(s.findMaxValueOfEquation([[-17, 5], [-10, -8], [-5, -13], [-2, 7], [8, -14]], 4))
+print(s.findMaxValueOfEquation([[1, 3], [2, 0], [5, 10], [6, -10]], 1))

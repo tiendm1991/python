@@ -1,5 +1,6 @@
 from heapq import heappush
 from heapq import heappop
+import collections
 
 
 class Point:
@@ -20,6 +21,7 @@ class Point:
 
 
 class Solution:
+    # using max heap with point(y-x, x)
     def findMaxValueOfEquation1(self, points, k: int) -> int:
         _max = -(10 ** 9 + 7)
         q = []
@@ -34,10 +36,11 @@ class Solution:
             heappush(q, p1)
         return _max
 
-    def findMaxValueOfEquation(self, points, k: int) -> int:
+    # using max heap with point(y-x, x)
+    def findMaxValueOfEquation2(self, points, k: int) -> int:
         _max = -(10 ** 9 + 7)
         q = []
-        points = [(p[0] - p[1], p[0]) for p in points]
+        points = [(p[0] - p[1], p[0]) for p in points]  # (x1-y1, x1)
         for p1 in points:
             while q:
                 p2 = heappop(q)
@@ -48,8 +51,22 @@ class Solution:
             heappush(q, p1)
         return _max
 
+    # using monotonic queue (deque)
+    def findMaxValueOfEquation(self, points, k: int) -> int:
+        _max = -(10 ** 9 + 7)
+        q = collections.deque()
+        for p in points:
+            while q and p[0] - q[0][1] > k:
+                q.popleft()
+            if q:
+                _max = max(_max, q[0][0] + p[0] + p[1])
+            while q and q[-1][0] <= p[1] - p[0]:
+                q.pop()
+            q.append([p[1] - p[0], p[0]])
+        return _max
+
 
 s = Solution()
-# print(s.findMaxValueOfEquation([[-17, 5], [-10, -8], [-5, -13], [-2, 7], [8, -14]], 4))
-# print(s.findMaxValueOfEquation([[1, 3], [2, 0], [5, 10], [6, -10]], 1))
 print(s.findMaxValueOfEquation([[-19, -12], [-13, -18], [-12, 18], [-11, -8], [-7, 12], [-5, 16]], 6))
+print(s.findMaxValueOfEquation([[-17, 5], [-10, -8], [-5, -13], [-2, 7], [8, -14]], 4))
+print(s.findMaxValueOfEquation([[1, 3], [2, 0], [5, 10], [6, -10]], 1))
