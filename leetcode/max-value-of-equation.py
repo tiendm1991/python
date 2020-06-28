@@ -37,7 +37,7 @@ class Solution:
     def findMaxValueOfEquation(self, points, k: int) -> int:
         _max = -(10 ** 9 + 7)
         q = []
-        points = [(p[0] - p[1], p[0]) for p in points]
+        points = [(p[0] - p[1], p[0]) for p in points]  # (x1-y1, x1)
         for p1 in points:
             while q:
                 p2 = heappop(q)
