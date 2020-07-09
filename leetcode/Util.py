@@ -4,6 +4,8 @@ class TreeNode:
         self.val = x
         self.left = None
         self.right = None
+    def __str__(self):
+        return str(self.val)
 
 
 # Definition for singly-linked list.
