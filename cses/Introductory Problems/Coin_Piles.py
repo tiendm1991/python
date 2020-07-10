@@ -14,4 +14,3 @@ for i in range(n):
 	x, y = input().split(' ')
 	x, y = int(x), int(y)
 	print("YES" if f(x, y) or f(y, x) else "NO")
-`
