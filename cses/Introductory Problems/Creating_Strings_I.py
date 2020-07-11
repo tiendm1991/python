@@ -1,20 +1,27 @@
-def f(n, a):
-    s = sum(a)
-    target = s // 2
-    _set = {0}
-    for x in a:
-        tmp = set()
-        for y in _set:
-            tmp.add(x + y)
-        _set |= tmp
-    _min = s
-    for x in _set:
-        _min = min(_min, abs(2 * x - s))
-        if _min == 0:
-            break
-    return _min
+import collections
 
 
-n = int(input())
-a = [int(c) for c in input().split(' ')]
-print(f(n, a))
+def f(n, result, s, str):
+    if len(str) == n:
+        result.add(str)
+        return
+    for c in s:
+        if s[c] == 0:
+            continue
+        str += c
+        s[c] -= 1
+        f(n, result, s, str)
+        str = str[:-1]
+        s[c] += 1
+    return
+
+
+s = input()
+n = len(s)
+s = collections.Counter(s)
+result = set()
+f(n, result, s, '')
+result = sorted(result)
+print(len(result))
+for str in result:
+    print(str)
