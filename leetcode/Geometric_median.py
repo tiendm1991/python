@@ -3,47 +3,35 @@ import math
 
 class Solution:
     def getMinDistSum(self, positions) -> float:
+        n = len(positions)
+        x = sum([p[0] for p in positions]) / n
+        y = sum([p[1] for p in positions]) / n
+        epsilon = 1 / (10 ** 9)
+        center = (x, y)
+        prev = None
 
-        x, y = None, None
+        def dis(p1, p2):
+            return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
 
-        x_sum, y_sum = 0, 0
-        for x, y in positions:
-            x_sum += x
-            y_sum += y
-
-        x = x_sum / len(positions)
-        y = y_sum / len(positions)
-
-        def dis(a, b):
-            return math.sqrt((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2)
-
-        prex, prey = float('-inf'), float('-inf')
-        delte = 1 / (10 ** 8)
-
-        while dis((x, y), (prex, prey)) > delte:
+        while prev is None or dis(center, prev) > epsilon:
+            prev = center
             upx, downx, upy, downy = 0, 0, 0, 0
-            for px, py in positions:
-                temp = dis((px, py), (x, y))
-                if temp == 0:
+            for p in positions:
+                d = dis(center, p)
+                if d == 0:
                     continue
-                upx += px / temp
-                downx += 1 / temp
-                upy += py / temp
-                downy += 1 / temp
+                upx += p[0] / d
+                downx += 1 / d
+                upy += p[1] / d
+                downy += 1 / d
             if downx == 0 or downy == 0:
                 break
-            if downx != 0:
-                newx = upx / downx
-            if downy != 0:
-                newy = upy / downy
-            prex, prey, x, y = x, y, newx, newy
+            center = (upx / downx, upy / downy)
 
-        res = 0
+        result = 0
         for p in positions:
-            res += dis(p, (x, y))
-
-        return res
-
+            result += dis(p, center)
+        return result
 
 s = Solution()
 print(s.getMinDistSum([[0, 1], [3, 2], [4, 5], [7, 6], [8, 9], [11, 1], [2, 12]]))
