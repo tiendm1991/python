@@ -1,27 +1,34 @@
-def f(d, result, path, a, cur, step):
-    if step == 48:
-        result[0] += 1
+def valid(i, j):
+    return 0 <= i < 7 and 0 <= j < 7 and not visited[i][j]
+
+def dfs(i, j, step):
+    if i == 6 and j == 0:
+        if step == 48:
+            result[0] += 1
         return
     if a[step] != '?':
-        check = (cur[0] + d[a[step]][0], cur[1] + d[a[step]][1])
-        if check not in path:
-            path.add(check)
-            f(d, result, path, a, check, step+1)
-            path.remove(check)
-        return
-    for next in d:
-        check = (cur[0] + d[next][0], cur[1] + d[next][1])
-        if 0 <= check[0] < 7 and 0 <= check[1] < 7 and check not in path:
-            path.add(check)
-            f(d, result, path, a, check, step + 1)
-            path.remove(check)
+        iNext, jNext = i + d[a[step]][0], j + d[a[step]][1]
+        if valid(iNext, jNext):
+            visited[iNext][jNext] = True
+            dfs(iNext, jNext, step+1)
+            visited[iNext][jNext] = False
+    else:
+        for direct in d.values():
+            iNext, jNext = i + direct[0], j + direct[1]
+            if valid(iNext, jNext):
+                visited[iNext][jNext] = True
+                dfs(iNext, jNext, step + 1)
+                visited[iNext][jNext] = False
     return
 
 
 result = [0]
 s = input()
 a = [c for c in s]
-path = {(0, 0)}
+visited = [[False for j in range(7)] for i in range(7)]
 d = {'D': (1, 0), 'U': (-1, 0), 'L': (0, -1), 'R': (0, 1)}
-f(d, result, path, a, (0, 0), 0)
+
+# Solve
+visited[0][0] = True
+dfs(0, 0, 0)
 print(result[0])
