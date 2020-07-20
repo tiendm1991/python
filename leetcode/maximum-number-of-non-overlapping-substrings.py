@@ -17,15 +17,15 @@ class Solution:
             m = (l + h) // 2
             if x <= arr[m] <= y:
                 return True
-            if arr[m] >= y:
-                return biSearch(arr, l, m, x, y)
-            if arr[m] <= x:
+            if arr[m] > y:
+                return biSearch(arr, l, m - 1, x, y)
+            if arr[m] < x:
                 return biSearch(arr, m + 1, h, x, y)
             return False
         i = 0
-        while i < len(s):
-            c = s[i]
-            if visited[c]:
+        while i < 26:
+            c = alpha[i]
+            if c not in d or visited[c]:
                 i += 1
                 continue
             r = d[c]
