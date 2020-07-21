@@ -44,15 +44,15 @@ int main() {
         update(0, 0, n - 1, i, a[i]);
     }
 
-    int type, left;
-    ll right;
+    int type, x;
+    ll y;
     for (int i = 0; i < q; i++) {
-        cin >> type >> left >> right;
+        cin >> type >> x >> y;
         if (type == 1) {
-            update(0, 0, n - 1, left - 1, right - a[left - 1]);
-            a[left - 1] = right;
+            update(0, 0, n - 1, x - 1, y - a[x - 1]);
+            a[x - 1] = y;
         } else {
-            cout << getSum(0, 0, n - 1, left - 1, right - 1) << "\n";
+            cout << getSum(0, 0, n - 1, x - 1, y - 1) << "\n";
         }
     }
 
