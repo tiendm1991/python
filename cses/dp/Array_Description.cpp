@@ -29,14 +29,7 @@ int main() {
             start = x[i], end = x[i];
         }
         for (int j = start; j <= end; j++) {
-            dp[i][j] = dp[i - 1][j];
-            if (j > 1) {
-                dp[i][j] += dp[i - 1][j - 1];
-            }
-            if (j < m) {
-                dp[i][j] += dp[i - 1][j + 1];
-            }
-            dp[i][j] %= mod;
+            dp[i][j] = (dp[i - 1][j] + dp[i - 1][j - 1] + dp[i - 1][j + 1]) % mod;
         }
     }
     ll ans = 0;
