@@ -1,32 +1,45 @@
 #include <iostream>
 #include <bits/stdc++.h>
 #include <set>
-
-#define arr array<int, 2>
-
+ 
 using namespace std;
-
-const int maxN = 2e5, maxM = 2e5;
-int n, m;
-set<arr > h;
-
+ 
+const int maxN = 2e5;
+int n, a[maxN];
+ 
+int biSearch(int val, int left, int right){
+    if(left > right){
+        return -1;
+    }
+    if(a[left] > val){
+        return left;
+    }
+    int mid = (left + right) / 2;
+    if(a[mid] > val){
+        return biSearch(val, left, mid);
+    }else{
+        return biSearch(val, mid+1, right);
+    }
+}
 int main() {
-    cin >> n >> m;
+    int count = 0;
+    cin >> n;
     for (int i = 0; i < n; i++) {
         int x;
         cin >> x;
-        h.insert({x, i});
-    }
-    for (int i = 0; i < m; i++) {
-        int c;
-        cin >> c;
-        auto search = h.upper_bound({c + 1, 0});
-        if (search == h.begin()) {
-            cout << "-1\n";
-        } else {
-            --search;
-            cout << (*search)[0] << "\n";
-            h.erase(search);
+        if (i == 0){
+            a[i] = x;
+            ++count;
+            continue;
+        }
+        int j = biSearch(x, 0, count-1);
+        if (j > -1){
+            a[j] = x;
+        }else{
+            a[count++] = x;            
         }
     }
+    
+    cout << count;
+    return 0;
 }
