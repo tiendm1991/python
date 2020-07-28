@@ -11,7 +11,7 @@ int main() {
     int count = 0;
     int maxRoom = 0;
     map<int, int> m;
-    set<int> rooms;
+    set<int> roomsAvailable;
     cin >> n;
     int ans[n];
     for (int i = 0; i < n; i++) {
@@ -24,17 +24,17 @@ int main() {
         count += x[1];
         maxRoom = max(maxRoom, count);
         if (x[1] == -1) {
-            rooms.insert(m.find(x[2])->second);
+            roomsAvailable.insert(m.find(x[2])->second);
             m.erase(x[2]);
         }
         if (x[1] == 1) {
-            if(rooms.empty()){
-                rooms.insert(count);
+            if(roomsAvailable.empty()){
+                roomsAvailable.insert(count);
             }
-            int r = *rooms.begin();
+            int r = *roomsAvailable.begin();
             ans[-x[2]] = r;
             m.insert({x[2], r});
-            rooms.erase(r);
+            roomsAvailable.erase(r);
         }
     }
     cout << maxRoom << "\n";
