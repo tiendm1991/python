@@ -19,7 +19,7 @@ int main() {
     while (l < r){
 		s = 0;
 		m = (l+r) / 2;
-		int c = 0;
+		int c = 1;
 		for(int i = 0; i < n; i++){
 			if(s + a[i] > m){
 				c++;
@@ -27,8 +27,7 @@ int main() {
 			}
 			s += a[i];
 		}
-        // cout << l << " " << r << " " << c << "\n";
-		if(c >= k){
+		if(c > k){
 			l = m+1;
 		}else{
 			r = m;
