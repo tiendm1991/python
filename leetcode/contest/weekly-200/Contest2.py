@@ -14,4 +14,4 @@ class Solution:
 
 
 s = Solution()
-print(s.getWinner([1, 11, 22, 33, 44, 55, 66, 77, 88, 99], 1000000000))
+print(s.findLHS([3, 3, -3, 2, 2, 3, 3]))
