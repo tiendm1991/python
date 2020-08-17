@@ -1,5 +1,5 @@
 class Solution:
-    def maxDistance(self, a: List[int], m: int) -> int:
+    def maxDistance(self, a, m) -> int:
         n = len(a)
         a.sort()
 
@@ -22,3 +22,7 @@ class Solution:
             else:
                 right = mid - 1
         return left
+
+
+s = Solution()
+print(s.maxDistance([1, 2, 3, 4, 7], 3))
