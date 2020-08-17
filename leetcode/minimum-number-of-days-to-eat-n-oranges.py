@@ -9,18 +9,17 @@ class Solution:
         return dp[n]
         dp = {0: 0, 1: 1}
 
+    def minDays(self, n: int) -> int:
+        dp = {0: 0, 1: 1}
 
-def minDays(self, n: int) -> int:
-    dp = {0: 0, 1: 1}
-
-    def f(x):
-        if x in dp:
+        def f(x):
+            if x in dp:
+                return dp[x]
+            ans = 1 + min(x % 3 + f(x // 3), x % 2 + f(x // 2))
+            dp[x] = ans
             return dp[x]
-        ans = 1 + min(x % 3 + f(x // 3), x % 2 + f(x // 2))
-        dp[x] = ans
-        return dp[x]
 
-    return f(n)
+        return f(n)
 
 
 s = Solution()
