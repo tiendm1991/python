@@ -7,7 +7,6 @@ class Solution:
         for i in range(2, n + 1):
             dp[i] = 1 + min(i % 3 + dp[i // 3], i % 2 + dp[i // 2])
         return dp[n]
-        dp = {0: 0, 1: 1}
 
     def minDays(self, n: int) -> int:
         dp = {0: 0, 1: 1}
