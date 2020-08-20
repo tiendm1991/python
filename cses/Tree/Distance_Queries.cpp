@@ -29,6 +29,7 @@ int dfs(int u) {
             dfs(v);
         }
     }
+    return 0;
 }
 
 int lca(int u, int v) {
