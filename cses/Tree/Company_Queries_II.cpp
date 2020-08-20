@@ -1,36 +1,38 @@
 #include <iostream>
 #include <vector>
 #include <math.h>
- 
- 
+
+
 using namespace std;
 const int maxN = 2e5;
 bool visited[maxN + 1];
 int n, q, a[maxN + 1], tree[maxN + 1][20], h[maxN + 1];
 vector<int> adj[maxN + 1];
- 
+
 int dfs(int u) {
     visited[u] = true;
     for (int v : adj[u]) {
-        if (!visited[v]) {
-            for (int j = 0; j < 20; j++) {
-                if (j == 0) {
-                    tree[v][j] = a[v];
+        if (visited[v]) {
+            continue;
+        }
+        h[v] = h[u] + 1;
+        for (int j = 0; j < 20; j++) {
+            if (j == 0) {
+                tree[v][j] = a[v];
+            } else {
+                if (tree[tree[v][j - 1]][j - 1] == 0) {
+                    break;
                 } else {
-                    if (tree[tree[v][j - 1]][j - 1] == 0) {
-                        break;
-                    } else {
-                        tree[v][j] = tree[tree[v][j - 1]][j - 1];
-                    }
+                    tree[v][j] = tree[tree[v][j - 1]][j - 1];
                 }
             }
-            dfs(v);
         }
+        dfs(v);
     }
     return 0;
 }
- 
- 
+
+
 int lca(int u, int v) {
     if (u == v) {
         return u;
@@ -58,15 +60,14 @@ int lca(int u, int v) {
         }
         i--;
     }
- 
+
     return a[u];
 }
- 
+
 int main() {
     cin >> n >> q;
     for (int i = 2; i <= n; i++) {
         cin >> a[i];
-        h[i] = h[a[i]] + 1;
         adj[i].push_back(a[i]);
         adj[a[i]].push_back(i);
     }
