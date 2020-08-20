@@ -1,37 +1,37 @@
 #include <iostream>
 #include <vector>
 #include <math.h>
-
-
+ 
+ 
 using namespace std;
 const int maxN = 2e5;
 bool visited[maxN + 1];
 int n, q, a[maxN + 1], tree[maxN + 1][20], h[maxN + 1];
 vector<int> adj[maxN + 1];
-
+ 
 int dfs(int u) {
     visited[u] = true;
     for (int v : adj[u]) {
-        if (!visited[v]) {
-            a[v] = u;
-            h[v] = h[u] + 1;
-            for (int j = 0; j < 20; j++) {
-                if (j == 0) {
-                    tree[v][j] = a[v];
+        if (visited[v]) {
+            continue;
+        }
+        a[v] = u;
+        h[v] = h[u] + 1;
+        for (int j = 0; j < 20; j++) {
+            if (j == 0) {
+                tree[v][j] = a[v];
+            } else {
+                if (tree[tree[v][j - 1]][j - 1] == 0) {
+                    break;
                 } else {
-                    if (tree[tree[v][j - 1]][j - 1] == 0) {
-                        break;
-                    } else {
-                        tree[v][j] = tree[tree[v][j - 1]][j - 1];
-                    }
+                    tree[v][j] = tree[tree[v][j - 1]][j - 1];
                 }
             }
-            dfs(v);
         }
+        dfs(v);
     }
-    return 0;
 }
-
+ 
 int lca(int u, int v) {
     if (u == v) {
         return u;
@@ -61,12 +61,12 @@ int lca(int u, int v) {
     }
     return a[u];
 }
-
+ 
 int distance(int u, int v) {
     int l = lca(u, v);
     return h[u] + h[v] - 2 * h[l];
 }
-
+ 
 int main() {
     cin >> n >> q;
     for (int i = 1; i < n; i++) {
