@@ -18,11 +18,13 @@ void dfs(int u, int p) {
         // Calculate prefix all answer of child v
         pre.push_back(pre.back() + max(dp[0][v], dp[1][v]));
     }
+    
     int len = pre.size();
-    // Cot choose u
+    
+    // Not choose u
     dp[0][u] = pre[len - 1];
 
-    // Calculate choose u
+    // Choose u
     for (int i = 1, j = 1; i < len; i++, j++) {
         if (adj[u][j - 1] == p) {
             ++j;
