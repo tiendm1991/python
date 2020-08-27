@@ -3,23 +3,22 @@
 
 using namespace std;
 
-const int maxN = 1e5;
-bool visited[maxN + 1];
-int n, q, a[maxN + 1], de[maxN + 1], ds[maxN + 1], map[maxN + 1], count;
+const int maxN = 2e5;
+int n, q, a[maxN + 1], order[maxN + 1], pEnd[maxN + 1], pStart[maxN + 1], count;
 vector<int> adj[maxN + 1];
-long long s[maxN + 1], fe[maxN + 1];
+long long fe[maxN + 1];
 
 
 void dfs(int u, int p) {
-    ds[++count] = u;
-    map[u] = count;
+    order[++count] = u;
+    pStart[u] = count;
     for (int v : adj[u]) {
         if (v == p) {
             continue;
         }
         dfs(v, u);
     }
-    de[u] = count;
+    pEnd[u] = count;
 }
 
 void update(int p, int val) {
@@ -28,8 +27,8 @@ void update(int p, int val) {
     }
 }
 
-int sum(int p) {
-    int ans = 0;
+long long sum(int p) {
+    long long ans = 0;
     for (int i = p; i > 0; i -= i & -i) {
         ans += fe[i];
     }
@@ -49,7 +48,7 @@ int main() {
     }
     dfs(1, 0);
     for (int i = 1; i <= n; i++) {
-        update(i, a[ds[i]]);
+        update(i, a[order[i]]);
     }
     for (int i = 0; i < q; i++) {
         int type;
@@ -57,13 +56,13 @@ int main() {
         if (type == 1) {
             int s, x;
             cin >> s >> x;
-            int idx = map[s];
-            update(idx, x - a[idx]);
-            a[idx] = x;
+            int idx = pStart[s];
+            update(idx, x - a[s]);
+            a[s] = x;
         } else {
             int s;
             cin >> s;
-            cout << sum(de[s]) - sum(map[s]) << "\n";
+            cout << sum(pEnd[s]) - sum(pStart[s] - 1) << "\n";
         }
     }
     return 0;
