@@ -49,8 +49,7 @@ int main() {
     dfs(1, 0);
     for (int i = 1; i <= n; i++) {
         update(i, a[order[i]]);
-        int j = pEnd[order[i]];
-        update(j + 1, -a[order[i]]);
+        update(pEnd[order[i]] + 1, -a[order[i]]);
     }
     for (int i = 0; i < q; i++) {
         int type;
