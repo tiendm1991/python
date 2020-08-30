@@ -15,8 +15,8 @@ class Solution:
                 return 1
             l = [a[i] for i in range(1, len(a)) if a[i] < a[0]]
             r = [a[i] for i in range(1, len(a)) if a[i] > a[0]]
-            ansL = help(l) % mod
-            ansR = help(r) % mod
+            ansL = help(l)
+            ansR = help(r)
             return (ansL * ansR * dp[len(a) - 1][len(l)]) % mod
 
         return help(nums) - 1
