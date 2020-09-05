@@ -25,7 +25,7 @@ void update(int id, int left, int right, int u, int v, ll val) {
         return;
     }
     if (u <= left && right <= v) {
-        nodes[id].val += val;
+        nodes[id].val += (right - left + 1) * val;
         nodes[id].lazy += val;
         return;
     }
