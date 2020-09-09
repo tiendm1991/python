@@ -14,12 +14,12 @@ class Solution:
         x, v = 0, 0
         for e in left:
             if 'x' in e:
-                x += 1 if len(e) == 1 else -1 if e == '-x' else int(e[:-1])
+                x += 1 if e == 'x' else -1 if e == '-x' else int(e[:-1])
             else:
                 v -= int(e)
         for e in right:
             if 'x' in e:
-                x -= 1 if len(e) == 1 else -1 if e == '-x' else int(e[:-1])
+                x -= 1 if e == 'x' else -1 if e == '-x' else int(e[:-1])
             else:
                 v += int(e)
         if x == 0:
