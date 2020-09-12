@@ -8,10 +8,10 @@ class Solution:
         _min, _max = 0, 0
         ans = [0, 0]
         for i, a in enumerate(nums):
-            _min = min(_min, a[0])
-            _max = max(_max, a[0])
             ans[0] = _min
             ans[1] = max(ans[1], a[-1])
+            _min = min(_min, a[0])
+            _max = max(_max, a[0])
             heapq.heappush(q, (a[0], i, 0))
         while len(q) == n:
             _min, i, j = heapq.heappop(q)
