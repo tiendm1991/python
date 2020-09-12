@@ -3,6 +3,7 @@ import heapq
 
 class Solution:
     def smallestRange(self, nums):
+        n = len(nums)
         q = []
         _min, _max = 0, 0
         ans = [0, 0]
@@ -12,7 +13,7 @@ class Solution:
             ans[0] = _min
             ans[1] = max(ans[1], a[-1])
             heapq.heappush(q, (a[0], i, 0))
-        while q:
+        while len(q) == n:
             _min, i, j = heapq.heappop(q)
             if _max - _min < ans[1] - ans[0]:
                 ans[0] = _min
