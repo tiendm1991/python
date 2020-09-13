@@ -22,3 +22,4 @@ class Solution:
 
 s = Solution()
 print(s.isTransformable("84532", "34852"))
+print(s.isTransformable("84532", "38254"))
