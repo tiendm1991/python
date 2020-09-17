@@ -19,7 +19,7 @@ def getKmp(pattern):
 def search(s, p):
     pattern = getKmp(p)
     i, j = 0, 0
-    while i < len(s) - len(p):
+    while i < len(s):
         if s[i] == p[j]:
             if j == len(p) - 1:
                 return True
