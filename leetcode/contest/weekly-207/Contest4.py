@@ -1,25 +1,18 @@
-# https://leetcode.com/problems/check-if-string-is-transformable-with-substring-sort-operations
 class Solution:
-    def isTransformable(self, s: str, t: str) -> bool:
-        a = [int(c) for c in s]
-        b = [int(c) for c in t]
-        idx = {i: [] for i in range(10)}
-        pos = [0] * 10
-        for i, num in enumerate(a):
-            idx[num].append(i)
-        for i, num in enumerate(b):
-            if not idx[num]:
-                return False
-            if pos[num] >= len(idx[num]):
-                return False
-            cur_idx = idx[num][pos[num]]
-            for j in range(num):
-                if pos[j] < len(idx[j]) and idx[j][pos[j]] < cur_idx:
-                    return False
-            pos[num] += 1
-        return True
+    def connectTwoGroups(self, cost) -> int:
+        sz1, sz2 = len(cost), len(cost[0])
+        dp = [[-1 for j in range(sz1)] for i in range(2 ** sz2)]
+        min_s2 = [min([cost[i][j] for i in range(sz1)]) for j in range(sz2)]
+        return min_s2
+
+        def help(i, mask):
+            if i == sz1:
+                return 1
+            if dp[i][mask]:
+                return dp[i][mask]
+
+        return help(0, 0)
 
 
 s = Solution()
-print(s.isTransformable("84532", "34852"))
-print(s.isTransformable("84532", "38254"))
+print(s.connectTwoGroups([[15, 96], [36, 2]]))
