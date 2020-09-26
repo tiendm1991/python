@@ -10,25 +10,28 @@ class Solution:
             i = 0
             pre = -1
             while i < n:
-                if i == "(":
+                if f[i] == "(":
                     if pre != -1:
                         s = f[pre:i]
                         j = len(s) - 1
                         while j > 0 and s[j] in string.digits:
                             j -= 1
-                        m = 1 if j == n - 1 else int(s[j + 1:])
+                        m = 1 if j == len(s) - 1 else int(s[j + 1:])
                         d[s[:j + 1]] = m
                         pre = -1
                     start = i + 1
-                    while i < n and f[i] != ")":
-                        i += 1
-                    subD = help(f[start:i])
+                    j = n - 1
+                    while j > i and f[j] != ")":
+                        j -= 1
+                    subD = help(f[start:j])
+                    j += 1
                     m = ""
-                    while i < n and f[i] in string.digits:
-                        m += f[i]
+                    while j < n and f[j] in string.digits:
+                        m += f[j]
+                        j += 1
                     m = 1 if m == "" else int(m)
                     for k in subD:
-                        subD[k] *= m
+                        d[k] = d.get(k, 0) + subD[k] * m
                 else:
                     if f[i] not in string.ascii_uppercase:
                         i += 1
@@ -39,9 +42,9 @@ class Solution:
                     else:
                         s = f[pre:i]
                         j = len(s) - 1
-                        while j > 0 and s[j] in string.digits:
+                        while j >= 0 and s[j] in string.digits:
                             j -= 1
-                        m = 1 if j == n - 1 else int(s[j + 1:])
+                        m = 1 if j == len(s) - 1 else int(s[j + 1:])
                         d[s[:j + 1]] = m
                         pre = i
                         i += 1
