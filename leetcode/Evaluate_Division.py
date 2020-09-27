@@ -32,6 +32,9 @@ class Solution:
 
 
 s = Solution()
-print(
-    s.calcEquation([["a", "b"]], [0.5],
-                   [["a", "b"], ["b", "a"], ["a", "c"], ["x", "y"]]))
+print(s.calcEquation([["a", "b"], ["b", "c"]], [2.0, 3.0],
+                     [["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"]]))
+print(s.calcEquation([["a", "b"], ["b", "c"], ["bc", "cd"]], [1.5, 2.5, 5.0],
+                     [["a", "c"], ["c", "b"], ["bc", "cd"], ["cd", "bc"]]))
+print(s.calcEquation([["a", "b"]], [0.5],
+                     [["a", "b"], ["b", "a"], ["a", "c"], ["x", "y"]]))
