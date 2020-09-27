@@ -11,7 +11,7 @@ class Solution:
                 return None
             if u != root[u][0]:
                 r, v = find(root[u][0])
-                root[u] = (r, v * root[u][1])
+                root[u] = (r, v * root[u][1])  # c -> b (b/c), b -> a(a/b) => c -> a(a/c = a/b * b/c = v * root[u][1])
             return root[u]
 
         for i in range(n):
