@@ -1,6 +1,6 @@
 # https://leetcode.com/problems/maximum-number-of-achievable-transfer-requests/submissions/
 class Solution:
-    def maximumRequests(self, n: int, requests) -> int:
+    def maximumRequests1(self, n: int, requests) -> int:
         ans = [0, 0]
         rq = []
         count = [0] * n
@@ -26,6 +26,32 @@ class Solution:
 
         for i in range(1 << l):
             ans[1] = max(ans[1], help(i))
+        return ans[0] + ans[1]
+
+    def maximumRequests(self, n: int, requests) -> int:
+        ans = [0, 0]
+        rq = []
+        count = [0] * n
+        for f, t in requests:
+            if f == t:
+                ans[0] += 1
+            else:
+                rq.append([f, t])
+                count[f] += 1
+        l = len(rq)
+
+        def backtrack(c, countRq, start):
+            if c == count:
+                ans[1] = max(ans[1], countRq)
+            for i in range(start, l):
+                c[rq[i][0]] -= 1
+                c[rq[i][1]] += 1
+                backtrack(c, countRq + 1, i + 1)
+                c[rq[i][0]] += 1
+                c[rq[i][1]] -= 1
+
+        backtrack(count[::], 0, 0)
+
         return ans[0] + ans[1]
 
 
