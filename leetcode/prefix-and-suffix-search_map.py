@@ -1,8 +1,8 @@
 class WordFilter:
 
     def __init__(self, words):
-        self.d1 = {}
-        self.d2 = {}
+        self.d1 = {}  # map of array
+        self.d2 = {}  # map of set
         for i, w in enumerate(words):
             n = len(w)
             for j in range(1, n + 1):
