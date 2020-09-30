@@ -27,10 +27,9 @@ public:
                 continue;
             }
             for (vector<int> v: edges[u[1]]) {
-                int tmp = d[u[1]] + v[0];
-                if (tmp < d[v[1]]) {
-                    d[v[1]] = tmp;
-                    q.push({tmp, v[1]});
+                if (u[0] + v[0] < d[v[1]]) {
+                    d[v[1]] = u[0] + v[0];
+                    q.push({d[v[1]], v[1]});
                 }
             }
         }
