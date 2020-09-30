@@ -22,9 +22,10 @@ public:
         while (!q.empty()) {
             vector<int> x = q.top();
             q.pop();
-            if (x[0] < d[x[1]]) {
-                d[x[1]] = x[0];
+            if (x[0] > d[x[1]]) {
+                continue;
             }
+            d[x[1]] = x[0];
             for (vector<int> v: edges[x[1]]) {
                 if (x[0] + v[0] < d[v[1]]) {
                     q.push({x[0] + v[0], v[1]});
