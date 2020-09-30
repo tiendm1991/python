@@ -18,17 +18,19 @@ public:
         }
         priority_queue<vector<int>, vector<vector<int>>, greater<vector<int>>> q;
         q.push({0, K});
+        d[K] = 0;
 
         while (!q.empty()) {
-            vector<int> x = q.top();
+            vector<int> u = q.top();
             q.pop();
-            if (x[0] > d[x[1]]) {
+            if (u[0] > d[u[1]]) {
                 continue;
             }
-            d[x[1]] = x[0];
-            for (vector<int> v: edges[x[1]]) {
-                if (x[0] + v[0] < d[v[1]]) {
-                    q.push({x[0] + v[0], v[1]});
+            for (vector<int> v: edges[u[1]]) {
+                int tmp = d[u[1]] + v[0];
+                if (tmp < d[v[1]]) {
+                    d[v[1]] = tmp;
+                    q.push({tmp, v[1]});
                 }
             }
         }
@@ -50,7 +52,7 @@ int main() {
     vector<vector<int>> times;
     times.push_back({1, 2, 1});
     times.push_back({2, 3, 2});
-    times.push_back({1, 3, 2});
+    times.push_back({1, 3, 5});
     cout << s.networkDelayTime(times, 3, 1);
     return 0;
 }
