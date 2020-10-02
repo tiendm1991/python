@@ -15,7 +15,7 @@ class Solution:
             ans = a1
             if x1 != x2 or y1 != y2:
                 ans += a2
-            a1, a2, a3, a4 = 0, 0, 0, 0
+            a1, a2, a3, a4 = -1, -1, -1, -1
             if 0 <= x1 + 1 < n and 0 <= x2 + 1 < n:
                 a1 = help(x1 + 1, y1, x2 + 1, y2)
             if 0 <= x1 + 1 < n and 0 <= y2 + 1 < n:
