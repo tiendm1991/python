@@ -1,73 +1,48 @@
 class Solution:
     def cherryPickup(self, grid) -> int:
         n = len(grid)
-        dp = [[-1 if (i == 0 and j > 1) or (j == 0 and i > 1) else 0 for i in range(n + 1)] for j in range(n + 1)]
-        valid = [[False for j in range(n + 1)] for i in range(n + 1)]
-        for i in range(n, 0, -1):
-            for j in range(n, 0, -1):
-                if grid[i - 1][j - 1] == -1:
-                    continue
-                if i == n and j == n:
-                    valid[i][j] = True
-                    continue
-                if i + 1 <= n:
-                    valid[i][j] = valid[i + 1][j]
-                if j + 1 <= n:
-                    valid[i][j] |= valid[i][j + 1]
-        d = {}
-        ans = dp[n][n]
-        for i in range(1, n + 1):
-            for j in range(1, n + 1):
-                if not valid[i][j] or grid[i - 1][j - 1] == -1 or (dp[i - 1][j] == -1 and dp[i][j - 1] == -1):
-                    dp[i][j] = -1
-                    continue
-                if dp[i - 1][j] >= dp[i][j - 1]:
-                    dp[i][j] = dp[i - 1][j] + grid[i - 1][j - 1]
-                    d[(i, j)] = (i - 1, j)
-                else:
-                    dp[i][j] = dp[i][j - 1] + grid[i - 1][j - 1]
-                    d[(i, j)] = (i, j - 1)
-                path = set()
-                cur = (i, j)
-                while cur[0] != 0 and cur[1] != 0:
-                    path.add(cur)
-                    cur = d[cur]
-                dp2 = [[-1 if (a == 0 and b > 1) or (b == 0 and a > 1) else 0 for a in range(n + 1)] for b in
-                       range(n + 1)]
-                for a in range(1, n + 1):
-                    for b in range(1, n + 1):
-                        if grid[a - 1][b - 1] == -1 or (dp2[a - 1][b] == -1 and dp2[a][b - 1] == -1) or not valid[a][b]:
-                            dp2[a][b] = -1
-                            continue
-                        dp2[a][b] = max(dp2[a - 1][b], dp2[a][b - 1])
-                        if (a, b) not in path:
-                            dp2[a][b] += grid[a - 1][b - 1]
-                ans = max(ans, dp[i][j] + dp2[n][n])
-        return ans
+        dp = {}
+
+        def help(x1, y1, x2, y2):
+            if x1 == y1 == x2 == y2 == n - 1:
+                return grid[n - 1][n - 1]
+            if (x1, y1, x2, y2) in dp:
+                return dp[(x1, y1, x2, y2)]
+            a1 = grid[x1][y1]
+            a2 = grid[x2][y2]
+            if a1 == -1 or a2 == -1:
+                return -1
+            ans = a1
+            if x1 != x2 or y1 != y2:
+                ans += a2
+            a1, a2, a3, a4 = 0, 0, 0, 0
+            if 0 <= x1 + 1 < n and 0 <= x2 + 1 < n:
+                a1 = help(x1 + 1, y1, x2 + 1, y2)
+            if 0 <= x1 + 1 < n and 0 <= y2 + 1 < n:
+                a2 = help(x1 + 1, y1, x2, y2 + 1)
+            if 0 <= y1 + 1 < n and 0 <= x2 + 1 < n:
+                a3 = help(x1, y1 + 1, x2 + 1, y2)
+            if 0 <= y1 + 1 < n and 0 <= y2 + 1 < n:
+                a4 = help(x1, y1 + 1, x2, y2 + 1)
+            nextStage = max(a1, a2, a3, a4)
+            if nextStage == -1:
+                dp[(x1, y1, x2, y2)] = -1
+                return -1
+            ans += nextStage
+            dp[(x1, y1, x2, y2)] = ans
+            return ans
+
+        res = help(0, 0, 0, 0)
+        return max(res, 0)
 
 
 s = Solution()
 print(s.cherryPickup(
-    [[1, 1, -1, 1, 1, 1, 0, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, 1],
-     [1, 1, 1, 0, -1, 1, 1, 1, 1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-     [1, -1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, -1, 1],
-     [1, 1, 1, -1, 0, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, 1, 1, 1, 1, 1],
-     [1, 1, -1, 1, 1, 0, -1, 1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-     [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, -1, 1, -1, 1, -1, 1, 1],
-     [0, -1, 1, -1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, 1, 1],
-     [1, 1, -1, 1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1],
-     [0, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, 1, 1, 1, 1, 1, -1, 1, 1, -1],
-     [1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, -1, 0, 1, 1, -1, 1],
-     [-1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1],
-     [-1, -1, -1, -1, 1, 1, -1, 1, -1, 1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1],
-     [1, 1, 1, 1, 1, 1, 1, -1, 1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1],
-     [1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, 0, 1, 1],
-     [0, 1, -1, 1, 1, -1, 1, 1, -1, 1, 1, 1, -1, 1, 1, 1, 1, 1, 1, 1],
-     [1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, -1, 1, 1, 1, 1, -1, 1, 1, 1],
-     [-1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, 1],
-     [1, 1, 1, 1, -1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, -1, 0, 1, 1],
-     [1, 1, -1, 1, 1, -1, 1, -1, -1, 1, 1, -1, 1, -1, -1, 1, -1, -1, 0, 1],
-     [-1, 0, 0, 1, -1, 1, 1, 1, 1, -1, 1, 1, 1, 0, 1, 1, 1, 1, -1, 1]]))
+    [[1, 1, -1, 1, 1],
+     [1, 1, 1, 1, 1],
+     [-1, 1, 1, -1, -1],
+     [0, 1, 1, -1, 0],
+     [1, 0, -1, 1, 0]]))
 # print(s.cherryPickup(
 #     [[1, 1, 1, 0, 0],
 #      [0, 0, 1, 0, 1],
