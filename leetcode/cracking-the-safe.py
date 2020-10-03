@@ -4,7 +4,7 @@ class Solution:
         visited = {init}
         target = k ** n
 
-        def bactrack(cur, x):
+        def backtrack(cur, x):
             if x == target:
                 return cur
             last = '' if n == 1 else cur[-(n - 1):]
@@ -12,13 +12,13 @@ class Solution:
                 check = last + str(i)
                 if check not in visited:
                     visited.add(check)
-                    ans = bactrack(cur + str(i), x + 1)
+                    ans = backtrack(cur + str(i), x + 1)
                     if ans:
                         return ans
                     visited.remove(check)
             return None
 
-        return bactrack(init, 1)
+        return backtrack(init, 1)
 
 
 s = Solution()
