@@ -1,24 +1,39 @@
-# https://leetcode.com/problems/maximum-number-of-visible-points/
+import math
+from builtins import range
+
+
 class Solution:
-    def specialArray(self, nums) -> int:
-        nums.sort()
-        n = len(nums)
+    def visiblePoints(self, points, angle: int, location) -> int:
+        L = points.count(location)
+        p = [x for x in points if x != location]
+        n = len(p)
         if n == 1:
-            return 1 if nums[0] >= 1 else -1
-        if nums[0] >= n:
-            return n
-        i = n - 1
-        x = nums[-1]
-        while i >= 0:
-            while i >= 0 and nums[i] == x:
-                i -= 1
-            s = n - i - 1
-            if nums[i] < s <= x:
-                return s
-            x = nums[i]
-        return -1
+            return 1
+        a, b = [], []
+        for x, y in p:
+            ang = math.atan2(y - location[1], x - location[0])
+            a.append((ang + 2 * math.pi) % (2 * math.pi))  # inverse clockside
+            b.append((180 - ang + 2 * math.pi) % (2 * math.pi))  # clockside
+
+        eps = 10 ** -9
+        ans = 0
+        angle = angle * math.pi / 180
+
+        a.sort()
+        i = 0
+        for j in range(1, n):
+            while i < j and a[j] - a[i] - angle > eps:
+                i += 1
+            ans = max(ans, j - i + 1)
+
+        b.sort()
+        i = 0
+        for j in range(1, n):
+            while i < j and b[j] - b[i] - angle > eps:
+                i += 1
+            ans = max(ans, j - i + 1)
+        return ans + L
 
 
 s = Solution()
-print(s.specialArray([0, 3, 6, 7, 7]))
-# print(s.specialArray([0, 4, 3, 0, 4]))
+print(s.visiblePoints([[1, 1], [3, 1], [3, 3], [1, 3]], 180, [2, 2]))
