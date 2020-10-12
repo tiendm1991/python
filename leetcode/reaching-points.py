@@ -13,6 +13,7 @@ class Solution:
 
 
 s = Solution()
+print(s.reachingPoints(2, 3, 34, 59))
 print(s.reachingPoints(2, 3, 41, 57))
 print(s.reachingPoints(1, 2, 19, 27))
 print(s.reachingPoints(3, 3, 12, 9))
