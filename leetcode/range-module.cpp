@@ -53,23 +53,17 @@ public:
             return;
         }
         int l1 = -1, r1 = -1, l2 = -1, r2 = -1;
+        if (left > (*it)[1]) {
+            l1 = (*it)[1];
+            r1 = left;
+        }
         if (it2 != s.end() && (*it2)[1] <= right) {
             l2 = right;
             r2 = (*it2)[0];
-            if (left > (*it)[1]) {
-                l1 = (*it)[1];
-                r1 = left;
-            }
             ++it2;
-        } else {
-            if (left > (*it)[1]) {
-                l1 = (*it)[1];
-                r1 = left;
-            }
-            if (right < (*it)[0]) {
-                l2 = right;
-                r2 = (*it)[0];
-            }
+        } else if (right < (*it)[0]) {
+            l2 = right;
+            r2 = (*it)[0];
         }
         s.erase(it, it2);
         if (l1 != -1 and r1 != -1) {
