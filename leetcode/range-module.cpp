@@ -54,28 +54,21 @@ public:
         }
         int l1 = -1, r1 = -1, l2 = -1, r2 = -1;
         if (it2 != s.end() && (*it2)[1] <= right) {
+            l2 = right;
+            r2 = (*it2)[0];
             if (left > (*it)[1]) {
                 l1 = (*it)[1];
                 r1 = left;
             }
-            if (right < (*it2)[0]) {
-                l2 = right;
-                r2 = (*it2)[0];
-            }
             ++it2;
         } else {
-            if (left <= (*it)[1]) {
-                if (right < (*it)[0]) {
-                    l1 = right;
-                    r1 = (*it)[0];
-                }
-            } else {
+            if (left > (*it)[1]) {
                 l1 = (*it)[1];
                 r1 = left;
-                if (right < (*it)[0]) {
-                    l2 = right;
-                    r2 = (*it)[0];
-                }
+            }
+            if (right < (*it)[0]) {
+                l2 = right;
+                r2 = (*it)[0];
             }
         }
         s.erase(it, it2);
