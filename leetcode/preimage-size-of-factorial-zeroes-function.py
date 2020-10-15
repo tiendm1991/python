@@ -8,10 +8,7 @@ class Solution:
             color[u] = 1
             p.append(u)
             for v in graph[u]:
-                if v == u:
-                    for x in p:
-                        cycles.add(x)
-                elif color[v] == 0:
+                if color[v] == 0:
                     dfs(v, p)
                 elif color[v] == 1 or (v in cycles and color[v] == 2):
                     for x in p:
