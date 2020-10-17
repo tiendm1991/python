@@ -3,8 +3,8 @@ class Solution:
         n = len(a)
         d = [0] * (n + 1)
         for i, v in enumerate(a):
-            # [start, end] is interval that increase 1 point
-            # from d[start] increase 1 point, from d[end+1] decrease 1 point
+            # assume [start, end] is interval that increase 1 point
+            # => from d[start] increase 1 point, from d[end+1] decrease 1 point
             if i >= v:
                 d[0] += 1
                 d[i - v + 1] -= 1
