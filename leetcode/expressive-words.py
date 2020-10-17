@@ -2,7 +2,7 @@ class Solution:
     def expressiveWords(self, s: str, words) -> int:
         ns = len(s)
 
-        def check(x):
+        def check2(x):
             n = len(x)
             if n > ns:
                 return False
@@ -22,9 +22,32 @@ class Solution:
                 i = tmp2
             return j == ns
 
+        def count(x):
+            x += '#'
+            start = 0
+            ans = []
+            for i in range(1, len(x)):
+                if x[i] != x[i - 1]:
+                    ans.append([x[i - 1], i - start])
+                    start = i
+            return ans
+
+        a = count(s)
+
+        def check(x):
+            b = count(x)
+            if len(a) != len(b):
+                return False
+            for i in range(len(a)):
+                if a[i][0] != b[i][0]:
+                    return False
+                if b[i][1] > a[i][1] or (a[i][1] > b[i][1] and a[i][1] == 2):
+                    return False
+            return True
+
         ans = 0
-        for x in words:
-            if check(x):
+        for st in words:
+            if check(st):
                 ans += 1
         return ans
 
