@@ -1,4 +1,6 @@
 import math
+
+
 class Solution:
     def soupServings(self, N: int) -> float:
         if N >= 4800:
@@ -18,8 +20,10 @@ class Solution:
                 a[2] = dp[max(i - 2, 0)][max(j - 2, 0)]
                 dp[i][j] = sum(a) * 0.25
         return dp[n][n]
+
+
 s = Solution()
-print(s.soupServings(50))
+# print(s.soupServings(50))
 print(s.soupServings(75))
 print(s.soupServings(100))
 print(s.soupServings(150))
