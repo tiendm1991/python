@@ -7,7 +7,6 @@ class Solution:
             return 1
         n = int(math.ceil(N / 25))
         dp = [[1 if i == 0 else 0 for j in range(200)] for i in range(200)]
-        dp[1][1] = 0.625
         dp[0][0] = 0.5
         for i in range(1, n + 1):
             for j in range(1, n + 1):
