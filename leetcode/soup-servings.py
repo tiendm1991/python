@@ -11,7 +11,7 @@ class Solution:
         for i in range(1, n + 1):
             for j in range(1, n + 1):
                 a = [1, 1, 0.5, 0]
-                if i >= 4:
+                if i > 4:
                     a[0] = dp[i - 4][j]
                 if i >= 3:
                     a[1] = dp[i - 3][j - 1]
@@ -23,5 +23,7 @@ class Solution:
 
 
 s = Solution()
-print(s.soupServings(150))
+print(s.soupServings(50))
+print(s.soupServings(75))
 print(s.soupServings(100))
+print(s.soupServings(150))
