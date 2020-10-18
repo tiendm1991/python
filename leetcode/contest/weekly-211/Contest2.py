@@ -12,25 +12,41 @@ class Solution:
         def toString(ar):
             return ''.join([str(c) for c in ar])
 
-        visited = {s}
-        q = [arr]
-        ans = s
-        while q:
-            newQ = []
-            for e in q:
-                newAdd = add(e)
-                newRot = rotate(e)
-                newSAdd = toString(newAdd)
-                newSRot = toString(newRot)
-                ans = min(ans, newSAdd, newSRot)
-                if newSAdd not in visited:
-                    visited.add(newSAdd)
-                    newQ.append(newAdd)
-                if newSRot not in visited:
-                    visited.add(newSRot)
-                    newQ.append(newRot)
-            q = newQ
-        return ans
+        def bfs():
+            visited = {s}
+            ans = s
+            q = [arr]
+            while q:
+                newQ = []
+                for e in q:
+                    newAdd = add(e)
+                    newRot = rotate(e)
+                    newSAdd = toString(newAdd)
+                    newSRot = toString(newRot)
+                    ans = min(ans, newSAdd, newSRot)
+                    if newSAdd not in visited:
+                        visited.add(newSAdd)
+                        newQ.append(newAdd)
+                    if newSRot not in visited:
+                        visited.add(newSRot)
+                        newQ.append(newRot)
+                q = newQ
+            return ans
+
+        def dfs(cur, visited):
+            ans = toString(cur)
+            visited.add(ans)
+            newAdd = add(cur)
+            newRot = rotate(cur)
+            newSAdd = toString(newAdd)
+            newSRot = toString(newRot)
+            if newSAdd not in visited:
+                ans = min(ans, dfs(newAdd, visited))
+            if newSRot not in visited:
+                ans = min(ans, dfs(newRot, visited))
+            return ans
+
+        return dfs(arr, set())
 
 
 s = Solution()
