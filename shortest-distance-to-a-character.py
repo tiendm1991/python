@@ -2,24 +2,20 @@ class Solution:
     def shortestToChar(self, s: str, c: str):
         n = len(s)
         ans = [n] * n
-        stack = []
+        start = -1
         for i in range(n):
             if s[i] == c:
+                start = i
                 ans[i] = 0
-                while stack:
-                    idx = stack.pop()
-                    ans[idx] = i - idx
-            else:
-                stack.append(i)
-        stack = []
+            elif start != -1:
+                ans[i] = i - start
+        start = -1
         for i in range(n - 1, -1, -1):
             if s[i] == c:
-                ans[i] = 0
-                while stack:
-                    idx = stack.pop()
-                    ans[idx] = min(ans[idx], idx - i)
-            else:
-                stack.append(i)
+                start = i
+            elif start != -1:
+                ans[i] = min(ans[i], start - i)
+
         return ans
 
 
