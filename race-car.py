@@ -15,9 +15,10 @@ class Solution:
             for i in range(1, n):
                 start = 2 ** i - 1
                 j = 0
-                while start - (2 ** j - 1) > 0:
-                    dp[x] = min(dp[x], i + 2 + j + help(x - (start - (2 ** j - 1))))
+                while start > 0:
+                    dp[x] = min(dp[x], i + 2 + j + help(x - start))
                     j += 1
+                    start -= 2 ** (j - 1)
             return dp[x]
 
         return help(target)
