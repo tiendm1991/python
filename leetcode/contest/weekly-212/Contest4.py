@@ -22,12 +22,12 @@ class Solution:
             mask = {}
             for i, j in d[v]:
                 rx, ry = find(i, p), find(j + m, p)
-                mask[rx] = max(mask.get(rx, 0), mask.get(ry, 0), max(maxR[i], maxC[j]) + 1)
-                mask[ry] = max(mask.get(rx, 0), mask.get(ry, 0), max(maxR[i], maxC[j]) + 1)
                 if rx < ry:
                     p[ry] = rx
                 elif ry < rx:
                     p[rx] = ry
+                mask[rx] = max(mask.get(rx, 0), mask.get(ry, 0), max(maxR[i], maxC[j]) + 1)
+                mask[ry] = max(mask.get(rx, 0), mask.get(ry, 0), max(maxR[i], maxC[j]) + 1)
             for i, j in d[v]:
                 ri, rj = find(i, p), find(j + m, p)
                 comp = min(ri, rj)
