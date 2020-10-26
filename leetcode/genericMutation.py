@@ -23,15 +23,16 @@ def minimumGeneticMutation(startStr, endStr, bank):
         q = newQ
     return -1
 
+
 startStr = 'AAAAAAAA'
 endStr = 'CCCCCCCC'
-bank =["AAAAAAAA",
- "AAAAAAAC",
- "AAAAAACC",
- "AAAAACCC",
- "AAAACCCC",
- "AACACCCC",
- "ACCACCCC",
- "ACCCCCCC",
- "CCCCCCCA"]
+bank = ["AAAAAAAA",
+        "AAAAAAAC",
+        "AAAAAACC",
+        "AAAAACCC",
+        "AAAACCCC",
+        "AACACCCC",
+        "ACCACCCC",
+        "ACCCCCCC",
+        "CCCCCCCA"]
 print(minimumGeneticMutation(startStr, endStr, bank))

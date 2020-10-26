@@ -1,8 +1,8 @@
 i = int(input())
-for n in range(1, i+1):
-	x = n ** 2
-	total = x * (x-1) // 2
-	print(total - 4 * (n-1) * (n-2))
+for n in range(1, i + 1):
+    x = n ** 2
+    total = x * (x - 1) // 2
+    print(total - 4 * (n - 1) * (n - 2))
 
 # Explain
 # total: total way to choose 2 cell from board (n * n) * (n * n - 1) // 2 (2Cn)

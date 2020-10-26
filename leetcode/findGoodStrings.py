@@ -26,9 +26,9 @@ class Solution:
 
         kmp = getKmp(evil)
         p = len(evil)
-        dp = [[[[-1 for y in range(2)] for x in range(2)] for j in range(p+1)] for i in range(n+1)]
+        dp = [[[[-1 for y in range(2)] for x in range(2)] for j in range(p + 1)] for i in range(n + 1)]
 
-        def dfs(dp, idx, suffix,  eqS1, eqS2):
+        def dfs(dp, idx, suffix, eqS1, eqS2):
             if suffix == p:
                 return 0
             if idx == n:
@@ -54,5 +54,5 @@ class Solution:
 
 pattern = Solution()
 startTime = datetime.now()
-print(pattern.findGoodStrings(3,"szc","zyi","p"))
+print(pattern.findGoodStrings(3, "szc", "zyi", "p"))
 print(datetime.now() - startTime)

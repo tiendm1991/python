@@ -4,6 +4,8 @@ import math
 
 import random
 import collections
+
+
 class Solution:
     def findLUSlength(self, strs) -> int:
         _max = -1
@@ -12,6 +14,7 @@ class Solution:
         candidate = [s for s in d if d[s] == 1]
         if len(candidate) == 0:
             return -1
+
         def isSubsequnce(s1, s2):
             if len(s1) > len(s2):
                 return False
@@ -25,6 +28,7 @@ class Solution:
                 else:
                     i += 1
             return True
+
         for s in candidate:
             check = True
             for s2 in duplicate:
@@ -34,8 +38,9 @@ class Solution:
             if check:
                 _max = max(_max, len(s))
         return _max
+
+
 s = Solution()
 startTime = datetime.now()
-print(s.findLUSlength(["aabbcc", "aabbcc","bc","bcc","aabbccc"]))
+print(s.findLUSlength(["aabbcc", "aabbcc", "bc", "bcc", "aabbccc"]))
 print(datetime.now() - startTime)
-

@@ -5,7 +5,7 @@ def maximizeSum(arr):
     if len(arr) == 2:
         return 2 * (arr[1] - arr[0])
     a = []
-    i, j = 0, len(arr)-1
+    i, j = 0, len(arr) - 1
     while i < j:
         a.append(arr[i])
         a.append(arr[j])
@@ -14,9 +14,10 @@ def maximizeSum(arr):
     if i == j:
         a.append(arr[i])
     s = 0
-    for i in range(len(arr)-1):
-        s += abs(a[i] - a[i+1])
+    for i in range(len(arr) - 1):
+        s += abs(a[i] - a[i + 1])
     s += abs(a[0] - a[-1])
     return s
 
-print(maximizeSum([4,19,14,9,7,3,6,15,13,14]))
+
+print(maximizeSum([4, 19, 14, 9, 7, 3, 6, 15, 13, 14]))

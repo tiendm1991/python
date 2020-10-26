@@ -60,8 +60,7 @@ class Solution:
 
 s = Solution()
 startTime = datetime.now()
-print(s.maxSumSubmatrix([[5,-4,-3,4],
-                         [-3,-4,4,5],
-                         [5,1,5,-4]],10))
+print(s.maxSumSubmatrix([[5, -4, -3, 4],
+                         [-3, -4, 4, 5],
+                         [5, 1, 5, -4]], 10))
 print(datetime.now() - startTime)
-

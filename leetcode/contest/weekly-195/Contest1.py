@@ -1,7 +1,7 @@
 class Solution:
     def isPathCrossing(self, path: str) -> bool:
         s = {(0, 0)}
-        cur = (0,0)
+        cur = (0, 0)
         for p in path:
             x, y = cur[0], cur[1]
             if p == 'N':

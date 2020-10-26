@@ -8,7 +8,7 @@ else:
     dp = [[1 if j == 0 else 0 for j in range(target + 1)] for i in range(n + 1)]
     for i in range(1, n + 1):
         for j in range(1, target + 1):
-            dp[i][j] = dp[i-1][j]
+            dp[i][j] = dp[i - 1][j]
             if j - i >= 0:
-                dp[i][j] = (dp[i][j] + dp[i-1][j-i]) % mod
-    print(dp[n-1][target])
+                dp[i][j] = (dp[i][j] + dp[i - 1][j - i]) % mod
+    print(dp[n - 1][target])

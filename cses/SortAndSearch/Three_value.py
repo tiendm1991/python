@@ -4,6 +4,7 @@ v = input().split(' ')
 n, x = int(v[0]), int(v[1])
 arr = [int(c) for c in input().split(' ')]
 
+
 def f():
     if len(arr) < 3:
         return None

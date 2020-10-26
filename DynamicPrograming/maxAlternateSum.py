@@ -14,7 +14,8 @@ def maxAlternateSum(arr):
                 dp[i] = max(dp[i], dp[j] + x)
                 decrease[i] = True
     print(dp)
-    return dp[n-1]
+    return dp[n - 1]
+
+
 print(maxAlternateSum([9, 4, 7, 6, 5, 3, 8]))
 # 9 4 7 6 8 = 34
-

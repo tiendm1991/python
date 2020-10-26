@@ -1,4 +1,4 @@
-from  datetime import datetime
+from datetime import datetime
 import functools
 import math
 
@@ -25,6 +25,8 @@ class Solution:
             fractions.append(int(arr[0]), int(arr[1]))
         result = functools.reduce(lambda a, b: add(a, b), fractions)
         return format(result)
+
+
 s = Solution()
 startTime = datetime.now()
 print(s.fractionAddition("5/3+1/3"))

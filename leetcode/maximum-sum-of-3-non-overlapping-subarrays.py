@@ -26,7 +26,7 @@ class Solution:
                 dp3[i] = [dp2[i - k][0], dp2[i - k][1], i]
             else:
                 dp3[i] = dp3[i - 1]
-        return dp3[n-1]
+        return dp3[n - 1]
 
 
 s = Solution()

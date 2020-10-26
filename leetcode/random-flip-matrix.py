@@ -1,11 +1,13 @@
 import random
+
+
 class Solution:
 
     def __init__(self, n_rows: int, n_cols: int):
         self.r = n_rows
         self.c = n_cols
         self.exist = set()
-        
+
     def flip(self) -> List[int]:
         n = self.c * self.r
         if len(self.exist) == n:
@@ -19,7 +21,6 @@ class Solution:
     def reset(self) -> None:
         self.exist = set()
         return None
-
 
 # Your Solution object will be instantiated and called as such:
 # obj = Solution(n_rows, n_cols)

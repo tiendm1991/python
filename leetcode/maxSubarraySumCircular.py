@@ -22,6 +22,6 @@ class Solution:
 
 
 s = Solution()
-print(s.maxSubarraySumCircular([5,-3,5]))
-print(s.maxSubarraySumCircular([3,-1,2,-1]))
-print(s.maxSubarraySumCircular([-2,-3,-1]))
+print(s.maxSubarraySumCircular([5, -3, 5]))
+print(s.maxSubarraySumCircular([3, -1, 2, -1]))
+print(s.maxSubarraySumCircular([-2, -3, -1]))

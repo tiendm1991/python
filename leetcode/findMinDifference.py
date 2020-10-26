@@ -15,12 +15,11 @@ class Solution:
         a.sort()
         _min = 1440
         for i in range(1, n):
-            _min = min(_min, a[i] - a[i-1])
+            _min = min(_min, a[i] - a[i - 1])
         return min(_min, a[0] + 1440 - a[-1])
 
 
 s = Solution()
 startTime = datetime.now()
-print(s.findMinDifference(["23:59","00:00"]))
+print(s.findMinDifference(["23:59", "00:00"]))
 print(datetime.now() - startTime)
-

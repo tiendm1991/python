@@ -37,4 +37,3 @@ def merge(a, a1, a2, start):
 
 
 print(mergeSort2([1, 3, 4, 2, 5]))
-

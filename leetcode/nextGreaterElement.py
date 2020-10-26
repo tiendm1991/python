@@ -1,4 +1,6 @@
-from  datetime import datetime
+from datetime import datetime
+
+
 class Solution:
     def nextGreaterElement(self, nums1, nums2):
         stack, d = [], {}
@@ -13,7 +15,8 @@ class Solution:
             d[num] = -1
         return [d[num] for num in nums1]
 
+
 s = Solution()
 startTime = datetime.now()
-print(s.nextGreaterElement([4,1,2], [1,3,4,2]))
+print(s.nextGreaterElement([4, 1, 2], [1, 3, 4, 2]))
 print(datetime.now() - startTime)

@@ -11,7 +11,7 @@ class StockSpanner:
             return 1
         if price < self.p[-1]:
             self.p.append(price)
-            self.s.append(len(self.p)-1)
+            self.s.append(len(self.p) - 1)
             return 1
         count = 1
         while self.s and self.p[self.s[-1]] <= price:
@@ -21,8 +21,10 @@ class StockSpanner:
             else:
                 count += t + 1
         self.p.append(price)
-        self.s.append(len(self.p)-1)
+        self.s.append(len(self.p) - 1)
         return count
+
+
 # Your StockSpanner object will be instantiated and called as such:
 obj = StockSpanner()
 print(obj.next(31))

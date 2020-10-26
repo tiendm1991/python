@@ -2,6 +2,7 @@ from datetime import datetime, time
 import heapq
 import math
 
+
 class Solution:
     def largestRectangleArea(self, h) -> int:
         if h == []:
@@ -17,9 +18,9 @@ class Solution:
             for k in range(n):
                 _max = max(_max, h[stack[k]] * (i - stack[k]))
             j = n
-            while j > 0 and h[stack[j-1]] >= x:
+            while j > 0 and h[stack[j - 1]] >= x:
                 j -= 1
-            del stack[j+1:]
+            del stack[j + 1:]
             h[stack[-1]] = x
         for k in range(len(stack)):
             _max = max(_max, h[stack[k]] * (len(h) - stack[k]))
@@ -43,7 +44,7 @@ class Solution:
             w = n if not stack else n - stack[-1] - 1
             _max = max(_max, h * w)
         return _max
-	
+
     def largestRectangleArea3(self, heights: List[int]) -> int:
         if heights == []:
             return 0
@@ -68,8 +69,8 @@ class Solution:
 
         return _max
 
+
 s = Solution()
 startTime = datetime.now()
-print(s.largestRectangleArea([3,1,4,5,3,2,7,5,3]))
+print(s.largestRectangleArea([3, 1, 4, 5, 3, 2, 7, 5, 3]))
 print(datetime.now() - startTime)
-

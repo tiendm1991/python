@@ -55,11 +55,11 @@ class Solution:
         i = 0
         result = []
         while i < n and k > 0:
-            idx = tree.getMin(0, 0, n-1, i+1, i+k)
+            idx = tree.getMin(0, 0, n - 1, i + 1, i + k)
             if idx > -1 and a[idx] < a[i]:
                 tmp = a[idx]
                 for j in range(idx, i, -1):
-                    a[j] = a[j-1]
+                    a[j] = a[j - 1]
                 a[i] = tmp
                 tree = SegmentTree(a)
                 k -= idx - i

@@ -15,19 +15,19 @@ def countStrAbc(n):
                 if b == 0 and c == 0:
                     dp[i][b][c] = 1
                 elif b == 0 and c == 1:
-                    dp[i][b][c] = dp[i-1][0][1] + dp[i-1][0][0]
+                    dp[i][b][c] = dp[i - 1][0][1] + dp[i - 1][0][0]
                 elif b == 0 and c == 2:
-                    dp[i][b][c] = dp[i-1][0][2] + dp[i-1][0][1]
+                    dp[i][b][c] = dp[i - 1][0][2] + dp[i - 1][0][1]
                 elif b == 1 and c == 0:
-                    dp[i][b][c] = dp[i-1][1][0] + dp[i-1][0][0]
+                    dp[i][b][c] = dp[i - 1][1][0] + dp[i - 1][0][0]
                 elif b == 1 and c == 1:
-                    dp[i][b][c] = dp[i-1][1][1] + dp[i-1][0][1] + dp[i-1][1][0]
-                else: # 1 2
-                    dp[i][b][c] = dp[i-1][1][2] + dp[i-1][0][2] + dp[i-1][1][1]
+                    dp[i][b][c] = dp[i - 1][1][1] + dp[i - 1][0][1] + dp[i - 1][1][0]
+                else:  # 1 2
+                    dp[i][b][c] = dp[i - 1][1][2] + dp[i - 1][0][2] + dp[i - 1][1][1]
     return sum([sum(i) for i in dp[n]])
+
 
 print(countStrAbc(3))
 # 19
 # aaa aab aac aba abc aca acb acc baa
 # bac bca bcc caa cab cac cba cbc cca ccb
-

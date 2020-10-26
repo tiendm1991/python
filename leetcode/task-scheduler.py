@@ -2,16 +2,20 @@ import collections
 from heapq import heappop
 from heapq import heappush
 
+
 class Task:
     def __init__(self, name, remain):
         self.name = name
         self.remain = remain
+
     def __lt__(self, other):
         if other.remain != self.remain:
             return other.remain < self.remain
         return self.name < other.name
+
     def __str__(self):
         return f'{self.name}-{self.remain}'
+
 
 class Solution:
     def leastInterval(self, tasks, n: int) -> int:

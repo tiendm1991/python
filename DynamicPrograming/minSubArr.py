@@ -10,4 +10,3 @@ def minSubArr(a):
 
 print(minSubArr([-8, 3, -4, -5, 20, -7, -1]))
 print(minSubArr([5, 3, 7, 6, 2, 6]))
-

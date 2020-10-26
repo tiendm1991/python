@@ -37,4 +37,4 @@ class Solution:
 
 
 s = Solution()
-print(s.countPairs(Util.createTree([7,1,4,6,None,5,3,None,None,None,None,None,2]), 3))
+print(s.countPairs(Util.createTree([7, 1, 4, 6, None, 5, 3, None, None, None, None, None, 2]), 3))

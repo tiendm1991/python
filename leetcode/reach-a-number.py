@@ -10,4 +10,3 @@ class Solution:
             n += 1
             A += n
         return n
-        

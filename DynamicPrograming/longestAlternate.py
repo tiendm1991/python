@@ -25,4 +25,3 @@ def help(arr, decrease):
 
 print(longestAlternate([9, 4, 7, 6, 5, 3, 8]))
 print(longestAlternate([10, 22, 9, 33, 31, 60]))
-

@@ -20,14 +20,14 @@ class Solution:
             return new
 
         a = []
-        r = min(m,n)
+        r = min(m, n)
         for i in range(r):
             a.append(add(0, i))
         if r == m:
             for i in range(r, n):
                 a.append(add(0, i))
         for i in range(1, m):
-            a.append(add(i, n-1))
+            a.append(add(i, n - 1))
         reverse = True
         result = []
         for arr in a:
@@ -37,10 +37,10 @@ class Solution:
             reverse = not reverse
         return result
 
+
 s = Solution()
 startTime = datetime.now()
-print(s.findDiagonalOrder([[1,2,3,4,5],
-                          [6,7,8,9,10],
-                          [11,12,13,14,15]]))
+print(s.findDiagonalOrder([[1, 2, 3, 4, 5],
+                           [6, 7, 8, 9, 10],
+                           [11, 12, 13, 14, 15]]))
 print(datetime.now() - startTime)
-

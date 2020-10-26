@@ -16,5 +16,6 @@ class Solution:
                         break
         return result
 
+
 s = Solution()
-print(s.getFolderNames(["kaido","kaido(1)","kaido","kaido(1)","kaido(2)"]))
+print(s.getFolderNames(["kaido", "kaido(1)", "kaido", "kaido(1)", "kaido(2)"]))

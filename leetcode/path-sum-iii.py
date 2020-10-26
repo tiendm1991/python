@@ -5,12 +5,14 @@ import bisect
 import random
 import collections
 
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, x):
         self.val = x
         self.left = None
         self.right = None
+
 
 def createTree(arr):
     if arr == None or len(arr) == 0:
@@ -37,8 +39,10 @@ def createTree(arr):
         del queue[0]
     return root
 
+
 class Solution:
     count = 0
+
     def pathSum(self, root: TreeNode, sum: int) -> int:
         def traversal(node: TreeNode, prefixSum):
             if node == None:
@@ -51,12 +55,12 @@ class Solution:
             traversal(node.right, prefixSum)
             prefixSum.pop()
             return
+
         traversal(root, [0])
         return self.count
 
 
 s = Solution()
 startTime = datetime.now()
-print(s.pathSum(createTree([10,5,-3,3,2,None,11,3,-2,None,1]), 8))
+print(s.pathSum(createTree([10, 5, -3, 3, 2, None, 11, 3, -2, None, 1]), 8))
 print(datetime.now() - startTime)
-

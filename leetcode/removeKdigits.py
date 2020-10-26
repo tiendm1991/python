@@ -19,8 +19,8 @@ class Solution:
             return '0'
         return ''.join(stack[i:])
 
+
 s = Solution()
 startTime = datetime.now()
 print(s.removeKdigits('1234567890', 4))
 print(datetime.now() - startTime)
-

@@ -40,7 +40,7 @@ class Solution:
 
         res = 0
         for p in positions:
-            res += dis(p, (x,y))
+            res += dis(p, (x, y))
 
         return res
 

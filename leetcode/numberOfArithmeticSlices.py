@@ -9,9 +9,9 @@ import collections
 class Solution:
     def numberOfArithmeticSlices(self, a) -> int:
         n = len(a)
-        dp1 = [{0:1} for i in range(n)]
-        dp2 = [{0:1} for i in range(n)]
-        dp3 = [{0:1} for i in range(n)]
+        dp1 = [{0: 1} for i in range(n)]
+        dp2 = [{0: 1} for i in range(n)]
+        dp3 = [{0: 1} for i in range(n)]
         for i in range(1, n):
             for j in range(i):
                 x = a[i] - a[j]
@@ -28,13 +28,13 @@ class Solution:
                 if s1[k] < 3:
                     continue
                 if k == 0:
-                    s += pow(2, s1[k]-1) - s1[k]
+                    s += pow(2, s1[k] - 1) - s1[k]
                 else:
                     s += dp2[i][k] - dp3[i][k]
         return s
+
 
 s = Solution()
 startTime = datetime.now()
 print(s.numberOfArithmeticSlices([2, 2, 2, 2]))
 print(datetime.now() - startTime)
-

@@ -4,6 +4,7 @@ class Solution:
         if n < m * k:
             return -1
         _max = max(bloomDay)
+
         def check(a):
             count = 0
             start = -1
@@ -15,6 +16,7 @@ class Solution:
                     count += 1
                     start = i
             return count >= m
+
         def biSearch(low, high):
             if low > high:
                 return -1
@@ -25,7 +27,9 @@ class Solution:
                 return biSearch(low, mid)
             else:
                 return biSearch(mid + 1, high)
+
         return biSearch(1, _max)
 
+
 s = Solution()
-print(s.minDays([1000000000,1000000000], 1, 1))
+print(s.minDays([1000000000, 1000000000], 1, 1))

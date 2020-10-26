@@ -9,7 +9,7 @@ class Solution:
     def removeDuplicateLetters(self, s: str):
         stack = []
         n = len(s)
-        i = n-1
+        i = n - 1
         count = {}
         for ch in s:
             count[ch] = count.get(ch, 0) + 1
@@ -24,7 +24,7 @@ class Solution:
     def removeDuplicateLetters2(self, s: str):
         stack = []
         n = len(s)
-        i = n-1
+        i = n - 1
         count = {}
         for ch in s:
             count[ch] = count.get(ch, 0) + 1
@@ -50,8 +50,8 @@ class Solution:
             count[ch] -= 1
         return ''.join(stack)
 
+
 s = Solution()
 startTime = datetime.now()
 print(s.removeDuplicateLetters('bcabc'))
 print(datetime.now() - startTime)
-

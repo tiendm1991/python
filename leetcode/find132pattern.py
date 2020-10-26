@@ -25,6 +25,5 @@ class Solution(object):
 
 s = Solution()
 startTime = datetime.now()
-print(s.find132pattern([8, 10, 2, 3 ,2, 4, 6]))
+print(s.find132pattern([8, 10, 2, 3, 2, 4, 6]))
 print(datetime.now() - startTime)
-

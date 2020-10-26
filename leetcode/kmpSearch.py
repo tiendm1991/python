@@ -31,4 +31,5 @@ def search(s, p):
             j = pattern[j - 1]
     return False
 
+
 print(search('cxzcabcedkvlsfamcl', 'aabaabaaa'))

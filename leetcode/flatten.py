@@ -16,6 +16,7 @@ class Node:
         self.next = None
         self.child = None
 
+
 class Solution:
     def flatten(self, head: 'Node') -> 'Node':
         if head == None:
@@ -44,6 +45,7 @@ class Solution:
                     stack.append(cur)
                     cur = cur.child
         return head
+
 
 s = Solution()
 startTime = datetime.now()
@@ -81,4 +83,3 @@ node11.next = node12
 node12.prev = node11
 print(s.flatten(node1))
 print(datetime.now() - startTime)
-

@@ -11,6 +11,7 @@ def inversionCount(a):
     c += merge(a, a1, a2)
     return c
 
+
 def merge(a, a1, a2):
     c = 0
     i, j, k = 0, 0, 0
@@ -23,7 +24,7 @@ def merge(a, a1, a2):
             a[k] = a2[j]
             j += 1
             c += n1 - i
-        k+=1
+        k += 1
     while i < n1:
         a[k] = a1[i]
         i += 1
@@ -34,6 +35,6 @@ def merge(a, a1, a2):
         k += 1
     return c
 
+
 print(inversionCount([2, 4, 1, 3, 5]))
 print(inversionCount([1, 20, 6, 4, 5]))
-

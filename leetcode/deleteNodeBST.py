@@ -16,6 +16,7 @@ class TreeNode:
         self.left = None
         self.right = None
 
+
 class Solution:
     def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
         pre, delNode, isLeft = None, root, True
@@ -64,8 +65,8 @@ class Solution:
                 delNode.right = replace.right
         return root
 
+
 s = Solution()
 startTime = datetime.now()
-print(s.deleteNode(Util.createTree([3,1,4,None,2]), 1))
+print(s.deleteNode(Util.createTree([3, 1, 4, None, 2]), 1))
 print(datetime.now() - startTime)
-

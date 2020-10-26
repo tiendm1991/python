@@ -17,7 +17,8 @@ class Solution:
     def combinationSum3(self, k: int, n: int):
         result = []
         a = []
-        def backtrack(result, a, k, n, s,  start):
+
+        def backtrack(result, a, k, n, s, start):
             if len(a) > k:
                 return
             if len(a) == k:
@@ -28,16 +29,15 @@ class Solution:
                 if s + i <= n:
                     a.append(i)
                     s += i
-                    backtrack(result, a, k, n, s, i+1)
+                    backtrack(result, a, k, n, s, i + 1)
                     del a[-1]
                     s -= i
+
         backtrack(result, a, k, n, 0, 1)
         return result
-
 
 
 s = Solution()
 startTime = datetime.now()
 print(s.combinationSum3(3, 7))
 print(datetime.now() - startTime)
-

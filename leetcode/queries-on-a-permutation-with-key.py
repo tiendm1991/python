@@ -12,5 +12,6 @@ class Solution:
                     d[k] += 1
         return result
 
+
 s = Solution()
-print(s.processQueries([3,1,2,1], 5))
+print(s.processQueries([3, 1, 2, 1], 5))

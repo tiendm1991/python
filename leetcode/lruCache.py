@@ -56,10 +56,11 @@ class LRUCache:
                 self.count -= 1
         return
 
+
 obj = LRUCache(2)
-obj.put(2,1)
-obj.put(2,2)
+obj.put(2, 1)
+obj.put(2, 2)
 print(obj.get(2))
-obj.put(1,1)
-obj.put(4,1)
+obj.put(1, 1)
+obj.put(4, 1)
 print(obj.get(2))

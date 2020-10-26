@@ -1,5 +1,5 @@
 def countZeroes(a):
-    x = firstZero(a, 0, len(a)-1)
+    x = firstZero(a, 0, len(a) - 1)
     return len(a) - x
 
 

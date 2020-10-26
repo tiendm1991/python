@@ -56,7 +56,7 @@ class Solution:
             for c in candidatePrefix:
                 if c in map:
                     for j in map[c]:
-                        if j != i and [j,i] not in result:
+                        if j != i and [j, i] not in result:
                             result.append([j, i])
             candidateSuffix = findSuffixCandidate(s)
             for c in candidateSuffix:
@@ -69,6 +69,5 @@ class Solution:
 
 s = Solution()
 startTime = datetime.now()
-print(s.palindromePairs(["a","abc","aba",""]))
+print(s.palindromePairs(["a", "abc", "aba", ""]))
 print(datetime.now() - startTime)
-

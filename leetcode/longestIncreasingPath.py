@@ -14,13 +14,13 @@ class Solution:
         queue = set()
         for i in range(m):
             for j in range(n):
-                if i-1 >= 0 and matrix[i-1][j] > matrix[i][j]:
+                if i - 1 >= 0 and matrix[i - 1][j] > matrix[i][j]:
                     continue
-                if i+1 < m and matrix[i+1][j] > matrix[i][j]:
+                if i + 1 < m and matrix[i + 1][j] > matrix[i][j]:
                     continue
-                if j-1 >= 0 and matrix[i][j-1] > matrix[i][j]:
+                if j - 1 >= 0 and matrix[i][j - 1] > matrix[i][j]:
                     continue
-                if j+1 < n and matrix[i][j+1] > matrix[i][j]:
+                if j + 1 < n and matrix[i][j + 1] > matrix[i][j]:
                     continue
                 dp[i][j] = 1
                 queue.add(i * n + j)
@@ -28,22 +28,23 @@ class Solution:
             newQueue = set()
             for q in queue:
                 i, j = q // n, q % n
-                if i-1 >= 0 and matrix[i-1][j] < matrix[i][j]:
-                    dp[i-1][j] = max(dp[i-1][j], dp[i][j] + 1)
-                    newQueue.add(j + n * (i-1))
-                if i+1 < m and matrix[i+1][j] < matrix[i][j]:
-                    dp[i+1][j] = max(dp[i+1][j], dp[i][j] + 1)
-                    newQueue.add(j + n * (i+1))
-                if j-1 >= 0 and matrix[i][j-1] < matrix[i][j]:
-                    dp[i][j-1] = max(dp[i][j-1], dp[i][j] + 1)
-                    newQueue.add(j- 1 + n * i)
-                if j+1 < n and matrix[i][j+1] < matrix[i][j]:
-                    dp[i][j+1] = max(dp[i][j+1], dp[i][j] + 1)
+                if i - 1 >= 0 and matrix[i - 1][j] < matrix[i][j]:
+                    dp[i - 1][j] = max(dp[i - 1][j], dp[i][j] + 1)
+                    newQueue.add(j + n * (i - 1))
+                if i + 1 < m and matrix[i + 1][j] < matrix[i][j]:
+                    dp[i + 1][j] = max(dp[i + 1][j], dp[i][j] + 1)
+                    newQueue.add(j + n * (i + 1))
+                if j - 1 >= 0 and matrix[i][j - 1] < matrix[i][j]:
+                    dp[i][j - 1] = max(dp[i][j - 1], dp[i][j] + 1)
+                    newQueue.add(j - 1 + n * i)
+                if j + 1 < n and matrix[i][j + 1] < matrix[i][j]:
+                    dp[i][j + 1] = max(dp[i][j + 1], dp[i][j] + 1)
                     newQueue.add(j + 1 + n * i)
             queue = newQueue
         return max([max(a) for a in dp])
+
+
 s = Solution()
 startTime = datetime.now()
-print(s.longestIncreasingPath([[0],[1],[5],[5]]))
+print(s.longestIncreasingPath([[0], [1], [5], [5]]))
 print(datetime.now() - startTime)
-

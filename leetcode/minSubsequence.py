@@ -12,5 +12,6 @@ class Solution:
             s -= top
         return nums + [top]
 
+
 s = Solution()
-print(s.minSubsequence([7,4,2,8,1,7,7,10]))
+print(s.minSubsequence([7, 4, 2, 8, 1, 7, 7, 10]))

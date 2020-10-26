@@ -1,13 +1,13 @@
 def isSubSeqDivisible8(s):
     arr = [int(x) for x in s]
     n = len(arr)
-    dp = [[False for j in range(8)] for i in range(n+1)]
-    dp[1][arr[0]%8] = True
-    for i in range(2, n+1):
-        x = arr[i-1]
+    dp = [[False for j in range(8)] for i in range(n + 1)]
+    dp[1][arr[0] % 8] = True
+    for i in range(2, n + 1):
+        x = arr[i - 1]
         dp[i][x % 8] = True
         for j in range(8):
-            if dp[i-1][j]:
+            if dp[i - 1][j]:
                 dp[i][j] = True
                 dp[i][(j * 10 + x) % 8] = True
     return dp[n][0]

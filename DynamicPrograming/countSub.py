@@ -27,4 +27,3 @@ def countSub2(s):
 
 print('countSub O(n^2) %d' % countSub("gfgfg"))
 print('countSub2 O(n) %d' % countSub2("gfgfg"))
-

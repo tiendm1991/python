@@ -15,7 +15,7 @@ class Solution:
                 if nums[mid] == nums[right]:
                     return search(left + 1, right - 1)
                 elif nums[mid] < nums[right]:
-                    return search(left+ 1, mid)
+                    return search(left + 1, mid)
                 else:
                     return search(mid + 1, right)
             elif nums[left] < nums[mid]:
@@ -24,7 +24,7 @@ class Solution:
                 else:
                     return search(mid + 1, right)
             else:
-                return search(left+1, mid)
+                return search(left + 1, mid)
 
         return search(0, n - 1)
 

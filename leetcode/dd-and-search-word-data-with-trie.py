@@ -6,9 +6,10 @@ import collections
 
 
 class Node:
-        def __init__(self):
-            self.is_end = False
-            self.next = {}  # you could use an array and char indices, but a dict is so much more elegant
+    def __init__(self):
+        self.is_end = False
+        self.next = {}  # you could use an array and char indices, but a dict is so much more elegant
+
 
 class WordDictionary:
 
@@ -17,7 +18,6 @@ class WordDictionary:
         Initialize your data structure here.
         """
         self.begin = Node()
-
 
     def addWord(self, word: str) -> None:
         """
@@ -44,6 +44,7 @@ class WordDictionary:
         """
         Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter.
         """
+
         def check(w, currentNode: Node, idx):
             if idx == len(w) or not currentNode.next:
                 return False
@@ -62,8 +63,8 @@ class WordDictionary:
                     elif check(w, currentNode.next[chNext], idx + 1):
                         return True
             return False
-        return check(word, self.begin, 0)
 
+        return check(word, self.begin, 0)
 
 
 obj = WordDictionary()
@@ -78,4 +79,3 @@ print(obj.search('.'))
 # startTime = datetime.now()
 # print(s.diameterOfBinaryTree(Util.createTree([])))
 # print(datetime.now() - startTime)
-

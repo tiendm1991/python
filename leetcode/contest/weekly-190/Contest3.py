@@ -8,6 +8,7 @@ class Solution:
     def pseudoPalindromicPaths(self, root: TreeNode) -> int:
         if root is None:
             return False
+
         def traversal(node, d):
             if node.left is None and node.right is None:
                 if node.val in d:
@@ -26,8 +27,10 @@ class Solution:
                     traversal(node.left, d | {node.val})
                 if node.right:
                     traversal(node.right, d | {node.val})
+
         traversal(root, set())
         return self.count
 
+
 s = Solution()
-print(s.pseudoPalindromicPaths(Util.createTree([1,9,1,None,1,None,1,None,None,7,None,None,4])))
+print(s.pseudoPalindromicPaths(Util.createTree([1, 9, 1, None, 1, None, 1, None, None, 7, None, None, 4])))

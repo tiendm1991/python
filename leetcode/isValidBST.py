@@ -21,5 +21,5 @@ class Solution:
             if not r:
                 return False
             return True
-        return  valid(root, None, None)
-        
+
+        return valid(root, None, None)

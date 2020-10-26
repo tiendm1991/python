@@ -14,10 +14,11 @@ class Solution:
                 while stack and height[stack[-1]] <= height[i]:
                     x = height[stack.pop()]
                     if stack:
-                        result += (min(height[stack[-1]], height[i]) - x) * (i - stack[-1]-1)
+                        result += (min(height[stack[-1]], height[i]) - x) * (i - stack[-1] - 1)
                 stack.append(i)
         return result
 
+
 s = Solution()
-print(s.trap([0,1,0,3,2,1,0,1,3,2,2,2,1]))
+print(s.trap([0, 1, 0, 3, 2, 1, 0, 1, 3, 2, 2, 2, 1]))
 # print(s.trap([0,1,0,2,1,0,1,3,2,1,2,1]))

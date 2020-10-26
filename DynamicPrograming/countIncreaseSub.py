@@ -9,8 +9,7 @@ def countIncreaseSub(arr):
     return sum(dp)
 
 
-#print(countIncreaseSub([3, 2, 4, 5, 4]))
+# print(countIncreaseSub([3, 2, 4, 5, 4]))
 # 14
 print(countIncreaseSub([1, 2, 3, 4]))
 # 15
-

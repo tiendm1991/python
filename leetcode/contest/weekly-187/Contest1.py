@@ -1,6 +1,7 @@
 from datetime import datetime
 import math
 
+
 class Solution:
     def destCity(self, paths) -> str:
         d = {p[0] for p in paths}
@@ -9,7 +10,8 @@ class Solution:
                 return p[1]
         return None
 
+
 s = Solution()
 startTime = datetime.now()
-print(s.destCity([["London","New York"],["New York","Lima"],["Lima","Sao Paulo"]]))
+print(s.destCity([["London", "New York"], ["New York", "Lima"], ["Lima", "Sao Paulo"]]))
 print(datetime.now() - startTime)

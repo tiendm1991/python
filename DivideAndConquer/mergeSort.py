@@ -10,6 +10,7 @@ def mergeSort(a):
     merge(a, a1, a2)
     return a
 
+
 def merge(a, a1, a2):
     i, j, k = 0, 0, 0
     while i < len(a1) and j < len(a2):
@@ -19,7 +20,7 @@ def merge(a, a1, a2):
         else:
             a[k] = a2[j]
             j += 1
-        k+=1
+        k += 1
     while i < len(a1):
         a[k] = a1[i]
         i += 1
@@ -30,5 +31,5 @@ def merge(a, a1, a2):
         k += 1
     return
 
-print(mergeSort([1, 3, 4, 2, 5]))
 
+print(mergeSort([1, 3, 4, 2, 5]))

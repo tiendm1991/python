@@ -1,11 +1,12 @@
 def maxProdCutting(n):
-    dp = [0 for i in range(n+1)]
+    dp = [0 for i in range(n + 1)]
     dp[2] = 1
     dp[3] = 2
-    for i in range(4, n+1):
+    for i in range(4, n + 1):
         for j in range(2, i // 2 + 1):
-            dp[i] = max(dp[i], dp[j] * dp[i-j], dp[j] * (i-j), j * dp[i-j], j * (i-j))
+            dp[i] = max(dp[i], dp[j] * dp[i - j], dp[j] * (i - j), j * dp[i - j], j * (i - j))
     return dp[n]
+
 
 print(maxProdCutting(10))
 # 1 0

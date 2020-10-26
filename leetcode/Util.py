@@ -4,6 +4,7 @@ class TreeNode:
         self.val = x
         self.left = None
         self.right = None
+
     def __str__(self):
         return str(self.val)
 
@@ -51,4 +52,3 @@ def createTree(arr):
         i += 1
         del queue[0]
     return root
-

@@ -2,6 +2,7 @@ from datetime import datetime, time
 import heapq
 import math
 
+
 class Solution:
     def nextGreaterElements(self, nums):
         n = len(nums)
@@ -20,6 +21,5 @@ class Solution:
 
 s = Solution()
 startTime = datetime.now()
-print(s.nextGreaterElements([1,2,1,3,2,1]))
+print(s.nextGreaterElements([1, 2, 1, 3, 2, 1]))
 print(datetime.now() - startTime)
-

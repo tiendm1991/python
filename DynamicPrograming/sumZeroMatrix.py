@@ -8,7 +8,7 @@ def sumZeroMatrix(arr):
             l = j - i + 1
             for k in range(C):
                 tmp[k] += arr[j][k]
-            #print(tmp)
+            # print(tmp)
             w = getMaxWidth(tmp)
             mGlobal = max(mGlobal, l * w)
     return mGlobal
@@ -23,7 +23,7 @@ def getMaxWidth(arr):
         x = arr[i]
         s += x
         if s == 0:
-            w = max(w, i+1)
+            w = max(w, i + 1)
         elif s in d:
             w = max(w, i - d[s])
             continue
@@ -33,9 +33,8 @@ def getMaxWidth(arr):
 
 
 print(getMaxWidth([9, 2, 3, -1, -5, 0, -1, 2, 7]))
-print(getMaxWidth([1,0,0,0,-1, 2]))
+print(getMaxWidth([1, 0, 0, 0, -1, 2]))
 print(sumZeroMatrix([[9, 7, 16, 5],
                      [1, -6, -7, 3],
                      [1, 8, 7, 9],
                      [7, -2, 0, 10]]))
-

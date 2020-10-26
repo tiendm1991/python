@@ -17,7 +17,9 @@ class Solution:
         for k in d:
             result += d[k][::-1]
         return result
+
+
 s = Solution()
 start = datetime.now()
-print(s.findDiagonalOrder([[1,2,3],[4],[5,6,7],[8],[9,10,11]]))
+print(s.findDiagonalOrder([[1, 2, 3], [4], [5, 6, 7], [8], [9, 10, 11]]))
 print(datetime.now() - start)

@@ -26,5 +26,6 @@ class Solution:
             return '0'
         return ''.join([str(x) for x in result])
 
+
 s = Solution()
 print(s.largestMultipleOfThree([2, 2, 2, 2, 2]))

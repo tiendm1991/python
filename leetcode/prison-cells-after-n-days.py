@@ -21,7 +21,7 @@ class Solution:
 
 
 s = Solution()
-print(s.prisonAfterNDays([0,1,0,1,1,0,0,1], 7))
-print(s.prisonAfterNDays([1,1,0,1,1,0,1,1], 6))
-print(s.prisonAfterNDays([0,0,1,1,1,1,0,0], 8))
-print(s.prisonAfterNDays([1,0,0,1,0,0,1,0], 1000000000))
+print(s.prisonAfterNDays([0, 1, 0, 1, 1, 0, 0, 1], 7))
+print(s.prisonAfterNDays([1, 1, 0, 1, 1, 0, 1, 1], 6))
+print(s.prisonAfterNDays([0, 0, 1, 1, 1, 1, 0, 0], 8))
+print(s.prisonAfterNDays([1, 0, 0, 1, 0, 0, 1, 0], 1000000000))

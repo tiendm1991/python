@@ -1,5 +1,6 @@
-from  datetime import datetime
+from datetime import datetime
 import functools
+
 
 class Solution:
     def nearestPalindromic(self, n: str) -> str:
@@ -10,10 +11,10 @@ class Solution:
         s = [c for c in n]
         candidate = set()
         if s[0] == '1':
-            candidate.add(int('9' * (l-1)))
+            candidate.add(int('9' * (l - 1)))
         if s[0] == '9':
             candidate.add(int('1' + '0' * l) + 1)
-        i, j = 0, l-1
+        i, j = 0, l - 1
         palindrome = True
         while i < j:
             if s[j] != s[i]:
@@ -23,7 +24,7 @@ class Solution:
             j -= 1
         if not palindrome:
             candidate.add(int(''.join(s)))
-        midIdx = l//2
+        midIdx = l // 2
         s1 = s[::]
         s2 = s[::]
         mid = int(s[midIdx])
@@ -32,8 +33,8 @@ class Solution:
         if mid > 0:
             s2[midIdx] = str(mid - 1)
         if l % 2 == 0:
-            s1[midIdx-1] = s1[midIdx]
-            s2[midIdx-1] = s2[midIdx]
+            s1[midIdx - 1] = s1[midIdx]
+            s2[midIdx - 1] = s2[midIdx]
         if s1 != s:
             candidate.add(int(''.join(s1)))
         if s2 != s:
@@ -45,6 +46,7 @@ class Solution:
                 _min = abs(c - x)
                 result = str(c)
         return result
+
 
 s = Solution()
 startTime = datetime.now()

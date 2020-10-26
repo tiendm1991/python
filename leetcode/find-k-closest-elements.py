@@ -7,7 +7,7 @@ class Solution:
             if mid + k >= n:
                 right = mid - 1
                 continue
-            if x - arr[mid] > arr[mid+k] - x:
+            if x - arr[mid] > arr[mid + k] - x:
                 left = mid + 1
             else:
                 right = mid

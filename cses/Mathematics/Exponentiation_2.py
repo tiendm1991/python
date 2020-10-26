@@ -19,4 +19,4 @@ for _ in range(t):
     a = int(var[0]) % mod
     b = int(var[1]) % mod
     c = int(var[2]) % mod
-    print(f(a, f(b, c, mod-1), mod))
+    print(f(a, f(b, c, mod - 1), mod))

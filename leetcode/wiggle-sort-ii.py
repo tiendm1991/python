@@ -2,6 +2,7 @@ import functools
 from datetime import datetime, time
 import math
 
+
 class Solution:
     def wiggleSort(self, nums) -> None:
         """
@@ -26,8 +27,9 @@ class Solution:
         for i in range(len(nums)):
             nums[i] = tmp[i]
         print(nums)
+
+
 s = Solution()
 startTime = datetime.now()
-print(s.wiggleSort([4,5,5,6]))
+print(s.wiggleSort([4, 5, 5, 6]))
 print(datetime.now() - startTime)
-

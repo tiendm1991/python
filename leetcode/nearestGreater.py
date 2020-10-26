@@ -1,5 +1,5 @@
 def nearestGreater(a):
-    MAX_INTEGER = 10**9
+    MAX_INTEGER = 10 ** 9
     n = len(a)
     rightGreater = [MAX_INTEGER] * n
     leftGreater = [-MAX_INTEGER] * n
@@ -10,7 +10,7 @@ def nearestGreater(a):
             rightGreater[stack.pop()] = i
         stack.append(i)
     stack = []
-    for i in range(n-1, -1, -1):
+    for i in range(n - 1, -1, -1):
         while stack and a[stack[-1]] < a[i]:
             leftGreater[stack.pop()] = i
         stack.append(i)
@@ -21,4 +21,6 @@ def nearestGreater(a):
             else:
                 result[i] = rightGreater[i]
     return result
+
+
 print(nearestGreater([7, 4, 7, 2, 7, 6]))

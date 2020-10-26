@@ -5,7 +5,7 @@ def longestUniqueSubStr(s):
     maxLocal = 1
     start = 0
     d = {s[0]: 0}
-    for i in range(1,n):
+    for i in range(1, n):
         c = s[i]
         if c not in d:
             maxLocal += 1
@@ -20,10 +20,9 @@ def longestUniqueSubStr(s):
         maxGlobal = max(maxGlobal, maxLocal)
     return maxGlobal
 
+
 print(longestUniqueSubStr('GEEKSFORGEXS'))
 print(longestUniqueSubStr('GEEKSFORGEEKS'))
 print(longestUniqueSubStr('ABDEFGABEF'))
 print(longestUniqueSubStr('BBBB'))
 print(longestUniqueSubStr('BBBBAX'))
-
-

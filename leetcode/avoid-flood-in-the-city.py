@@ -1,6 +1,7 @@
 import random
 from sortedcontainers import SortedSet
 
+
 class Solution:
     def avoidFlood(self, rains):
         n = len(rains)
@@ -42,7 +43,7 @@ class Solution:
 
 s = Solution()
 # print(s.avoidFlood([1, 1, 0, 0]))
-print(s.avoidFlood([2,3,0,0,3,1,0,1,0,2,2])) #[2, 3, 6, 8]
+print(s.avoidFlood([2, 3, 0, 0, 3, 1, 0, 1, 0, 2, 2]))  # [2, 3, 6, 8]
 # print(s.avoidFlood([1,2,0,0,2,1]))
 # print(s.avoidFlood([69,0,0,0,69]))
 # print(s.avoidFlood([0,1,1]))

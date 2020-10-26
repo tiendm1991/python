@@ -25,8 +25,9 @@ class Solution:
                     f = fTmp
                     s = nums[i]
         return False
+
+
 s = Solution()
 startTime = datetime.now()
-print(s.increasingTriplet([1,2,1,2,1,2,1,2,1,2]))
+print(s.increasingTriplet([1, 2, 1, 2, 1, 2, 1, 2, 1, 2]))
 print(datetime.now() - startTime)
-

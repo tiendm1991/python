@@ -20,8 +20,8 @@ class Solution:
                 count += 1
         return count
 
+
 s = Solution()
 startTime = datetime.now()
-print(s.numTimesAllBlue([2,1,3,5,4]))
+print(s.numTimesAllBlue([2, 1, 3, 5, 4]))
 print(datetime.now() - startTime)
-

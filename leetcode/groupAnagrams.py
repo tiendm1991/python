@@ -1,4 +1,4 @@
-from  datetime import datetime
+from datetime import datetime
 import collections
 
 
@@ -13,8 +13,8 @@ class Solution:
             key = ''
             count = 1
             for i in range(1, len(sSort)):
-                if sSort[i] != sSort[i-1]:
-                    key += sSort[i-1] + str(count)
+                if sSort[i] != sSort[i - 1]:
+                    key += sSort[i - 1] + str(count)
                     count = 1
                 else:
                     count += 1
@@ -23,6 +23,7 @@ class Solution:
             else:
                 d[key].append(s)
         return list(d.values())
+
 
 s = Solution()
 startTime = datetime.now()

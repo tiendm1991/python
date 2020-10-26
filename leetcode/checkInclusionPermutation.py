@@ -1,5 +1,6 @@
-from  datetime import datetime
+from datetime import datetime
 import collections
+
 
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
@@ -13,7 +14,7 @@ class Solution:
             ch = s2[i]
             if ch not in d1:
                 d2 = {}
-                start = i+1
+                start = i + 1
             else:
                 d2[ch] = d2.get(ch, 0) + 1
                 if i - start + 1 == n1:
@@ -23,6 +24,8 @@ class Solution:
                         d2[s2[start]] -= 1
                         start += 1
         return False
+
+
 s = Solution()
 startTime = datetime.now()
 print(s.checkInclusion('abac', 'eidbaaaabcooo'))

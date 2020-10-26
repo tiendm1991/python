@@ -19,5 +19,6 @@ class Solution:
                         ans = max(ans, pre // negative)
         return ans
 
+
 s = Solution()
 print(s.maxProduct([-2, 0, -1]))

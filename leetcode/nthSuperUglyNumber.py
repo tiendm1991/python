@@ -19,9 +19,10 @@ class Solution:
                 if uglyCurrent[j] == next:
                     counter[j] += 1
                     uglyCurrent[j] = ugly[counter[j]] * primes[j]
-        return ugly[n-1]
+        return ugly[n - 1]
+
+
 s = Solution()
 startTime = datetime.now()
-print(s.nthSuperUglyNumber(12, [2,7,13,19]))
+print(s.nthSuperUglyNumber(12, [2, 7, 13, 19]))
 print(datetime.now() - startTime)
-

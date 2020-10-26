@@ -42,4 +42,3 @@ def merge(a, a1, a2, start):
 
 print(inversionCount2([2, 4, 1, 3, 5]))
 print(inversionCount2([1, 20, 6, 4, 5]))
-

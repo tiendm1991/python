@@ -1,5 +1,6 @@
 import math
 
+
 class Solution:
     def minPatches(self, nums, n: int) -> int:
         _maxCover = 1
@@ -16,7 +17,9 @@ class Solution:
                 idx += 1
             step += 1
         return count
+
+
 s = Solution()
 startTime = datetime.now()
-print(s.minPatches([1,2,2], 0))
+print(s.minPatches([1, 2, 2], 0))
 print(datetime.now() - startTime)

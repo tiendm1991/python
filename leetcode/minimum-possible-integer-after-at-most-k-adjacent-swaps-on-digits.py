@@ -2,7 +2,7 @@ class Solution:
     def minInteger(self, num: str, k: int) -> str:
         a = [int(c) for c in num]
         n = len(a)
-        if k >= (n-1) * n // 2:
+        if k >= (n - 1) * n // 2:
             return ''.join([str(x) for x in sorted(a)])
 
         def getIdxSwap(i, k):
@@ -22,12 +22,13 @@ class Solution:
             if idx > -1:
                 tmp = a[idx]
                 for j in range(idx, i, -1):
-                    a[j] = a[j-1]
+                    a[j] = a[j - 1]
                 a[i] = tmp
                 k -= idx - i
             i += 1
 
         return ''.join([str(x) for x in a])
+
 
 s = Solution()
 print(s.minInteger("9438957234785635408", 23))

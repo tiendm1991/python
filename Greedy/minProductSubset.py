@@ -22,8 +22,7 @@ def minProductSubset(a):
     return mg
 
 
-print (minProductSubset([2, -2, -2, -1, -2, 4, 3]))
-print (minProductSubset([-1, -1, -2, 4, 3]))
-print (minProductSubset([-1, 0]))
-print (minProductSubset([0, 0, 0]))
-
+print(minProductSubset([2, -2, -2, -1, -2, 4, 3]))
+print(minProductSubset([-1, -1, -2, 4, 3]))
+print(minProductSubset([-1, 0]))
+print(minProductSubset([0, 0, 0]))

@@ -5,11 +5,9 @@ def deleteDigit(n):
     dp = [0 for i in range(n)]
     x = a[0]
     for i in range(1, n):
-        dp[i] = max(dp[i-1] * 10 + a[i], x)
+        dp[i] = max(dp[i - 1] * 10 + a[i], x)
         x = x * 10 + a[i]
-    return dp[n-1]
+    return dp[n - 1]
 
 
 print(deleteDigit(152))
-
-

@@ -42,4 +42,3 @@ s = Solution()
 startTime = datetime.now()
 print(s.countDigitOne(100))
 print(datetime.now() - startTime)
-

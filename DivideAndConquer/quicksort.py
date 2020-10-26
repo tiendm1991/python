@@ -27,4 +27,3 @@ def partition(a, low, high):
 print(quicksort([8, 2, 12, 3, 4, 9, 11, 10, 7]))
 print(quicksort([1, 8, 9, 3, 4, 5, 7]))
 print(quicksort([4, 8, 7, 3, 15, 18, 12, 6, 8, 9, 21, 25, 23]))
-

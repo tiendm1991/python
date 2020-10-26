@@ -13,7 +13,9 @@ class Solution:
             elif j == 0:
                 i += 1
             else:
-                j = result[j-1]
+                j = result[j - 1]
         return s[:result[-1]]
+
+
 s = Solution()
 print(s.longestPrefix('bba'))

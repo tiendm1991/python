@@ -1,7 +1,7 @@
 def countSubsequencesAiBjCk(s):
     n = len(s)
     count = 0
-    nA, nB, nC = 0,0,0
+    nA, nB, nC = 0, 0, 0
     for i in range(n):
         if s[i] == 'a':
             nA += nA + 1
@@ -11,10 +11,10 @@ def countSubsequencesAiBjCk(s):
             nC += nC + nB
     return nC
 
+
 print(countSubsequencesAiBjCk('abbc'))
-#abc, abc, abbc
+# abc, abc, abbc
 print(countSubsequencesAiBjCk('bababc'))
 # abc, abc, abbc, aabc, abc
 print(countSubsequencesAiBjCk('abcabc'))
 print(countSubsequencesAiBjCk('bababcac'))
-

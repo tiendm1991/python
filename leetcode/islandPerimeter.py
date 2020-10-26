@@ -15,18 +15,17 @@ class Solution:
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == 1:
-                    if i - 1 >= 0 and grid[i-1][j] == 1:
+                    if i - 1 >= 0 and grid[i - 1][j] == 1:
                         s += 1
-                    if j - 1 >= 0 and grid[i][j-1] == 1:
+                    if j - 1 >= 0 and grid[i][j - 1] == 1:
                         s += 1
         return S * 4 - s * 2
 
 
 s = Solution()
 startTime = datetime.now()
-print(s.islandPerimeter([[0,1,0,0],
- [1,1,1,0],
- [0,1,0,0],
- [1,1,0,0]]))
+print(s.islandPerimeter([[0, 1, 0, 0],
+                         [1, 1, 1, 0],
+                         [0, 1, 0, 0],
+                         [1, 1, 0, 0]]))
 print(datetime.now() - startTime)
-

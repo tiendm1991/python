@@ -17,8 +17,8 @@ class Solution:
             x, y = y, x
         return z % math.gcd(x, y) == 0
 
+
 s = Solution()
 startTime = datetime.now()
-print(s.combinationSum4([1,2,3], 5))
+print(s.combinationSum4([1, 2, 3], 5))
 print(datetime.now() - startTime)
-

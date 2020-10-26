@@ -29,7 +29,7 @@ class Solution:
                     num = int(s[idx])
                 else:
                     num = num * 10 + int(s[idx])
-                if idx +1 == len(s) or s[idx+1] in opts or s[idx+1] == ' ':
+                if idx + 1 == len(s) or s[idx + 1] in opts or s[idx + 1] == ' ':
                     a.append(num)
             idx += 1
         a.append(')')
@@ -53,8 +53,9 @@ class Solution:
                         cal.append(-y)
             i += 1
         return stack.pop()
+
+
 s = Solution()
 startTime = datetime.now()
 print(s.calculate("(1+(4+5+2)-3)+(6+8)"))
 print(datetime.now() - startTime)
-

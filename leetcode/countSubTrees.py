@@ -32,6 +32,6 @@ class Solution:
 
 s = Solution()
 print(s.countSubTrees(4,
-[[0,2],[0,3],[1,2]],
-"aeed"
-))
+                      [[0, 2], [0, 3], [1, 2]],
+                      "aeed"
+                      ))

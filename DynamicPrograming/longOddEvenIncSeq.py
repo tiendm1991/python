@@ -11,4 +11,3 @@ def longOddEvenIncSeq(arr):
 
 print(longOddEvenIncSeq([1, 12, 2, 22, 5, 30, 31, 14, 17, 11]))
 # 1 2 5 30 31
-

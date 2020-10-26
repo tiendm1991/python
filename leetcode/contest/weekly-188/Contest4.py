@@ -24,10 +24,10 @@ class Solution:
             count = 0
             for i in range(r, m):
                 if caculate(r, c, i, n) > 0:
-                    count += recursive(i + 1, c, k - 1) # cut horizontally
+                    count += recursive(i + 1, c, k - 1)  # cut horizontally
             for i in range(c, n):
                 if caculate(r, c, m, i) > 0:
-                    count += recursive(r, i + 1, k - 1) # cut vertically
+                    count += recursive(r, i + 1, k - 1)  # cut vertically
             count %= mod
             dp[r][c][k] = count
             return count

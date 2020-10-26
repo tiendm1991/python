@@ -31,4 +31,4 @@ class Solution:
 
 
 s = Solution()
-print(s.sumRootToLeaf(Util.createTree([1,1])))
+print(s.sumRootToLeaf(Util.createTree([1, 1])))

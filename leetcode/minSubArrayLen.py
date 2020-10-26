@@ -41,10 +41,10 @@ class Solution:
             _minGlobal = min(_minGlobal, _min)
         return _minGlobal
 
+
 s = Solution()
 startTime = datetime.now()
 print(s.minSubArrayLen(
-15,
-[5,1,3,5,10,7,4,9,2,8]))
+    15,
+    [5, 1, 3, 5, 10, 7, 4, 9, 2, 8]))
 print(datetime.now() - startTime)
-

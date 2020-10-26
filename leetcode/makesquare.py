@@ -27,12 +27,13 @@ class Solution:
                 if a[i] + nums[idx] > s:
                     continue
                 a[i] += nums[idx]
-                if backtrack2(a, idx+1):
+                if backtrack2(a, idx + 1):
                     return True
                 a[i] -= nums[idx]
             return False
 
         nums = sorted(nums, reverse=True)
+
         def backtrack(a, visited, idx):
             if idx == 3:
                 return True
@@ -61,6 +62,5 @@ class Solution:
 
 s = Solution()
 startTime = datetime.now()
-print(s.makesquare([5,5,5,5,16,4,4,4,4,4,3,3,3,3,4]))
+print(s.makesquare([5, 5, 5, 5, 16, 4, 4, 4, 4, 4, 3, 3, 3, 3, 4]))
 print(datetime.now() - startTime)
-

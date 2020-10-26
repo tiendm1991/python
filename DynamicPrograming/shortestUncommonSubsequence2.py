@@ -11,7 +11,7 @@ def shortestUncommonSubsequence(s1, s2):
                 dp[i][j] = -1
             elif dp[i - 1][j] != -1:
                 dp[i][j] = dp[i - 1][j]
-            elif dp[i - 1][j-1] == -1 and s2[j - 1] == x:
+            elif dp[i - 1][j - 1] == -1 and s2[j - 1] == x:
                 dp[i][j] = -1
             else:
                 k = j - 1
@@ -22,11 +22,10 @@ def shortestUncommonSubsequence(s1, s2):
                 if k == 0:
                     dp[i][j] = 1
                 else:
-                    dp[i][j] = dp[i - 1][k-1] + 1
+                    dp[i][j] = dp[i - 1][k - 1] + 1
     print(dp)
     return dp[n1][n2]
 
 
 print(shortestUncommonSubsequence("babab", "acacbba"))
 # babab bcacbba
-

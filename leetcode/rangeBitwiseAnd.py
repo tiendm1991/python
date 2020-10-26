@@ -16,6 +16,7 @@ class Solution:
         a = int(math.pow(2, len_n - 1))
         return a + self.rangeBitwiseAnd(m - a, n - a)
 
+
 s = Solution()
-print(s.rangeBitwiseAnd(5,7))
-print(s.rangeBitwiseAnd(6,7))
+print(s.rangeBitwiseAnd(5, 7))
+print(s.rangeBitwiseAnd(6, 7))

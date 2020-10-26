@@ -14,5 +14,6 @@ class Solution:
                 result.append(i)
         return result
 
+
 s = Solution()
 print(s.peopleIndexes())

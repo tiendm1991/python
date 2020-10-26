@@ -6,7 +6,6 @@ import random
 import collections
 
 
-
 class Solution:
     def circularArrayLoop(self, nums) -> bool:
         n = len(nums)
@@ -37,7 +36,6 @@ class Solution:
                     track.append(cur)
                     visited[cur] = True
         return False
-
 
     def circularArrayLoop2(self, nums) -> bool:
         n = len(nums)
@@ -70,6 +68,5 @@ class Solution:
 
 s = Solution()
 startTime = datetime.now()
-print(s.circularArrayLoop([-1,2,1,2]))
+print(s.circularArrayLoop([-1, 2, 1, 2]))
 print(datetime.now() - startTime)
-

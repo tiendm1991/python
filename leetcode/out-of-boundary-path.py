@@ -1,9 +1,10 @@
-from  datetime import datetime
+from datetime import datetime
 import functools
+
 
 class Solution:
     def findPaths(self, m: int, n: int, N: int, i: int, j: int) -> int:
-        mod = 10 **9 + 7
+        mod = 10 ** 9 + 7
         if m == 0 or n == 0 or N == 0:
             return 0
         if m == 0 and n == 0:
@@ -20,11 +21,11 @@ class Solution:
             if step == 1:
                 if r == 0:
                     s += 1
-                if r == m-1:
+                if r == m - 1:
                     s += 1
                 if c == 0:
                     s += 1
-                if c == n-1:
+                if c == n - 1:
                     s += 1
                 return s
             if dp[r][c][step] != -1:
@@ -40,12 +41,14 @@ class Solution:
             s %= mod
             dp[r][c][step] = s
             return s
+
         result = 0
-        for step in range(1, N+1):
+        for step in range(1, N + 1):
             result = (result + dfs(i, j, step)) % mod
         return result % mod
 
+
 s = Solution()
 startTime = datetime.now()
-print(s.findPaths(1,3,3,0,1))
+print(s.findPaths(1, 3, 3, 0, 1))
 print(datetime.now() - startTime)

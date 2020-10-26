@@ -1,5 +1,6 @@
 import collections
 
+
 class Solution:
     def kLengthApart(self, nums, k: int) -> bool:
         start = -1

@@ -15,5 +15,6 @@ class Solution:
         getB = sorted([x[1] - x[0] for x in costs])
         return allA + sum(getB[:(len(costs) // 2)])
 
+
 s = Solution()
 print(s.twoCitySchedCost([[29, 70], [48, 5], [96, 67], [14, 13], [84, 18], [57, 46]]))

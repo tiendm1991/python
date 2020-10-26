@@ -34,7 +34,7 @@ class Solution:
             if x != None:
                 dp[i] += count[x]
                 dp[i] += dp[lastIdx[x]]
-                for j in range(i+1, lastIdx[x]):
+                for j in range(i + 1, lastIdx[x]):
                     if nums[j] < nums[i]:
                         dp[i] += 1
             count[nums[i]] = count.get(nums[i], 0) + 1
@@ -47,4 +47,3 @@ s = Solution()
 startTime = datetime.now()
 print(s.countSmaller([4, 5, 3, 2, 2, 4, 1, 2, 3]))
 print(datetime.now() - startTime)
-

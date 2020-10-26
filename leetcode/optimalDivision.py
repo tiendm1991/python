@@ -1,4 +1,4 @@
-from  datetime import datetime
+from datetime import datetime
 
 
 class Solution:
@@ -14,5 +14,5 @@ class Solution:
 
 s = Solution()
 startTime = datetime.now()
-print(s.optimalDivision([3,2]))
+print(s.optimalDivision([3, 2]))
 print(datetime.now() - startTime)

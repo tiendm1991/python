@@ -3,6 +3,7 @@ from datetime import datetime, time
 import math
 import random
 
+
 class Solution:
     def lastRemaining(self, n: int) -> int:
         leftToRight = True
@@ -25,4 +26,3 @@ s = Solution()
 startTime = datetime.now()
 print(s.lastRemaining(100))
 print(datetime.now() - startTime)
-

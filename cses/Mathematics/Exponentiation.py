@@ -11,9 +11,10 @@ def f(x, n):
         n //= 2
     return ans
 
+
 def f2(x, n):
     if n < 5:
-        return(x ** n) % mod
+        return (x ** n) % mod
     ans = 1
     m = x
     while n > 1:
@@ -23,6 +24,8 @@ def f2(x, n):
         x = (x * x) % mod
         n //= 2
     return (ans * x) % mod
+
+
 # explain
 # assume calculate x^27
 # => calculate (((x^2.x)^2)^2.x)^2.x

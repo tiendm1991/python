@@ -46,4 +46,5 @@ class Solution:
 
 
 s = Solution()
-print(s.widthOfBinaryTree(Util.createTree([-64,12,18,-4,-53,None,76,None,78,None,-31,27,60,74,None,None,8,None,98])))
+print(s.widthOfBinaryTree(
+    Util.createTree([-64, 12, 18, -4, -53, None, 76, None, 78, None, -31, 27, 60, 74, None, None, 8, None, 98])))

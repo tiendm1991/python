@@ -2,11 +2,13 @@ import functools
 from datetime import datetime, time
 import math
 
+
 class Solution:
     def findKthLargest(self, nums, k: int) -> int:
         n = len(nums)
         if k > n:
             return -1
+
         def find(nums, first, last, k):
             if first == last:
                 return nums[first]
@@ -26,19 +28,17 @@ class Solution:
                 if k == last - first + 1:
                     return nums[idx]
                 else:
-                    return find(nums, idx+1, last, k)
+                    return find(nums, idx + 1, last, k)
             if last - idx + 1 >= k:
                 return find(nums, idx, last, k)
             else:
                 return find(nums, first, idx - 1, k - (last - idx + 1))
-        return find(nums, 0, n-1, k)
 
-
+        return find(nums, 0, n - 1, k)
 
 
 s = Solution()
 startTime = datetime.now()
-print(s.findKthLargest([3,3,3,3,3,3,3,3,3],
-1))
+print(s.findKthLargest([3, 3, 3, 3, 3, 3, 3, 3, 3],
+                       1))
 print(datetime.now() - startTime)
-

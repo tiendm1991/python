@@ -7,5 +7,6 @@ class Solution:
                 ans += 1
         return ans
 
+
 s = Solution()
 print(s.minFlips("001011101"))

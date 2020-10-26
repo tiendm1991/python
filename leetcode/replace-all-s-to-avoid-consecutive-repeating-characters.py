@@ -12,11 +12,12 @@ class Solution:
                     a[0] = 'b'
                 continue
             for ch in chars:
-                if ch == a[i-1] or (i < n-1 and ch == a[i+1]):
+                if ch == a[i - 1] or (i < n - 1 and ch == a[i + 1]):
                     continue
                 a[i] = ch
                 break
         return ''.join(a)
+
 
 s = Solution()
 print(s.modifyString('??yw?ipkj?'))

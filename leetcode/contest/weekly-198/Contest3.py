@@ -22,6 +22,7 @@ class Solution:
             if arr[m] < x:
                 return biSearch(arr, m + 1, h, x, y)
             return False
+
         i = 0
         while i < 26:
             c = alpha[i]
@@ -55,7 +56,7 @@ class Solution:
             if not cur or d[k][0] >= cur[1]:
                 cur = d[k]
                 ans.append(s[cur[0]:cur[1] + 1])
-            if cur[1] == len(s)-1:
+            if cur[1] == len(s) - 1:
                 break
         return ans
 

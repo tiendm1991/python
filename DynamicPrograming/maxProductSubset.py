@@ -21,4 +21,3 @@ def maxProductSubset(arr):
 print(maxProductSubset([-2, -3, 0, 4, -2, 3, -10, 2, 6, -10]))
 print(maxProductSubset([-2, -3, 0, -2, -40]))
 print(maxProductSubset([0, -4, 0, -2]))
-

@@ -4,7 +4,7 @@ class Solution:
             return s
 
         def isPalidrome(s, end):
-            return s[:end+1] == s[end::-1]
+            return s[:end + 1] == s[end::-1]
 
         def findMaxPalindrome(s):
             for i in range(len(s) - 1, 0, -1):
@@ -17,5 +17,7 @@ class Solution:
         for i in range(len(s) - 1, idx, -1):
             add += s[i]
         return add + s
+
+
 s = Solution()
 print(s.shortestPalindrome('aacecaaa'))

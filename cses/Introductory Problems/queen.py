@@ -24,9 +24,10 @@ def f(result, d, a):
         del a[-1]
     return
 
+
 n = 8
 result = [0]
-d = {i : set() for i in range(8)}
+d = {i: set() for i in range(8)}
 for i in range(8):
     s = input()
     for j, c in enumerate(s):
