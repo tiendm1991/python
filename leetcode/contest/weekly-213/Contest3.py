@@ -2,7 +2,7 @@ import heapq
 
 
 class Solution:
-    def furthestBuilding(self, heights, bricks: int, ladders: int) -> int:
+    def furthestBuilding1(self, heights, bricks: int, ladders: int) -> int:
         h = []
         n = len(heights)
         for i in range(n - 1):
@@ -15,6 +15,23 @@ class Solution:
                 if bricks < x:
                     return i
                 bricks -= x
+        return n - 1
+
+    def furthestBuilding(self, heights, bricks: int, ladders: int) -> int:
+        h = []
+        n = len(heights)
+        countBrick = 0
+        for i in range(n - 1):
+            d = heights[i + 1] - heights[i]
+            if d <= 0:
+                continue
+            heapq.heappush(h, -d)
+            countBrick += d
+            if countBrick > bricks:
+                if ladders == 0:
+                    return i
+                countBrick += heapq.heappop(h)
+                ladders -= 1
         return n - 1
 
 
