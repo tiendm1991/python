@@ -12,24 +12,24 @@ class Solution:
         headTmp = ListNode(-10 ** 9)
         headTmp.next = head
         cur = head
-        pre = headTmp
+        last = headTmp
         while cur is not None:
             tmp = cur.next
-            cur2 = head
-            pre2 = headTmp
-            while cur2.val < cur.val:
-                pre2 = cur2
-                cur2 = cur2.next
-            if cur2.val == cur.val:
-                pre = cur
-                cur = tmp
+            insertPos = headTmp.next
+            preInsert = headTmp
+            while insertPos.val < cur.val:
+                preInsert = insertPos
+                insertPos = insertPos.next
+            if insertPos == cur:
+                last = cur
             else:
-                pre2.next = cur
-                cur.next = cur2
-                pre.next = tmp
-                cur = tmp
+                preInsert.next = cur
+                cur.next = insertPos
+                last.next = tmp
+            cur = tmp
         return headTmp.next
 
 
 s = Solution()
-print(s.insertionSortList(Util.createListNode([4, 2, 1, 3])))
+print(s.insertionSortList(Util.createListNode([3, 2, 4])))
+# print(s.insertionSortList(Util.createListNode([4, 2, 1, 3, 1, 2])))
