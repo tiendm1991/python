@@ -27,5 +27,5 @@ class Solution:
 
 s = Solution()
 print(s.rectangleArea([[49, 40, 62, 100], [11, 83, 31, 99], [19, 39, 30, 99]]))
-# print(s.rectangleArea([[0, 0, 1000000000, 1000000000]]))
+print(s.rectangleArea([[0, 0, 1000000000, 1000000000]]))
 print(s.rectangleArea([[0, 0, 2, 2], [1, 0, 2, 3], [1, 0, 3, 1]]))
