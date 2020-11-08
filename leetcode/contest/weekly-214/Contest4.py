@@ -2,7 +2,7 @@ import bisect
 
 
 class Solution:
-    def createSortedArray(self, instructions) -> int:
+    def createSortedArray_bisearch(self, instructions) -> int:
         mod = 10 ** 9 + 7
         nums = []
         n = len(instructions)
@@ -22,8 +22,31 @@ class Solution:
             ans = (ans + insert(x)) % mod
         return ans
 
+    def createSortedArray_fenwick(self, instructions) -> int:
+        mod = 10 ** 9 + 7
+        n = max(instructions)
+        a = [0] * (n + 1)
+
+        def get(x):
+            res = 0
+            while x > 0:
+                res += a[x]
+                x -= x & -x
+            return res
+
+        def update(x):
+            while x <= n:
+                a[x] += 1
+                x += x & -x
+
+        ans = 0
+        for i, v in enumerate(instructions):
+            ans += min(get(v - 1), i - get(v))
+            update(v)
+        return ans % mod
+
 
 s = Solution()
-print(s.createSortedArray([1, 3, 3, 3, 2, 4, 2, 1, 2]))
-print(s.createSortedArray([1, 2, 3, 6, 5, 4]))
-print(s.createSortedArray([1, 5, 6, 2]))
+print(s.createSortedArray_fenwick([1, 3, 3, 3, 2, 4, 2, 1, 2]))
+print(s.createSortedArray_fenwick([1, 2, 3, 6, 5, 4]))
+print(s.createSortedArray_fenwick([1, 5, 6, 2]))
