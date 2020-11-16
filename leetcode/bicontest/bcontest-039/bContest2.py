@@ -31,7 +31,8 @@ class Solution:
 
 
 s = Solution()
-print(s.minimumDeletions("aabbabb"))
-print(s.minimumDeletions("abaabaaaabaa"))
-print(s.minimumDeletions("aaaaaaaaaaaaaa"))
-print(s.minimumDeletions("aababbab"))
+print(s.minimumDeletions("aabbabaabb"))
+# print(s.minimumDeletions("aabbabb"))
+# print(s.minimumDeletions("abaabaaaabaa"))
+# print(s.minimumDeletions("aaaaaaaaaaaaaa"))
+# print(s.minimumDeletions("aababbab"))
