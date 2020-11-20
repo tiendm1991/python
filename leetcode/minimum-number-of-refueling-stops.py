@@ -39,7 +39,7 @@ class Solution:
 s = Solution()
 print(s.minRefuelStopsDP(100,
                        10,
-                       [[10, 60], [20, 20], [60, 40]]))
+                       [[10, 60], [20, 20], [60, 40], [70, 30]]))
 print(s.minRefuelStops(100,
                        25,
                        [[25, 25], [50, 25], [75, 25]]))
