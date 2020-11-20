@@ -37,7 +37,7 @@ class Solution:
 
 
 s = Solution()
-print(s.minRefuelStops(100,
+print(s.minRefuelStopsDP(100,
                        10,
                        [[10, 60], [20, 20], [60, 40]]))
 print(s.minRefuelStops(100,
