@@ -2,6 +2,20 @@ import heapq
 
 
 class Solution:
+    def minRefuelStopsDP(self, target: int, startFuel: int, stations) -> int:
+        n = len(stations)
+        if len(stations) == 0:
+            return 0 if target <= startFuel else -1
+        dp = [startFuel] + [0] * n
+        for i in range(n):
+            for j in range(i, -1, -1):
+                if dp[j] >= stations[i][0]:
+                    dp[j + 1] = max(dp[j + 1], dp[j] + stations[i][1])
+        for i in range(n + 1):
+            if dp[i] >= target:
+                return i
+        return -1
+
     def minRefuelStops(self, target: int, startFuel: int, stations) -> int:
         stations.append([target, 0])
         n = len(stations)
@@ -24,9 +38,11 @@ class Solution:
 
 s = Solution()
 print(s.minRefuelStops(100,
+                       10,
+                       [[10, 60], [20, 20], [60, 40]]))
+print(s.minRefuelStops(100,
                        25,
                        [[25, 25], [50, 25], [75, 25]]))
-print(s.minRefuelStops(100, 10, [[10, 60], [20, 20], [60, 40]]))
 print(s.minRefuelStops(1000,
                        299,
                        [[13, 21], [26, 115], [100, 47], [225, 99], [299, 141],
