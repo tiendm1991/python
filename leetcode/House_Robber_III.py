@@ -30,6 +30,7 @@ class Solution:
 
     def rob(self, root: TreeNode) -> int:
         def helper(node):
+            # result is arr, arr[0] = choose node, arr[1]: not choose node
             if node is None:
                 return [0, 0]
             left = helper(node.left)
@@ -40,4 +41,5 @@ class Solution:
 
 
 s = Solution()
-print(s.rob(Util.createTree([3, 2, 6, None, 3, None, 1])))
+print(s.rob1(Util.createTree([3, 2, 6, None, 3, None, 1])),
+      s.rob(Util.createTree([3, 2, 6, None, 3, None, 1])))
