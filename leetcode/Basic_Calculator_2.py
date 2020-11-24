@@ -14,9 +14,7 @@ class Solution:
         stack = s.split("+")
         res = 0
         for x in stack:
-            if "-" not in x and "*" not in x and "/" not in x:
-                res += int(x)
-            elif x.startswith("-"):
+            if x.startswith("-"):
                 res -= multy(x[1:])
             else:
                 res += multy(x)
