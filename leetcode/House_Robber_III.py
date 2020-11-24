@@ -10,7 +10,7 @@ from leetcode import Util
 
 
 class Solution:
-    def rob(self, root: TreeNode) -> int:
+    def rob1(self, root: TreeNode) -> int:
         dp = {}
 
         def helper(node):
@@ -27,6 +27,16 @@ class Solution:
             return dp[node]
 
         return helper(root)
+
+    def rob(self, root: TreeNode) -> int:
+        def helper(node):
+            if node is None:
+                return [0, 0]
+            left = helper(node.left)
+            right = helper(node.right)
+            return [node.val + left[1] + right[1], max(left[0], left[1]) + max(right[0], right[1])]
+
+        return max(helper(root))
 
 
 s = Solution()
