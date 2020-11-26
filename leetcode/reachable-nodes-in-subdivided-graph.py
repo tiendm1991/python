@@ -11,28 +11,26 @@ class Solution:
                 d[j] = {}
             d[i][j] = k
             d[j][i] = k
-        q = [(0, 0)]
-        dis = [0] * n
-        visited = set()
-        while m >= 0 and q:
+        q = [(-m, 0)]
+        seen = {}
+        # seen[i] means that we can arrive at node i and have seen[i] moves left
+        while q:
             x, i = heapq.heappop(q)
-            if i in visited:
+            if i in seen:
+                continue
+            seen[i] = -x
+            if i not in d:
                 continue
             for j in d[i]:
-                if j not in visited and x - d[i][j] < dis[j]:
-                    dis[j] = x - d[i][j]
-                    heapq.heappush(q, (dis[j], j))
-            visited.add(i)
-            m -= 1
-        if m < 0:
-            return max(dis)
-        res = 0
-        for i in range(n):
-            if 0 in d[i]:
-                res = max(res, -dis[i] + d[i][0])
-        return res
+                x2 = -x - d[i][j] - 1
+                if j not in seen and x2 >= 0:
+                    heapq.heappush(q, (-x2, j))
+        res = len(seen)
+        for i, j, k in edges:
+            res += min(seen.get(i, 0) + seen.get(j, 0), k)
+        return seen, res
 
 
 s = Solution()
-print(s.reachableNodes([[0, 1, 4], [1, 2, 6], [0, 2, 8], [1, 3, 1]], 10, 4))
 print(s.reachableNodes([[0, 1, 10], [0, 2, 1], [1, 2, 2]], 6, 3))
+print(s.reachableNodes([[0, 1, 4], [1, 2, 6], [0, 2, 8], [1, 3, 1]], 10, 4))
