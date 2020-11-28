@@ -40,3 +40,4 @@ class Solution:
 
 s = Solution()
 print(s.superEggDrop(2, 6))
+print(s.superEggDrop(3, 14))
