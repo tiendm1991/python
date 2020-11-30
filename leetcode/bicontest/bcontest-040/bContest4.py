@@ -1,29 +1,16 @@
-import collections
-import bisect
-
-
 class Solution:
-    def canDistribute(self, nums, quantity) -> bool:
-        a = collections.Counter(nums)
-        q = sorted(quantity, reverse=True)
-        n, m = len(a), len(q)
-        a = sorted(a.values())[-m:]
-
-        def backtrack(idx):
-            if idx == m:
-                return True
-            for i in range(len(a)):
-                if a[i] >= q[idx]:
-                    a[i] -= q[idx]
-                    if backtrack(idx + 1):
-                        return True
-                    a[i] += q[idx]
-            return False
-
-        return backtrack(0)
-
-
-s = Solution()
-print(s.canDistribute([154, 533, 533, 533, 154, 154, 533, 154, 154], [3, 2, 2, 2]))
-# print(s.canDistribute([1, 2, 3, 3], [2]))
-# print(s.canDistribute([1, 1, 2, 2], [2, 2]))
+    def minimumMountainRemovals(self, nums) -> int:
+        n = len(nums)
+        dp1, dp2 = [1] * n, [1] * n
+        for i in range(1, n-1):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    dp1[i] = max(dp1[i], dp1[j] + 1)
+        res = 0
+        for i in range(n-2, 0, -1):
+            for j in range(i+1, n):
+                if nums[i] > nums[j]:
+                    dp2[i] = max(dp2[i], dp2[j] + 1)
+            if dp2[i] >= 2 and dp1[i] >= 2:
+                res = max(res, dp1[i] + dp2[i] - 1)
+        return n - res
