@@ -7,9 +7,11 @@ class Solution:
         dp = [[1 if i == 0 else 0 for j in range(n + 1)] for i in range(n + 1)]
         for i in range(n):
             if s[i] == 'I'
-                for j in range():
+                for j in range(i, n - ):
+                    dp[i + 1][j] = (dp[i + 1][j] + dp[i][j]) % mod
             else:
-                for j in range():
+                for j in range(i):
+                    dp[i + 1][j] = (dp[i + 1][j] + dp[i][j]) % mod
         return dp
 
 
