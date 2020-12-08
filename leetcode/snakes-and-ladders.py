@@ -13,7 +13,7 @@ class Solution:
                     if x > n * n:
                         break
                     i = (x - 1) // n
-                    j = n - 1 - (x - 1) % n if i & 1 else (x - 1) % n
+                    j = (x - 1) % n if i % 2 == 0 else n - 1 - ((x - 1) % n)
                     if board[n - 1 - i][j] != -1:
                         x = board[n - 1 - i][j]
                     if x not in visited:
