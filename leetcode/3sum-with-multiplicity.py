@@ -1,5 +1,5 @@
 class Solution:
-    def threeSumMulti(self, a, target: int) -> int:
+    def threeSumMulti1(self, a, target: int) -> int:
         mod = 10 ** 9 + 7
         n = len(a)
         d = [{} for i in range(n)]
@@ -12,6 +12,20 @@ class Solution:
             for j in range(1, i):
                 res = (res + d[j].get(target - a[i], 0)) % mod
         return res
+
+    def threeSumMulti(self, a, target: int) -> int:
+        mod = 10 ** 9 + 7
+        n = len(a)
+        dp = [[[1 if k == 0 and j == 0 else 0 for k in range(4)] for j in range(target + 1)] for i in
+              range(n + 1)]
+        for i in range(1, n + 1):
+            x = a[i - 1]
+            for j in range(target + 1):
+                for k in range(1, 4):
+                    dp[i][j][k] = dp[i - 1][j][k]
+                    if j >= x:
+                        dp[i][j][k] = (dp[i][j][k] + dp[i - 1][j - x][k - 1]) % mod
+        return dp[n][target][3]
 
 
 s = Solution()
