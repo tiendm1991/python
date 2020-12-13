@@ -21,5 +21,5 @@ class Solution:
 
 
 s = Solution()
-print(s.stoneGameVII([5, 3, 2, 8]))
-print(s.stoneGameVII([5, 3, 1, 4, 2]))
+print(s.stoneGameVII([5, 3, 2, 8]), s.stoneGameVII_2([5, 3, 2, 8]))
+print(s.stoneGameVII([5, 3, 1, 4, 2]), s.stoneGameVII_2([5, 3, 1, 4, 2]))
