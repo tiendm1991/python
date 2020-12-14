@@ -14,6 +14,22 @@ class Solution:
             return -1
         return 0
 
+    def stoneGameVI2(self, a, b) -> int:
+        n = len(a)
+        sa, sb = 0, 0
+        s = sorted([(a[i] + b[i], a[i], b[i]) for i in range(n)], reverse=True)
+        for i, x in enumerate(s):
+            if i % 2 == 0:
+                sa += x[1]
+            else:
+                sb += x[2]
+        if sa > sb:
+            return 1
+        elif sa < sb:
+            return -1
+        return 0
+
+
 s = Solution()
 print(s.stoneGameVI([1, 3], [2, 1]))
 print(s.stoneGameVI([1, 2], [3, 1]))
