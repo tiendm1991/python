@@ -4,16 +4,13 @@ from leetcode import Util
 
 
 class Solution:
-    ans = None
-    deepest = -1
-
     def subtreeWithAllDeepest(self, root: TreeNode) -> TreeNode:
         def helper(node: TreeNode):
             if node is None:
                 return None, 0
             left = helper(node.left)
             right = helper(node.right)
-            if (left[0] is None and right[0] is None) or (left[1] == right[1]):
+            if left[1] == right[1]:
                 return node, left[1] + 1
             elif left[1] > right[1]:
                 return left[0], left[1] + 1
