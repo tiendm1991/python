@@ -1,5 +1,5 @@
 class Solution:
-    def boxDelivering(self, boxes, portsCount: int, maxBoxes: int, maxWeight: int) -> int:
+    def boxDelivering_n2(self, boxes, portsCount: int, maxBoxes: int, maxWeight: int) -> int:
         MAX_INT = 10 ** 9 + 7
         n = len(boxes)
         dp = [MAX_INT] * (n + 1)
@@ -14,6 +14,22 @@ class Solution:
                 dp[i] = min(dp[i], dp[j - 1] + t)
                 w += boxes[j - 1][1]
                 j -= 1
+        return dp[-1]
+
+    def boxDelivering(self, boxes, portsCount: int, maxBoxes: int, maxWeight: int) -> int:
+        MAX_INT = 10 ** 9 + 7
+        n = len(boxes)
+        dp = [MAX_INT] * (n + 1)
+        dp[0] = 0
+        w, t, j, lastj = 0, 2, 0, 0
+        for i in range(1, n + 1):
+            while j < i and i - j + 1 > maxBoxes or w > maxWeight:
+                if j == 0 or boxes[j][]
+                    lastj = j
+                w -= boxes[j - 1][1]
+                j += 1
+
+            w += boxes[i - 1][1]
         return dp[-1]
 
 
