@@ -24,7 +24,8 @@ class Solution:
         dp = [[0 for j in range(n)] for i in range(n)]
         for i in range(n - 1, -1, -1):
             for j in range(i, n):
-                numLeft, numRight = 1 if i == 0 else nums[i - 1], 1 if j == n - 1 else nums[j + 1]
+                numLeft = 1 if i == 0 else nums[i - 1]
+                numRight = 1 if j == n - 1 else nums[j + 1]
                 for k in range(i, j + 1):
                     preLeft = 0 if k == 0 else dp[i][k - 1]
                     preRight = 0 if k == n - 1 else dp[k + 1][j]
