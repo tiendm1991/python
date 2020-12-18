@@ -11,39 +11,34 @@ class Solution:
                             and a[x + i][y + j] == 1 and islands[x + i][y + j] == 0:
                         dfs(x + i, y + j, c)
 
-        def bfs(x, y):
-            q = [(x, y)]
-            visited = {(x, y)}
-            ans = 0
-            while q:
-                newQ = []
-                for p in q:
-                    if islands[p[0]][p[1]] == 2:
-                        return ans - 1
-                    for i in range(-1, 2):
-                        for j in range(-1, 2):
-                            if i + j != 0 and i * j == 0 and 0 <= p[0] + i < n and 0 <= p[1] + j < n \
-                                    and islands[p[0] + i][p[1] + j] != 1 and (p[0] + i, p[1] + j) not in visited:
-                                visited.add((p[0] + i, p[1] + j))
-                                newQ.append((p[0] + i, p[1] + j))
-                ans += 1
-                q = newQ
-            return 2 * n
-
         color = 1
         for i in range(n):
             for j in range(n):
                 if islands[i][j] == 0 and a[i][j] == 1:
                     dfs(i, j, color)
                     color += 1
-
-        res = 2 * n
+        q = []
+        visited = set()
         for i in range(n):
             for j in range(n):
                 if islands[i][j] == 1:
-                    res = min(res, bfs(i, j))
-
-        return res
+                    q.append((i, j))
+                    visited.add((i, j))
+        res = 0
+        while q:
+            newQ = []
+            for p in q:
+                if islands[p[0]][p[1]] == 2:
+                    return res - 1
+                for i in range(-1, 2):
+                    for j in range(-1, 2):
+                        if i + j != 0 and i * j == 0 and 0 <= p[0] + i < n and 0 <= p[1] + j < n \
+                                and islands[p[0] + i][p[1] + j] != 1 and (p[0] + i, p[1] + j) not in visited:
+                            visited.add((p[0] + i, p[1] + j))
+                            newQ.append((p[0] + i, p[1] + j))
+            res += 1
+            q = newQ
+        return 2 * n
 
 
 s = Solution()
