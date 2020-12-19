@@ -72,11 +72,11 @@ class Solution:
                 if check(cur_str, i):
                     candidates.add(i)
             if candidates:
-                next_str, next_path = cur_str, cur_path
+                next_str, next_path = cur_str, cur_path[::]
                 for i in candidates:
                     if next_str[i: i + m] != stop:
                         next_str = next_str[:i] + stop + next_str[i + m:]
-                        next_path += [i]
+                        next_path.append(i)
                 cur_str, cur_path = next_str, next_path
         return cur_path[::-1]
 
