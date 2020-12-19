@@ -16,32 +16,32 @@ class Solution:
 
         visited = set()
 
-        def backtrack(cur, res):
-            if cur in visited:
+        def backtrack(cur_str, cur_path):
+            if cur_str in visited:
                 return ""
-            if cur == t:
-                return res
+            if cur_str == t:
+                return cur_path
             candidate = set()
             for i in range(n - m + 1):
-                if check(cur, i):
+                if check(cur_str, i):
                     candidate.add(i)
             if candidate:
-                x = cur
-                y = res
+                next_str = cur_str
+                next_path = cur_path
                 for i in candidate:
-                    if x[i: i + m] != stop:
-                        x = x[:i] + stop + x[i + m:]
-                        y += "-" + str(i)
-                if x == cur:
-                    visited.add(x)
+                    if next_str[i: i + m] != stop:
+                        next_str = next_str[:i] + stop + next_str[i + m:]
+                        next_path += "-" + str(i)
+                if next_str == cur_str:
+                    visited.add(next_str)
                     return ""
-                rx = backtrack(x, y)
+                rx = backtrack(next_str, next_path)
                 if rx:
                     return rx
                 else:
-                    visited.add(x)
+                    visited.add(next_str)
                     return ""
-            visited.add(cur)
+            visited.add(cur_str)
             return ""
 
         r = backtrack(target, "")
@@ -49,9 +49,9 @@ class Solution:
 
 
 s = Solution()
-print(s.movesToStamp("qxq", "qxqxqxqqxqxqqxqxqxqqxqxqqqxqqxqqqxqqxxqxqqxqqqxqqq"))
-# print(s.movesToStamp("by", "bbybyybyby"))
+print(s.movesToStamp("abc", "ababc"))
+print(s.movesToStamp("abca", "aabcaca"))
+print(s.movesToStamp("by", "bbybyybyby"))
+# print(s.movesToStamp("qxq", "qxqxqxqqxqxqqxqxqxqqxqxqqqxqqxqqqxqqxxqxqqxqqqxqqq"))
 # print(s.movesToStamp("o", "oooooooooo"))
-# print(s.movesToStamp("abca", "aabcaca"))
-# print(s.movesToStamp("abc", "ababc"))
 # print(s.movesToStamp("aye", "eyeye"))
