@@ -16,6 +16,8 @@ class Solution:
             for j in range(n):
                 if i != j:
                     edges[i][j] = getDis(a[i], a[j])
+
+        # dp is memories of sub problems with 2 element: max_value and path
         dp = {}
 
         def tsp(t, c):
@@ -24,14 +26,14 @@ class Solution:
                 return dp[(t, c)]
             if (t, c) in dp:
                 return dp[(t, c)]
-            res = [0, []]
-            next_t = tuple(y for y in t if y != c)
-            for i, x in enumerate(next_t):
-                res_next = tsp(next_t, x)
-                if res_next[0] + edges[x][c] >= res[0]:
-                    res = [res_next[0] + edges[x][c], res_next[1] + [c]]
-            dp[(t, c)] = res
-            return res
+            r = [0, []]
+            sub_t = tuple(y for y in t if y != c)
+            for i, k in enumerate(sub_t):
+                sub_res = tsp(sub_t, k)
+                if sub_res[0] + edges[k][c] >= r[0]:
+                    r = [sub_res[0] + edges[k][c], sub_res[1] + [c]]
+            dp[(t, c)] = r
+            return r
 
         ans = [0, []]
         b = tuple(range(n))
@@ -39,10 +41,10 @@ class Solution:
             y = tsp(b, x)
             if y[0] >= ans[0]:
                 ans = y
-        ans = ans[1]
-        res = a[ans[0]]
+        path = ans[1]
+        res = a[path[0]]
         for i in range(1, n):
-            res += a[ans[i]][edges[ans[i - 1]][ans[i]]:]
+            res += a[path[i]][edges[path[i - 1]][path[i]]:]
         return res
 
 
