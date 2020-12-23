@@ -10,7 +10,7 @@ from leetcode import Util
 
 
 class Solution:
-    def flipEquiv(self, root1: TreeNode, root2: TreeNode) -> bool:
+    def flipEquiv(self, root1: TreeNocherryPickupde, root2: TreeNode) -> bool:
         def canFlip(node1: TreeNode, node2: TreeNode):
             if node1 is None:
                 return node2 is None

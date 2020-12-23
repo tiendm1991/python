@@ -15,3 +15,7 @@ class Solution:
                 x = int(''.join([str(c) for c in s]))
                 return x if x <= _max else -1
         return -1
+
+
+s = Solution()
+print(s.nextGreaterElement(198765432))
