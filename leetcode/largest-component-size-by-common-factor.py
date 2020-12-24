@@ -4,7 +4,7 @@ import collections
 
 class Solution:
     def largestComponentSize(self, a) -> int:
-        a.sort()
+        a = sorted([x for x in a if x > 1])
         n = len(a)
         p = list(range(n))
         max_num = max(a)
@@ -23,16 +23,8 @@ class Solution:
                 p[ru] = rv
             return
 
-        for x in range(2, max_num + 1):
-            first = -1
-            for i, num in enumerate(a):
-                if num % x == 0:
-                    if first == -1:
-                        first = i
-                    else:
-                        union(first, i)
-        for i in range(n):
-            find(i)
+        def getPrime(u):
+
         d = collections.Counter(p)
         return max([d[k] for k in d])
 
