@@ -23,7 +23,7 @@ class Solution:
                 p[ru] = rv
             return
 
-        for x in range(2, sqrt + 1):
+        for x in range(2, max_num + 1):
             first = -1
             for i, num in enumerate(a):
                 if num % x == 0:
