@@ -31,11 +31,14 @@ class Solution:
                         first = i
                     else:
                         union(first, i)
+        for i in range(n):
+            find(i)
         d = collections.Counter(p)
         return max([d[k] for k in d])
 
 
 s = Solution()
-print(s.largestComponentSize([2, 3, 4, 6, 7, 12, 21, 39]))
+print(s.largestComponentSize([11, 19, 30, 31, 39, 83, 99]))
+# print(s.largestComponentSize([2, 3, 4, 6, 7, 12, 21, 39]))
 # print(s.largestComponentSize([4, 6, 15, 35]))
 # print(s.largestComponentSize([20, 50, 9, 63]))
