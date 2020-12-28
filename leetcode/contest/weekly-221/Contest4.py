@@ -38,7 +38,23 @@ class Trie:
 
 class Solution:
     def maximizeXor(self, nums, queries):
-        for
+        nums = sorted(set(nums))
+        n, nq = len(nums), len(queries)
+        queries = sorted([(q, i) for i, q in enumerate(queries)], key=lambda q: q[0][1])
+        res = [-1] * nq
+        trie = Trie()
+        i = 0
+        for q, idx in queries:
+            x, m = q
+            if m < nums[0]:
+                continue
+            while i < n and nums[i] <= m:
+                trie.insert(nums[i])
+                i += 1
+            res[idx] = trie.findMax(x)
+        return res
+
 
 s = Solution()
-print(s.maximizeXor())
+print(s.maximizeXor([0, 1, 2, 3, 4], [[3, 1], [1, 3], [5, 6]]))
+print(s.maximizeXor([5, 2, 4, 6, 6, 3], [[12, 4], [8, 1], [6, 3]]))
