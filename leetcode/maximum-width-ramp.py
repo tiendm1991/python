@@ -14,4 +14,5 @@ class Solution:
 
 s = Solution()
 print(s.maxWidthRamp([6, 2, 5, 4, 2, 1, 3]))
-print(s.maxWidthRamp([6, 2, 5, 4, 2, 1, 3]))
+print(s.maxWidthRamp([9, 8, 1, 0, 1, 9, 4, 0, 4, 1]))
+print(s.maxWidthRamp([6, 0, 8, 2, 1, 5]))
