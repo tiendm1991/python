@@ -1,7 +1,7 @@
 class Solution:
     def maxWidthRamp(self, a) -> int:
         n = len(a)
-        stack, stack2 = [], []
+        stack = []
         res = 0
         for i, x in enumerate(a):
             if not stack or x < a[stack[-1]]:
