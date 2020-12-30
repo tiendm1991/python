@@ -19,17 +19,17 @@ class Solution:
         res = float('inf')
         for i in range(n - 1):
             for j in range(i + 1, n):
-                o = getCenter(points[i], points[j])
-                if o not in d:
-                    d[o] = {}
-                dis = disSquare(o, points[i])
-                if dis not in d[o]:
-                    d[o][dis] = [(i, j)]
+                center = getCenter(points[i], points[j])
+                if center not in d:
+                    d[center] = {}
+                dis = disSquare(center, points[i])
+                if dis not in d[center]:
+                    d[center][dis] = [(i, j)]
                 else:
-                    d[o][dis].append((i, j))
-        for o in d:
-            for dis in d[o]:
-                candidate = d[o][dis]
+                    d[center][dis].append((i, j))
+        for center in d:
+            for dis in d[center]:
+                candidate = d[center][dis]
                 if len(candidate) < 2:
                     continue
                 for i in range(len(candidate) - 1):
