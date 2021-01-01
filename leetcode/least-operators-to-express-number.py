@@ -11,7 +11,6 @@ class Solution:
             a = int(math.log(t, x))
             if 0 <= math.pow(x, a) - t < 0.001:
                 return a - 1
-            res = t * 2
             res = 2 + helper(t - 1) if a == 0 else a + helper(t - x ** a)
             if x ** (a + 1) - t < t:
                 res = min(res, a + 1 + helper(x ** (a + 1) - t))
