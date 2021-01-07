@@ -5,7 +5,7 @@ class Solution:
         self.res = 0
         m, n = len(grid), len(grid[0])
         start, end = None, None
-        target = 0
+        count_zero = 0
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == 1:
@@ -13,13 +13,13 @@ class Solution:
                 elif grid[i][j] == 2:
                     end = (i, j)
                 elif grid[i][j] == 0:
-                    target += 1
+                    count_zero += 1
 
         def backtrack(r, c, path):
             tmp = grid[r][c]
             grid[r][c] = -1
             if (r, c) == end:
-                self.res += 1 if path == target + 1 else 0
+                self.res += 1 if path == count_zero + 1 else 0
             else:
                 for i in range(-1, 2):
                     for j in range(-1, 2):
