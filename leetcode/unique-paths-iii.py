@@ -15,7 +15,7 @@ class Solution:
                 elif grid[i][j] == 0:
                     target += 1
 
-        def dfs(r, c, path):
+        def backtrack(r, c, path):
             tmp = grid[r][c]
             grid[r][c] = -1
             if (r, c) == end:
@@ -28,11 +28,11 @@ class Solution:
                         continue
                     r_next, c_next = r + i, c + j
                     if 0 <= r_next < m and 0 <= c_next < n and grid[r_next][c_next] != -1:
-                        dfs(r_next, c_next, path + 1)
+                        backtrack(r_next, c_next, path + 1)
             grid[r][c] = tmp
             return
 
-        dfs(start[0], start[1], 0)
+        backtrack(start[0], start[1], 0)
         return self.res
 
 
