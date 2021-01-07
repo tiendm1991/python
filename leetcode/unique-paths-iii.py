@@ -20,15 +20,14 @@ class Solution:
             grid[r][c] = -1
             if (r, c) == end:
                 self.res += 1 if path == target + 1 else 0
-                grid[r][c] = tmp
-                return
-            for i in range(-1, 2):
-                for j in range(-1, 2):
-                    if i * j != 0 or i + j == 0:
-                        continue
-                    r_next, c_next = r + i, c + j
-                    if 0 <= r_next < m and 0 <= c_next < n and grid[r_next][c_next] != -1:
-                        backtrack(r_next, c_next, path + 1)
+            else:
+                for i in range(-1, 2):
+                    for j in range(-1, 2):
+                        if i * j != 0 or i + j == 0:
+                            continue
+                        r_next, c_next = r + i, c + j
+                        if 0 <= r_next < m and 0 <= c_next < n and grid[r_next][c_next] != -1:
+                            backtrack(r_next, c_next, path + 1)
             grid[r][c] = tmp
             return
 
