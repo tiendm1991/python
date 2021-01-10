@@ -28,7 +28,7 @@ class Solution:
             m = max(a)
             if i == n:
                 return m
-            if m > resGlobal[0]:
+            if m >= resGlobal[0]:
                 return resGlobal[0]
             key = (tuple(sorted(a)), i)
             if key in dp:
