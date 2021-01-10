@@ -29,7 +29,7 @@ class Solution:
             if i == n:
                 return m
             if m > resGlobal[0]:
-                return m
+                return resGlobal[0]
             key = (tuple(sorted(a)), i)
             if key in dp:
                 return dp[key]
