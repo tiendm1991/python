@@ -12,6 +12,8 @@ class Solution:
 
 
 s = Solution()
+print(s.brokenCalc(2, 5))
+print(s.brokenCalc(3, 5))
 print(s.brokenCalc(3, 10))
 print(s.brokenCalc(68, 71))
 print(s.brokenCalc(1, 10))
