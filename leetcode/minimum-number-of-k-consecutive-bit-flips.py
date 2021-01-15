@@ -55,7 +55,7 @@ class Solution:
 
 s = Solution()
 print(s.minKBitFlips([0, 0, 0, 1, 0, 1, 1, 0], 3))
-# print(s.minKBitFlips([0, 1, 1], 2))
-# print(s.minKBitFlips([1, 1], 2))
-# print(s.minKBitFlips([0, 1, 0], 1))
-# print(s.minKBitFlips([1, 1, 0], 2))
+print(s.minKBitFlips([0, 1, 1], 2))
+print(s.minKBitFlips([1, 1], 2))
+print(s.minKBitFlips([0, 1, 0], 1))
+print(s.minKBitFlips([1, 1, 0], 2))
