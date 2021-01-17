@@ -5,7 +5,7 @@ class Solution:
     def maximalRectangle(self, matrix):
         m, n = len(matrix), len(matrix[0])
         dp = [[0 for i in range(n)] for j in range(m)]
-        _max = 0
+        res = 0
         for i in range(m):
             for j in range(n):
                 if i == 0:
@@ -14,14 +14,15 @@ class Solution:
                 if matrix[i][j] == '1':
                     dp[i][j] = dp[i - 1][j] + 1
         for a in dp:
-            for i in range(n):
-                _min = a[i]
-                for j in range(i, n):
-                    _min = min(_min, a[j])
-                    _max = max(_max, _min * (j - i + 1))
-                    if _min == 0:
-                        break
-        return _max
+            a.append(0)
+            stack = []
+            for i in range(n + 1):
+                while stack and a[stack[-1]] >= a[i]:
+                    h = a[stack.pop()]
+                    w = i if not stack else i - 1 - stack[-1]
+                    res = max(res, h * w)
+                stack.append(i)
+        return res
 
 
 s = Solution()
