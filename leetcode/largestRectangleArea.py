@@ -4,7 +4,7 @@ import math
 
 
 class Solution:
-    def largestRectangleArea(self, h) -> int:
+    def largestRectangleArea1(self, h) -> int:
         if h == []:
             return 0
         _max = 0
@@ -45,7 +45,7 @@ class Solution:
             _max = max(_max, h * w)
         return _max
 
-    def largestRectangleArea3(self, heights: List[int]) -> int:
+    def largestRectangleArea3(self, heights) -> int:
         if heights == []:
             return 0
         _max = 0
@@ -69,6 +69,21 @@ class Solution:
 
         return _max
 
+    def largestRectangleArea(self, heights) -> int:
+        if not heights:
+            return 0
+        heights.append(0)
+        _max = 0
+        stack = []
+        for i in range(len(heights)):
+            x = heights[i]
+            while stack and heights[stack[-1]] >= x:
+                h = heights[stack.pop()]
+                w = i if not stack else i - stack[-1] - 1
+                _max = max(_max, h * w)
+            stack.append(i)
+
+        return _max
 
 s = Solution()
 startTime = datetime.now()
