@@ -1,3 +1,6 @@
+import functools
+
+
 class Solution:
     def canMouseWin(self, grid, catJump: int, mouseJump: int) -> bool:
         m, n = len(grid), len(grid[0])
@@ -11,35 +14,36 @@ class Solution:
                     iCat = (i, j)
                 elif grid[i][j] == "F":
                     target = (i, j)
-        dp = {}
 
+        @functools.lru_cache(None)
         def solve(turn, pCat, pMouse):
             rCat, cCat = pCat
             rMouse, cMouse = pMouse
             if pMouse == target:
                 return True
-            if pCat == pMouse or pCat == target or turn > 80:
+            if pCat == target or pCat == pMouse or turn > 100:
                 return False
-            key = (turn, pCat, pMouse)
-            if key in dp:
-                return dp[key]
             if turn % 2 == 0:
                 for d in direct:
                     for j in range(1, mouseJump + 1):
                         rNext, cNext = rMouse + d[0] * j, cMouse + d[1] * j
-                        if rNext < 0 or rNext >= m or cNext < 0 or cNext >= n or grid[rNext][cNext] == '#':
+                        if 0 <= rNext < m and 0 <= cNext < n and grid[rNext][cNext] != '#':
+                            if solve(turn + 1, pCat, (rNext, cNext)):
+                                return True
+                        else:
                             break
-                        if solve(turn + 1, pCat, (rNext, cNext)):
-                            return True
+                if solve(turn + 1, pCat, pMouse):
+                    return True
                 return False
             else:
                 for d in direct:
                     for j in range(1, catJump + 1):
                         rNext, cNext = rCat + d[0] * j, cCat + d[1] * j
-                        if rNext < 0 or rNext >= m or cNext < 0 or cNext >= n or grid[rNext][cNext] == '#':
+                        if 0 <= rNext < m and 0 <= cNext < n and grid[rNext][cNext] != '#':
+                            if not solve(turn + 1, (rNext, cNext), pMouse):
+                                return False
+                        else:
                             break
-                        if not solve(turn + 1, (rNext, cNext), pMouse):
-                            return False
                 if not solve(turn + 1, pCat, pMouse):
                     return False
                 return True
@@ -48,6 +52,10 @@ class Solution:
 
 
 s = Solution()
+print(s.canMouseWin(["####.##",
+                     ".#C#F#.",
+                     "######.",
+                     "##M.###"], 3, 6))
 print(s.canMouseWin(["####F",
                      "#C...",
                      "M...."], 1, 2))
