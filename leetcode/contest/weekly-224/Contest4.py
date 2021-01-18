@@ -1,51 +1,53 @@
 class Solution:
-    def minimumTimeRequired_slow(self, jobs, k: int) -> int:
+    def canMouseWin(self, grid, catJump: int, mouseJump: int) -> bool:
+        m, n = len(grid), len(grid[0])
+        direct = [[0, -1], [-1, 0], [0, 1], [1, 0]]
+        iCat, iMouse, target = None, None, None
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == "M":
+                    iMouse = (i, j)
+                elif grid[i][j] == "C":
+                    iCat = (i, j)
+                elif grid[i][j] == "F":
+                    target = (i, j)
         dp = {}
-        n = len(jobs)
 
-        def backtrack(a, i):
-            if i == n:
-                return max(a)
-            key = (tuple(sorted(a)), i)
+        def solve(turn, pCat, pMouse):
+            rCat, cCat = pCat
+            rMouse, cMouse = pMouse
+            if pMouse == target:
+                return True
+            if pCat == pMouse or pCat == target or turn > 80:
+                return False
+            key = (turn, pCat, pMouse)
             if key in dp:
                 return dp[key]
-            res = float("inf")
-            for j in range(k):
-                a[j] += jobs[i]
-                res = min(res, backtrack(a, i + 1))
-                a[j] -= jobs[i]
-            dp[key] = res
-            return res
+            if turn % 2 == 0:
+                for d in direct:
+                    for j in range(1, mouseJump + 1):
+                        rNext, cNext = rMouse + d[0] * j, cMouse + d[1] * j
+                        if rNext < 0 or rNext >= m or cNext < 0 or cNext >= n or grid[rNext][cNext] == '#':
+                            break
+                        if solve(turn + 1, pCat, (rNext, cNext)):
+                            return True
+                return False
+            else:
+                for d in direct:
+                    for j in range(1, catJump + 1):
+                        rNext, cNext = rCat + d[0] * j, cCat + d[1] * j
+                        if rNext < 0 or rNext >= m or cNext < 0 or cNext >= n or grid[rNext][cNext] == '#':
+                            break
+                        if not solve(turn + 1, (rNext, cNext), pMouse):
+                            return False
+                if not solve(turn + 1, pCat, pMouse):
+                    return False
+                return True
 
-        return backtrack([0] * k, 0)
-
-    def minimumTimeRequired(self, jobs, k: int) -> int:
-        dp = {}
-        n = len(jobs)
-        resGlobal = [float("inf")]
-
-        def backtrack(a, i):
-            m = max(a)
-            if i == n:
-                return m
-            if m >= resGlobal[0]:
-                return resGlobal[0]
-            key = (tuple(sorted(a)), i)
-            if key in dp:
-                return dp[key]
-            res = float("inf")
-            for j in range(k):
-                a[j] += jobs[i]
-                res = min(res, backtrack(a, i + 1))
-                a[j] -= jobs[i]
-            dp[key] = res
-            resGlobal[0] = min(resGlobal[0], res)
-            return res
-
-        return backtrack([0] * k, 0)
+        return solve(0, iCat, iMouse)
 
 
 s = Solution()
-print(s.minimumTimeRequired([38, 49, 91, 59, 14, 76, 84], 3))
-print(s.minimumTimeRequired([1, 2, 4, 7, 8], 2))
-print(s.minimumTimeRequired([685, 314, 222, 532, 411, 882, 724, 851, 649, 161, 100, 540], 8))
+print(s.canMouseWin(["####F",
+                     "#C...",
+                     "M...."], 1, 2))
