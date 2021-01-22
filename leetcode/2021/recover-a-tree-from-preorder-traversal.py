@@ -6,9 +6,6 @@
 #         self.right = right
 from leetcode.Util import TreeNode
 
-from leetcode import Util
-
-
 class Solution:
     def recoverFromPreorder(self, s: str) -> TreeNode:
         d = "0123456789"
