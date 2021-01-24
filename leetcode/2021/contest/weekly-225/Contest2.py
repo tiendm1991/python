@@ -32,6 +32,8 @@ class Solution:
 
 s = Solution()
 print(s.minCharacters("a", "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"))
+print(s.minCharacters("z", "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"))
+print(s.minCharacters("m", "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"))
 print(s.minCharacters("ukrwx", "sqjlxe"))
 print(s.minCharacters("ace", "abe"))
 print(s.minCharacters("bcd", "accde"))
