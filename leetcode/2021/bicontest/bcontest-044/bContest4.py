@@ -1,54 +1,63 @@
+import math
+
+
 class Solution:
-    def checkWays(self, pairs) -> int:
-        g = {}
-        for p in pairs:
-            if p[0] not in g:
-                g[p[0]] = {p[1]}
-            else:
-                g[p[0]].add(p[1])
-            if p[1] not in g:
-                g[p[1]] = {p[0]}
-            else:
-                g[p[1]].add(p[0])
+    def waysToFillArray(self, queries):
+        MAX = 10 ** 4
+        MAX_PRIME = int(math.sqrt(MAX)) + 1
+        mod = 10 ** 9 + 7
+        # allPrimes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41,
+        #              43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101]
+        allPrimes = []
+        p = [True] * (MAX_PRIME + 1)
+        for i in range(2, MAX_PRIME + 1):
+            if not p[i]:
+                continue
+            allPrimes.append(i)
+            for j in range(i * i, MAX_PRIME + 1, i):
+                p[j] = False
 
-        def dfs(visited, comps, v, c):
-            visited.add(v)
-            comps[c].add(v)
-            for next_v in g[v]:
-                if next_v not in visited:
-                    dfs(visited, comps, next_v, c)
+        def primeFactor(x):
+            primeDict = {}
+            i = 0
+            while x > 1 and i < len(allPrimes):
+                if x % allPrimes[i] == 0:
+                    primeDict[allPrimes[i]] = primeDict.get(allPrimes[i], 0) + 1
+                    x //= allPrimes[i]
+                else:
+                    i += 1
+            if x > 1:
+                primeDict[x] = primeDict.get(x, 0) + 1
+            return primeDict
 
-        def helper(nodes):
-            m = len(nodes) - 1
-            if m == 0:
+        def comb(n, k):
+            r = 1
+            if k == n:
                 return 1
+            if k == 1:
+                return n
+            for i in range(1, min(k, n - k) + 1):
+                r = r * (n - i + 1) // i
+            return r % mod
 
-            roots = [v for v in nodes if len(g[v]) == m]
-            if len(roots) == 0:
-                return 0
-            r = roots[0]
-            for v in g[r]:
-                g[v].remove(r)
-            comps = {}
-            c = 0
-            visited = set()
-            for v in nodes:
-                if v != r and v not in visited:
-                    comps[c] = set()
-                    dfs(visited, comps, v, c)
-                    c += 1
-            candidates = {helper(comps[i]) for i in comps}
-            if 0 in candidates:
-                return 0
-            if 2 in candidates:
-                return 2
-            if len(roots) >= 2:
-                return 2
-            return 1
+        def solve(n, k):
+            d = primeFactor(k)
+            r = 1
+            for prime in d:
+                m = d[prime]
+                r = r * comb(n + m - 1, m) % mod
+            return r
 
-        return helper(g.keys())
+        res = []
+        for q in queries:
+            if q[0] == 1 or q[1] == 1:
+                res.append(1)
+            else:
+                res.append(solve(q[0], q[1]))
+        return res
 
 
 s = Solution()
-print(s.checkWays([[1, 2], [2, 3]]))
-print(s.checkWays([[1, 2], [2, 3], [1, 3]]))
+print(s.waysToFillArray([[306, 256]]))
+print(s.waysToFillArray([[5, 12]]))
+print(s.waysToFillArray([[5, 997]]))
