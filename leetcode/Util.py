@@ -17,7 +17,7 @@ class ListNode:
 
 
 def createListNode(arr):
-    if arr == None or len(arr) == 0:
+    if arr is None or len(arr) == 0:
         return None
     head = ListNode(arr[0])
     cur = head
@@ -29,23 +29,23 @@ def createListNode(arr):
 
 
 def createTree(arr):
-    if arr == None or len(arr) == 0:
+    if arr is None or len(arr) == 0:
         return None
     root = TreeNode(arr[0])
     queue = [root]
     i = 1
     while i < len(arr):
-        while queue[0] == None:
+        while queue[0] is None:
             del queue[0]
         left, right = None, None
-        if arr[i] != None:
+        if arr[i] is not None:
             left = TreeNode(arr[i])
         queue[0].left = left
         queue.append(left)
         i += 1
         if i == len(arr):
             break
-        if arr[i] != None:
+        if arr[i] is not None:
             right = TreeNode(arr[i])
         queue[0].right = right
         queue.append(right)
