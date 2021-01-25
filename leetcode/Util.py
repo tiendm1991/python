@@ -15,6 +15,7 @@ class ListNode:
         self.val = x
         self.next = None
 
+
 def createListNode(arr):
     if arr == None or len(arr) == 0:
         return None
