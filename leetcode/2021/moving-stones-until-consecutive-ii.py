@@ -16,6 +16,7 @@ class Solution:
 
 
 s = Solution()
+print(s.numMovesStonesII([2, 3, 4, 7, 8, 9]))  # 2, 2
 print(s.numMovesStonesII([4, 7, 9]))  # 1,2
 print(s.numMovesStonesII([3, 4, 5, 6, 10]))  # 2,3
 print(s.numMovesStonesII([1, 3, 4, 5, 10]))  # 1, 4
