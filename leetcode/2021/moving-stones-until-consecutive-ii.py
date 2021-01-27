@@ -5,8 +5,8 @@ class Solution:
         low, high = n, 0
         if a[-1] - a[0] + 1 == n:
             return [low, high]
-        lMax, rMin = a[-1] - n + 1, a[0] + n - 1
-        high = max(len([x for x in a if x < lMax]), len([x for x in a if x > rMin]))
+        high = max(a[-1] - a[1] + 1 - (n - 1), a[-2] - a[0] + 1 - (n - 1))
+
         return [low, high]
 
 
