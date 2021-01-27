@@ -2,12 +2,17 @@ class Solution:
     def numMovesStonesII(self, a):
         n = len(a)
         a.sort()
-        low, high = n, 0
-        if a[-1] - a[0] + 1 == n:
-            return [low, high]
-        high = max(a[-1] - a[1] + 1 - (n - 1), a[-2] - a[0] + 1 - (n - 1))
-
-        return [low, high]
+        minimum, maximum = n, 0
+        maximum = max(a[-1] - a[1] + 1 - (n - 1), a[-2] - a[0] + 1 - (n - 1))
+        i = 0
+        for j in range(n):
+            while a[j] - a[i] + 1 > n:
+                i += 1
+            if a[j] - a[i] + 1 == j - i + 1 == n - 1:
+                minimum = min(minimum, 2)
+            else:
+                minimum = min(minimum, n - (j - i + 1))
+        return [minimum, maximum]
 
 
 s = Solution()
