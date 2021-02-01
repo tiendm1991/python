@@ -16,11 +16,11 @@ class Solution:
         def comb(K, N):
             return f[N] // (f[K] * f[N - K])
 
-        def calculate(d2):
+        def calculate(dChoose):
             count = []
-            for k in d2:
-                if d2[k] > 0:
-                    count.append(d2[k])
+            for k in dChoose:
+                if dChoose[k] > 0:
+                    count.append(dChoose[k])
             if not count:
                 return 0
             N = sum(count)
@@ -32,14 +32,14 @@ class Solution:
 
         chars = sorted(d)
 
-        def backtrack(d2, idx):
-            self.res += calculate(d2)
+        def backtrack(choose, idx):
+            self.res += calculate(choose)
             for j in range(idx, len(chars)):
                 k = chars[j]
                 for i in range(1, d[k] + 1):
-                    d2[k] = i
-                    backtrack(d2, j + 1)
-                    del d2[k]
+                    choose[k] = i
+                    backtrack(choose, j + 1)
+                    del choose[k]
 
         backtrack({}, 0)
         return self.res
